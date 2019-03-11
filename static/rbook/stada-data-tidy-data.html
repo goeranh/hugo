@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Kurskompendium - introduktion till R</title>
+  <meta name="description" content="Kurskompendium - introduktion till R">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Kurskompendium - introduktion till R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kurskompendium - introduktion till R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="importera-data.html">
+<link rel="next" href="relationer-mellan-datamangder.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.3.1/str_view.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.1</b> Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-konsolen"><i class="fa fa-check"></i><b>1.2</b> R-konsolen</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hjalpfunktioner"><i class="fa fa-check"></i><b>1.4</b> Hjälpfunktioner</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="utforska-data.html"><a href="utforska-data.html"><i class="fa fa-check"></i><b>2</b> Utforska data</a></li>
+<li class="chapter" data-level="3" data-path="visualisering.html"><a href="visualisering.html"><i class="fa fa-check"></i><b>3</b> Visualisering</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualisering.html"><a href="visualisering.html#ett-forsta-diagram"><i class="fa fa-check"></i><b>3.1</b> Ett första diagram</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="visualisering.html"><a href="visualisering.html#ladda-data"><i class="fa fa-check"></i><b>3.1.1</b> Ladda data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="visualisering.html"><a href="visualisering.html#skapa-en-ggplot"><i class="fa fa-check"></i><b>3.1.2</b> Skapa en ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="visualisering.html"><a href="visualisering.html#en-grafikmall"><i class="fa fa-check"></i><b>3.2</b> En grafikmall</a></li>
+<li class="chapter" data-level="3.3" data-path="visualisering.html"><a href="visualisering.html#ovningar"><i class="fa fa-check"></i><b>3.3</b> Övningar</a></li>
+<li class="chapter" data-level="3.4" data-path="visualisering.html"><a href="visualisering.html#aes-funktionen-och-mappings"><i class="fa fa-check"></i><b>3.4</b> <code>aes()</code>-funktionen och mappings</a></li>
+<li class="chapter" data-level="3.5" data-path="visualisering.html"><a href="visualisering.html#ovningar-1"><i class="fa fa-check"></i><b>3.5</b> Övningar</a></li>
+<li class="chapter" data-level="3.6" data-path="visualisering.html"><a href="visualisering.html#vanliga-problem"><i class="fa fa-check"></i><b>3.6</b> Vanliga problem</a></li>
+<li class="chapter" data-level="3.7" data-path="visualisering.html"><a href="visualisering.html#facets"><i class="fa fa-check"></i><b>3.7</b> Facets</a></li>
+<li class="chapter" data-level="3.8" data-path="visualisering.html"><a href="visualisering.html#ovningar-2"><i class="fa fa-check"></i><b>3.8</b> Övningar</a></li>
+<li class="chapter" data-level="3.9" data-path="visualisering.html"><a href="visualisering.html#geometriska-objekt---geoms"><i class="fa fa-check"></i><b>3.9</b> “Geometriska” objekt - geoms</a></li>
+<li class="chapter" data-level="3.10" data-path="visualisering.html"><a href="visualisering.html#ovningar-3"><i class="fa fa-check"></i><b>3.10</b> Övningar</a></li>
+<li class="chapter" data-level="3.11" data-path="visualisering.html"><a href="visualisering.html#statistiska-transformationer"><i class="fa fa-check"></i><b>3.11</b> Statistiska transformationer</a></li>
+<li class="chapter" data-level="3.12" data-path="visualisering.html"><a href="visualisering.html#ovningar-4"><i class="fa fa-check"></i><b>3.12</b> Övningar</a></li>
+<li class="chapter" data-level="3.13" data-path="visualisering.html"><a href="visualisering.html#positionering"><i class="fa fa-check"></i><b>3.13</b> Positionering</a></li>
+<li class="chapter" data-level="3.14" data-path="visualisering.html"><a href="visualisering.html#ovningar-5"><i class="fa fa-check"></i><b>3.14</b> Övningar</a></li>
+<li class="chapter" data-level="3.15" data-path="visualisering.html"><a href="visualisering.html#koordinatsystem"><i class="fa fa-check"></i><b>3.15</b> Koordinatsystem</a></li>
+<li class="chapter" data-level="3.16" data-path="visualisering.html"><a href="visualisering.html#ovningar-6"><i class="fa fa-check"></i><b>3.16</b> Övningar</a></li>
+<li class="chapter" data-level="3.17" data-path="visualisering.html"><a href="visualisering.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>3.17</b> “The layered grammar of graphics”</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="workflow-basics.html"><a href="workflow-basics.html"><i class="fa fa-check"></i><b>4</b> Workflow: Basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="workflow-basics.html"><a href="workflow-basics.html#skriva-kod"><i class="fa fa-check"></i><b>4.1</b> Skriva kod</a></li>
+<li class="chapter" data-level="4.2" data-path="workflow-basics.html"><a href="workflow-basics.html#anropa-funktioner"><i class="fa fa-check"></i><b>4.2</b> Anropa funktioner</a></li>
+<li class="chapter" data-level="4.3" data-path="workflow-basics.html"><a href="workflow-basics.html#ovningar-7"><i class="fa fa-check"></i><b>4.3</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="transformering-av-data.html"><a href="transformering-av-data.html"><i class="fa fa-check"></i><b>5</b> Transformering av data</a><ul>
+<li class="chapter" data-level="5.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#introduktion-1"><i class="fa fa-check"></i><b>5.1</b> Introduktion</a></li>
+<li class="chapter" data-level="5.2" data-path="transformering-av-data.html"><a href="transformering-av-data.html#forberedelser"><i class="fa fa-check"></i><b>5.2</b> Förberedelser</a></li>
+<li class="chapter" data-level="5.3" data-path="transformering-av-data.html"><a href="transformering-av-data.html#dplyr-grunder"><i class="fa fa-check"></i><b>5.3</b> <code>dplyr</code> grunder</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#filtrera-raderposter-med-filter"><i class="fa fa-check"></i><b>5.3.1</b> Filtrera rader/poster med <code>filter()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-8"><i class="fa fa-check"></i><b>5.4</b> Övningar</a></li>
+<li class="chapter" data-level="5.5" data-path="transformering-av-data.html"><a href="transformering-av-data.html#arrangera-poster-med-arrange"><i class="fa fa-check"></i><b>5.5</b> Arrangera poster med <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-9"><i class="fa fa-check"></i><b>5.6</b> Övningar</a></li>
+<li class="chapter" data-level="5.7" data-path="transformering-av-data.html"><a href="transformering-av-data.html#valj-kolumner-med-select"><i class="fa fa-check"></i><b>5.7</b> Välj kolumner med <code>select()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-10"><i class="fa fa-check"></i><b>5.8</b> Övningar</a></li>
+<li class="chapter" data-level="5.9" data-path="transformering-av-data.html"><a href="transformering-av-data.html#lagg-till-flera-variabler-med-hjalp-av-mutate"><i class="fa fa-check"></i><b>5.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a><ul>
+<li class="chapter" data-level="5.9.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#funktioner-och-operatorer-att-anvandas-med-mutate"><i class="fa fa-check"></i><b>5.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-11"><i class="fa fa-check"></i><b>5.10</b> Övningar</a></li>
+<li class="chapter" data-level="5.11" data-path="transformering-av-data.html"><a href="transformering-av-data.html#kombinera-multipla-operationer-med-the-pipe"><i class="fa fa-check"></i><b>5.11</b> Kombinera multipla operationer med the pipe</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arbetsflode-scripts.html"><a href="arbetsflode-scripts.html"><i class="fa fa-check"></i><b>6</b> Arbetsflöde: scripts</a></li>
+<li class="chapter" data-level="7" data-path="explorerande-analys-av-data.html"><a href="explorerande-analys-av-data.html"><i class="fa fa-check"></i><b>7</b> Explorerande analys av data</a></li>
+<li class="chapter" data-level="8" data-path="workflow-projects.html"><a href="workflow-projects.html"><i class="fa fa-check"></i><b>8</b> Workflow: Projects</a><ul>
+<li class="chapter" data-level="8.1" data-path="workflow-projects.html"><a href="workflow-projects.html#vad-ar-viktigt"><i class="fa fa-check"></i><b>8.1</b> Vad är viktigt?</a></li>
+<li class="chapter" data-level="8.2" data-path="workflow-projects.html"><a href="workflow-projects.html#vart-lever-analysen-arbetsbiblioteket"><i class="fa fa-check"></i><b>8.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
+<li class="chapter" data-level="8.3" data-path="workflow-projects.html"><a href="workflow-projects.html#sokvagar-och-bibliotekmappar"><i class="fa fa-check"></i><b>8.3</b> Sökvägar och bibliotek/mappar</a></li>
+<li class="chapter" data-level="8.4" data-path="workflow-projects.html"><a href="workflow-projects.html#rstudio-projects-viktigt"><i class="fa fa-check"></i><b>8.4</b> RStudio projects VIKTIGT!</a></li>
+<li class="chapter" data-level="8.5" data-path="workflow-projects.html"><a href="workflow-projects.html#sammanfattningsvis"><i class="fa fa-check"></i><b>8.5</b> Sammanfattningsvis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="wrangle-att-braka-med-data.html"><a href="wrangle-att-braka-med-data.html"><i class="fa fa-check"></i><b>9</b> Wrangle - att bråka med data</a><ul>
+<li class="chapter" data-level="9.1" data-path="wrangle-att-braka-med-data.html"><a href="wrangle-att-braka-med-data.html#introduktion-2"><i class="fa fa-check"></i><b>9.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a><ul>
+<li class="chapter" data-level="10.1" data-path="tibbles.html"><a href="tibbles.html#skapa-tibbles"><i class="fa fa-check"></i><b>10.1</b> Skapa tibbles</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="tibbles.html"><a href="tibbles.html#tibbles-vs-data-frames"><i class="fa fa-check"></i><b>10.1.1</b> Tibbles vs data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="tibbles.html"><a href="tibbles.html#utskrift-printing"><i class="fa fa-check"></i><b>10.2</b> Utskrift (Printing)</a></li>
+<li class="chapter" data-level="10.3" data-path="tibbles.html"><a href="tibbles.html#urval"><i class="fa fa-check"></i><b>10.3</b> Urval</a></li>
+<li class="chapter" data-level="10.4" data-path="tibbles.html"><a href="tibbles.html#anvanda-aldre-kod"><i class="fa fa-check"></i><b>10.4</b> Använda äldre kod</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="importera-data.html"><a href="importera-data.html"><i class="fa fa-check"></i><b>11</b> Importera data</a><ul>
+<li class="chapter" data-level="11.1" data-path="importera-data.html"><a href="importera-data.html#jamforelse-med-base-r"><i class="fa fa-check"></i><b>11.1</b> Jämförelse med base R</a></li>
+<li class="chapter" data-level="11.2" data-path="importera-data.html"><a href="importera-data.html#ovningar-12"><i class="fa fa-check"></i><b>11.2</b> Övningar</a></li>
+<li class="chapter" data-level="11.3" data-path="importera-data.html"><a href="importera-data.html#omvandla-vektorer"><i class="fa fa-check"></i><b>11.3</b> Omvandla vektorer</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="importera-data.html"><a href="importera-data.html#numeriska-variabler"><i class="fa fa-check"></i><b>11.3.1</b> Numeriska variabler</a></li>
+<li class="chapter" data-level="11.3.2" data-path="importera-data.html"><a href="importera-data.html#textstrangar"><i class="fa fa-check"></i><b>11.3.2</b> Textsträngar</a></li>
+<li class="chapter" data-level="11.3.3" data-path="importera-data.html"><a href="importera-data.html#kategoriska-data"><i class="fa fa-check"></i><b>11.3.3</b> Kategoriska data</a></li>
+<li class="chapter" data-level="11.3.4" data-path="importera-data.html"><a href="importera-data.html#datum-och-tid"><i class="fa fa-check"></i><b>11.3.4</b> Datum och tid</a></li>
+<li class="chapter" data-level="11.3.5" data-path="importera-data.html"><a href="importera-data.html#ovningar-13"><i class="fa fa-check"></i><b>11.3.5</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="importera-data.html"><a href="importera-data.html#hur-readr-plockar-isar-parse-en-fil"><i class="fa fa-check"></i><b>11.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
+<li class="chapter" data-level="11.5" data-path="importera-data.html"><a href="importera-data.html#problem"><i class="fa fa-check"></i><b>11.5</b> Problem</a></li>
+<li class="chapter" data-level="11.6" data-path="importera-data.html"><a href="importera-data.html#skriva-till-en-fil"><i class="fa fa-check"></i><b>11.6</b> Skriva till en fil</a></li>
+<li class="chapter" data-level="11.7" data-path="importera-data.html"><a href="importera-data.html#andra-datatyper"><i class="fa fa-check"></i><b>11.7</b> Andra datatyper</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html"><i class="fa fa-check"></i><b>12</b> Städa data (tidy data)</a><ul>
+<li class="chapter" data-level="12.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#introduktion-3"><i class="fa fa-check"></i><b>12.1</b> Introduktion</a></li>
+<li class="chapter" data-level="12.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>12.2</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#gathering"><i class="fa fa-check"></i><b>12.2.1</b> Gathering</a></li>
+<li class="chapter" data-level="12.2.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#spreading"><i class="fa fa-check"></i><b>12.2.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-14"><i class="fa fa-check"></i><b>12.3</b> Övningar</a></li>
+<li class="chapter" data-level="12.4" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#separera-och-forena"><i class="fa fa-check"></i><b>12.4</b> Separera och förena</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#separate"><i class="fa fa-check"></i><b>12.4.1</b> Separate</a></li>
+<li class="chapter" data-level="12.4.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#unite"><i class="fa fa-check"></i><b>12.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-15"><i class="fa fa-check"></i><b>12.5</b> Övningar</a></li>
+<li class="chapter" data-level="12.6" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#missing-values"><i class="fa fa-check"></i><b>12.6</b> Missing values</a></li>
+<li class="chapter" data-level="12.7" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-16"><i class="fa fa-check"></i><b>12.7</b> Övningar</a></li>
+<li class="chapter" data-level="12.8" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#en-case-study"><i class="fa fa-check"></i><b>12.8</b> En case study</a></li>
+<li class="chapter" data-level="12.9" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-17"><i class="fa fa-check"></i><b>12.9</b> Övningar</a></li>
+<li class="chapter" data-level="12.10" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>12.10</b> Non-tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html"><i class="fa fa-check"></i><b>13</b> Relationer mellan datamängder</a><ul>
+<li class="chapter" data-level="13.1" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#introduktion-4"><i class="fa fa-check"></i><b>13.1</b> Introduktion</a></li>
+<li class="chapter" data-level="13.2" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#nycflights13"><i class="fa fa-check"></i><b>13.2</b> <code>nycflights13</code></a></li>
+<li class="chapter" data-level="13.3" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#keys"><i class="fa fa-check"></i><b>13.3</b> Keys</a></li>
+<li class="chapter" data-level="13.4" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#mutating-joins"><i class="fa fa-check"></i><b>13.4</b> <em>Mutating joins</em></a><ul>
+<li class="chapter" data-level="13.4.1" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#att-forsta-joins"><i class="fa fa-check"></i><b>13.4.1</b> Att förstå <em>joins</em></a></li>
+<li class="chapter" data-level="13.4.2" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#inner-join"><i class="fa fa-check"></i><b>13.4.2</b> Inner join</a></li>
+<li class="chapter" data-level="13.4.3" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#outer-joins"><i class="fa fa-check"></i><b>13.4.3</b> Outer joins</a></li>
+<li class="chapter" data-level="13.4.4" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#duplicate-keys"><i class="fa fa-check"></i><b>13.4.4</b> Duplicate keys</a></li>
+<li class="chapter" data-level="13.4.5" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#definiera-nyckel-kolumner-key-columns"><i class="fa fa-check"></i><b>13.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
+<li class="chapter" data-level="13.4.6" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#ovningar-18"><i class="fa fa-check"></i><b>13.4.6</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#filtering-joins"><i class="fa fa-check"></i><b>13.5</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="13.6" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#problem-med-joins"><i class="fa fa-check"></i><b>13.6</b> Problem med <em>joins</em></a></li>
+<li class="chapter" data-level="13.7" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#set-operations"><i class="fa fa-check"></i><b>13.7</b> Set operations</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html"><i class="fa fa-check"></i><b>14</b> Textsträngar (strings)</a><ul>
+<li class="chapter" data-level="14.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#introduktion-5"><i class="fa fa-check"></i><b>14.1</b> Introduktion</a></li>
+<li class="chapter" data-level="14.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#basics-1"><i class="fa fa-check"></i><b>14.2</b> Basics</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#stringr-funktioner"><i class="fa fa-check"></i><b>14.2.1</b> <code>stringr</code>-funktioner</a></li>
+<li class="chapter" data-level="14.2.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#kombinera-strangar"><i class="fa fa-check"></i><b>14.2.2</b> Kombinera strängar</a></li>
+<li class="chapter" data-level="14.2.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#extrahera-delar-av-textstrangar-subsetting"><i class="fa fa-check"></i><b>14.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
+<li class="chapter" data-level="14.2.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ovningar-19"><i class="fa fa-check"></i><b>14.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#matcha-textmonster-med-hjalp-av-regular-expressions"><i class="fa fa-check"></i><b>14.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a><ul>
+<li class="chapter" data-level="14.3.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#basic-matches"><i class="fa fa-check"></i><b>14.3.1</b> Basic matches</a></li>
+<li class="chapter" data-level="14.3.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ankare-anchors"><i class="fa fa-check"></i><b>14.3.2</b> Ankare (Anchors)</a></li>
+<li class="chapter" data-level="14.3.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#tecken-klasser"><i class="fa fa-check"></i><b>14.3.3</b> Tecken-klasser</a></li>
+<li class="chapter" data-level="14.3.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#repeterande-tecken"><i class="fa fa-check"></i><b>14.3.4</b> Repeterande tecken</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#verktyg"><i class="fa fa-check"></i><b>14.4</b> Verktyg</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#upptack-matchningar"><i class="fa fa-check"></i><b>14.4.1</b> Upptäck matchningar</a></li>
+<li class="chapter" data-level="14.4.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ovningar-22"><i class="fa fa-check"></i><b>14.4.2</b> Övningar</a></li>
+<li class="chapter" data-level="14.4.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#extrahera-matchningar"><i class="fa fa-check"></i><b>14.4.3</b> Extrahera matchningar</a></li>
+<li class="chapter" data-level="14.4.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#gruppereade-matchningar"><i class="fa fa-check"></i><b>14.4.4</b> Gruppereade matchningar</a></li>
+<li class="chapter" data-level="14.4.5" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ersatt-matchningar"><i class="fa fa-check"></i><b>14.4.5</b> Ersätt matchningar</a></li>
+<li class="chapter" data-level="14.4.6" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#dela-upp-textstrangar"><i class="fa fa-check"></i><b>14.4.6</b> Dela upp textsträngar</a></li>
+<li class="chapter" data-level="14.4.7" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#hitta-matchningar"><i class="fa fa-check"></i><b>14.4.7</b> Hitta matchningar</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#andra-typer-av-monster"><i class="fa fa-check"></i><b>14.5</b> Andra typer av mönster</a></li>
+<li class="chapter" data-level="14.6" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#andra-typer-av-regexps"><i class="fa fa-check"></i><b>14.6</b> Andra typer av regexps</a></li>
+<li class="chapter" data-level="14.7" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#stringi"><i class="fa fa-check"></i><b>14.7</b> stringi</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html"><i class="fa fa-check"></i><b>15</b> Kategoriska variabler (Factors)</a><ul>
+<li class="chapter" data-level="15.1" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#introduktion-6"><i class="fa fa-check"></i><b>15.1</b> Introduktion</a></li>
+<li class="chapter" data-level="15.2" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#skapa-factors"><i class="fa fa-check"></i><b>15.2</b> Skapa factors</a></li>
+<li class="chapter" data-level="15.3" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#general-social-survey"><i class="fa fa-check"></i><b>15.3</b> General Social Survey</a></li>
+<li class="chapter" data-level="15.4" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-ordningen-av-factors"><i class="fa fa-check"></i><b>15.4</b> Modifiera ordningen av factors</a></li>
+<li class="chapter" data-level="15.5" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-factor-levels"><i class="fa fa-check"></i><b>15.5</b> Modifiera factor levels</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html"><i class="fa fa-check"></i><b>16</b> Datum och tidsformat</a><ul>
+<li class="chapter" data-level="16.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#introduktion-7"><i class="fa fa-check"></i><b>16.1</b> Introduktion</a></li>
+<li class="chapter" data-level="16.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#skapa-datum-och-tid"><i class="fa fa-check"></i><b>16.2</b> Skapa datum och tid</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-textstrangar"><i class="fa fa-check"></i><b>16.2.1</b> Från textsträngar</a></li>
+<li class="chapter" data-level="16.2.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-enskilda-kompnenter"><i class="fa fa-check"></i><b>16.2.2</b> Från enskilda kompnenter</a></li>
+<li class="chapter" data-level="16.2.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-andra-datumtid-format"><i class="fa fa-check"></i><b>16.2.3</b> Från andra datum/tid-format</a></li>
+<li class="chapter" data-level="16.2.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ovningar-23"><i class="fa fa-check"></i><b>16.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#datumtid-komponenter"><i class="fa fa-check"></i><b>16.3</b> Datum/tid-komponenter</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#extrahera-komponenter"><i class="fa fa-check"></i><b>16.3.1</b> Extrahera komponenter</a></li>
+<li class="chapter" data-level="16.3.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#avrundning"><i class="fa fa-check"></i><b>16.3.2</b> Avrundning</a></li>
+<li class="chapter" data-level="16.3.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ange-komponenter"><i class="fa fa-check"></i><b>16.3.3</b> Ange komponenter</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#tidsintervall"><i class="fa fa-check"></i><b>16.4</b> Tidsintervall</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#varaktighet"><i class="fa fa-check"></i><b>16.4.1</b> Varaktighet</a></li>
+<li class="chapter" data-level="16.4.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#perioder"><i class="fa fa-check"></i><b>16.4.2</b> Perioder</a></li>
+<li class="chapter" data-level="16.4.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#intervall"><i class="fa fa-check"></i><b>16.4.3</b> Intervall</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#summering"><i class="fa fa-check"></i><b>16.5</b> Summering</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="programmering-i-r.html"><a href="programmering-i-r.html"><i class="fa fa-check"></i><b>17</b> Programmering i R</a><ul>
+<li class="chapter" data-level="17.1" data-path="programmering-i-r.html"><a href="programmering-i-r.html#introduktion-8"><i class="fa fa-check"></i><b>17.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>18</b> Pipes</a></li>
+<li class="chapter" data-level="19" data-path="funktioner.html"><a href="funktioner.html"><i class="fa fa-check"></i><b>19</b> Funktioner</a><ul>
+<li class="chapter" data-level="19.1" data-path="funktioner.html"><a href="funktioner.html#nar-bor-du-skapa-en-funktion"><i class="fa fa-check"></i><b>19.1</b> När bör du skapa en funktion?</a></li>
+<li class="chapter" data-level="19.2" data-path="funktioner.html"><a href="funktioner.html#funktioner-ar-till-for-manniskor-och-datorer"><i class="fa fa-check"></i><b>19.2</b> Funktioner är till för människor och datorer</a></li>
+<li class="chapter" data-level="19.3" data-path="funktioner.html"><a href="funktioner.html#villkorlig-exekvering"><i class="fa fa-check"></i><b>19.3</b> Villkorlig exekvering</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="funktioner.html"><a href="funktioner.html#villkor"><i class="fa fa-check"></i><b>19.3.1</b> Villkor</a></li>
+<li class="chapter" data-level="19.3.2" data-path="funktioner.html"><a href="funktioner.html#multipla-villkor"><i class="fa fa-check"></i><b>19.3.2</b> Multipla villkor</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="funktioner.html"><a href="funktioner.html#funktionsargument"><i class="fa fa-check"></i><b>19.4</b> Funktionsargument</a></li>
+<li class="chapter" data-level="19.5" data-path="funktioner.html"><a href="funktioner.html#kolla-varden"><i class="fa fa-check"></i><b>19.5</b> Kolla värden</a></li>
+<li class="chapter" data-level="19.6" data-path="funktioner.html"><a href="funktioner.html#punkt-punkt-punkt"><i class="fa fa-check"></i><b>19.6</b> punkt-punkt-punkt</a></li>
+<li class="chapter" data-level="19.7" data-path="funktioner.html"><a href="funktioner.html#returnera-varden"><i class="fa fa-check"></i><b>19.7</b> Returnera värden</a><ul>
+<li class="chapter" data-level="19.7.1" data-path="funktioner.html"><a href="funktioner.html#explicita-return-uttryck"><i class="fa fa-check"></i><b>19.7.1</b> Explicita <code>return</code>-uttryck</a></li>
+</ul></li>
+<li class="chapter" data-level="19.8" data-path="funktioner.html"><a href="funktioner.html#skriva-funktioner-med-hjalp-av-pipes"><i class="fa fa-check"></i><b>19.8</b> Skriva funktioner med hjälp av pipes</a></li>
+<li class="chapter" data-level="19.9" data-path="funktioner.html"><a href="funktioner.html#environment-svart-hitta-ett-svenskt-uttryck"><i class="fa fa-check"></i><b>19.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="vektorer.html"><a href="vektorer.html"><i class="fa fa-check"></i><b>20</b> Vektorer</a><ul>
+<li class="chapter" data-level="20.1" data-path="vektorer.html"><a href="vektorer.html#introduktion-9"><i class="fa fa-check"></i><b>20.1</b> Introduktion</a></li>
+<li class="chapter" data-level="20.2" data-path="vektorer.html"><a href="vektorer.html#atomic-vectors"><i class="fa fa-check"></i><b>20.2</b> Atomic vectors</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="vektorer.html"><a href="vektorer.html#logical-vectors"><i class="fa fa-check"></i><b>20.2.1</b> Logical vectors</a></li>
+<li class="chapter" data-level="20.2.2" data-path="vektorer.html"><a href="vektorer.html#numeriska-vektorer"><i class="fa fa-check"></i><b>20.2.2</b> Numeriska vektorer</a></li>
+<li class="chapter" data-level="20.2.3" data-path="vektorer.html"><a href="vektorer.html#character"><i class="fa fa-check"></i><b>20.2.3</b> Character</a></li>
+<li class="chapter" data-level="20.2.4" data-path="vektorer.html"><a href="vektorer.html#anvanda-atomic-vectors"><i class="fa fa-check"></i><b>20.2.4</b> Använda atomic vectors</a></li>
+<li class="chapter" data-level="20.2.5" data-path="vektorer.html"><a href="vektorer.html#scalars-och-recycling"><i class="fa fa-check"></i><b>20.2.5</b> Scalars och recycling</a></li>
+<li class="chapter" data-level="20.2.6" data-path="vektorer.html"><a href="vektorer.html#rekursiva-vektorer-lists"><i class="fa fa-check"></i><b>20.2.6</b> Rekursiva vektorer (lists)</a></li>
+<li class="chapter" data-level="20.2.7" data-path="vektorer.html"><a href="vektorer.html#attribut"><i class="fa fa-check"></i><b>20.2.7</b> Attribut</a></li>
+<li class="chapter" data-level="20.2.8" data-path="vektorer.html"><a href="vektorer.html#forstarkta-vektorer-augmented-vectors"><i class="fa fa-check"></i><b>20.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="itereringar.html"><a href="itereringar.html"><i class="fa fa-check"></i><b>21</b> Itereringar</a><ul>
+<li class="chapter" data-level="21.1" data-path="itereringar.html"><a href="itereringar.html#for-loops"><i class="fa fa-check"></i><b>21.1</b> For-loops</a></li>
+<li class="chapter" data-level="21.2" data-path="itereringar.html"><a href="itereringar.html#variationer-av-for-loopar"><i class="fa fa-check"></i><b>21.2</b> Variationer av for-loopar</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="itereringar.html"><a href="itereringar.html#modifiera-ett-existerande-obkjekt"><i class="fa fa-check"></i><b>21.2.1</b> Modifiera ett existerande obkjekt</a></li>
+<li class="chapter" data-level="21.2.2" data-path="itereringar.html"><a href="itereringar.html#nar-langden-pa-output-inte-ar-kand"><i class="fa fa-check"></i><b>21.2.2</b> När längden på output inte är känd</a></li>
+<li class="chapter" data-level="21.2.3" data-path="itereringar.html"><a href="itereringar.html#nar-sekvensens-langd-ar-okand"><i class="fa fa-check"></i><b>21.2.3</b> När sekvensens längd är okänd</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="itereringar.html"><a href="itereringar.html#for-loops-vs.funktioner"><i class="fa fa-check"></i><b>21.3</b> for-loops vs. Funktioner</a></li>
+<li class="chapter" data-level="21.4" data-path="itereringar.html"><a href="itereringar.html#mappningsfunktioner"><i class="fa fa-check"></i><b>21.4</b> Mappningsfunktioner</a><ul>
+<li class="chapter" data-level="21.4.1" data-path="itereringar.html"><a href="itereringar.html#genvagar"><i class="fa fa-check"></i><b>21.4.1</b> Genvägar</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="itereringar.html"><a href="itereringar.html#hantera-errors"><i class="fa fa-check"></i><b>21.5</b> Hantera errors</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>22</b> Introduction</a></li>
+<li class="chapter" data-level="23" data-path="modellering-basics.html"><a href="modellering-basics.html"><i class="fa fa-check"></i><b>23</b> Modellering: basics</a><ul>
+<li class="chapter" data-level="23.1" data-path="modellering-basics.html"><a href="modellering-basics.html#en-enkel-modell"><i class="fa fa-check"></i><b>23.1</b> En enkel modell</a></li>
+<li class="chapter" data-level="23.2" data-path="modellering-basics.html"><a href="modellering-basics.html#visualisera-modeller"><i class="fa fa-check"></i><b>23.2</b> Visualisera modeller</a><ul>
+<li class="chapter" data-level="23.2.1" data-path="modellering-basics.html"><a href="modellering-basics.html#prediktioner"><i class="fa fa-check"></i><b>23.2.1</b> Prediktioner</a></li>
+<li class="chapter" data-level="23.2.2" data-path="modellering-basics.html"><a href="modellering-basics.html#residualer"><i class="fa fa-check"></i><b>23.2.2</b> Residualer</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="modellering-basics.html"><a href="modellering-basics.html#formler-och-modell-familjer"><i class="fa fa-check"></i><b>23.3</b> Formler och modell-familjer</a><ul>
+<li class="chapter" data-level="23.3.1" data-path="modellering-basics.html"><a href="modellering-basics.html#kategoriska-variabler"><i class="fa fa-check"></i><b>23.3.1</b> Kategoriska variabler</a></li>
+<li class="chapter" data-level="23.3.2" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner"><i class="fa fa-check"></i><b>23.3.2</b> Interaktioner</a></li>
+<li class="chapter" data-level="23.3.3" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner-tva-kontinuerliga-variabler"><i class="fa fa-check"></i><b>23.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
+<li class="chapter" data-level="23.3.4" data-path="modellering-basics.html"><a href="modellering-basics.html#transformationer"><i class="fa fa-check"></i><b>23.3.4</b> Transformationer</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="modellering-basics.html"><a href="modellering-basics.html#missing-values-1"><i class="fa fa-check"></i><b>23.4</b> Missing values</a><ul>
+<li class="chapter" data-level="23.4.1" data-path="modellering-basics.html"><a href="modellering-basics.html#andra-modell-familjer"><i class="fa fa-check"></i><b>23.4.1</b> Andra modell-familjer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html"><i class="fa fa-check"></i><b>24</b> Bygga modeller i R</a><ul>
+<li class="chapter" data-level="24.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#varfor-ar-diamanter-av-lag-kvalitet-dyrare"><i class="fa fa-check"></i><b>24.1</b> Varför är diamanter av låg kvalitet dyrare?</a><ul>
+<li class="chapter" data-level="24.1.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#sambandet-pris-och-karat"><i class="fa fa-check"></i><b>24.1.1</b> Sambandet pris och karat</a></li>
+<li class="chapter" data-level="24.1.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#en-mer-komplicerad-modell"><i class="fa fa-check"></i><b>24.1.2</b> En mer komplicerad modell</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#vad-ar-det-som-paverkar-antalet-dagliga-flighter"><i class="fa fa-check"></i><b>24.2</b> Vad är det som påverkar antalet dagliga flighter?</a><ul>
+<li class="chapter" data-level="24.2.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#veckodag"><i class="fa fa-check"></i><b>24.2.1</b> Veckodag</a></li>
+<li class="chapter" data-level="24.2.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lordags-effekten"><i class="fa fa-check"></i><b>24.2.2</b> Lördags-effekten</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lara-mer-om-modellering"><i class="fa fa-check"></i><b>24.3</b> Lära mer om modellering</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html"><i class="fa fa-check"></i><b>25</b> Grafik för att kommunicera</a><ul>
+<li class="chapter" data-level="25.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#etiketter-labels"><i class="fa fa-check"></i><b>25.1</b> Etiketter (labels)</a></li>
+<li class="chapter" data-level="25.2" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#annoteringar"><i class="fa fa-check"></i><b>25.2</b> Annoteringar</a></li>
+<li class="chapter" data-level="25.3" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#scales"><i class="fa fa-check"></i><b>25.3</b> Scales</a><ul>
+<li class="chapter" data-level="25.3.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#axis-ticks-och-teckenforklaringar"><i class="fa fa-check"></i><b>25.3.1</b> Axis ticks och teckenförklaringar</a></li>
+<li class="chapter" data-level="25.3.2" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#teckenforklaringens-legend-layout"><i class="fa fa-check"></i><b>25.3.2</b> Teckenförklaringens (legend) layout</a></li>
+<li class="chapter" data-level="25.3.3" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#byta-ut-en-scale"><i class="fa fa-check"></i><b>25.3.3</b> Byta ut en scale</a></li>
+</ul></li>
+<li class="chapter" data-level="25.4" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#zooming"><i class="fa fa-check"></i><b>25.4</b> Zooming</a><ul>
+<li class="chapter" data-level="25.4.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#teman-themes"><i class="fa fa-check"></i><b>25.4.1</b> Teman (themes)</a></li>
+</ul></li>
+<li class="chapter" data-level="25.5" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#spara-graferna"><i class="fa fa-check"></i><b>25.5</b> Spara graferna</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Kurskompendium - introduktion till R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="stada-data-tidy-data" class="section level1">
+<h1><span class="header-section-number">12</span> Städa data (tidy data)</h1>
+<div id="introduktion-3" class="section level2">
+<h2><span class="header-section-number">12.1</span> Introduktion</h2>
+<p>Detta avsnitt handlar om att tillämpa ett konsistent sätt att organsiera dina data i R som Wickham kallar <em>tidy data</em>. Det kräver lite handpåläggning innan du kan börja analysera data men är väl värt mödan eftersom du kommer att behöva lägga mindre tid på att organisera om dina data för specifika analyser senare.</p>
+<p>Avsnittet fokuserar på modulen <code>tidyr</code>, även den en del av <code>tidyverse</code>. Wickham har skrivit en artikel i <em>Journal of Statistical Software</em>, om teorin bakom <em>tidy data</em>: <a href="http://www.jstatsoft.org/v59/i10/paper" class="uri">http://www.jstatsoft.org/v59/i10/paper</a>.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>Samma underliggande data kan representeras på olika sätt. Nedanstående tibbles visar samma data representerade på fyra olika sätt. Data består av fyra variabler, country, year, population, and cases, men varje tabell organsierar värdena på fyra olika sätt:
+TB-datasetet:
+<a href="https://extranet.who.int/tme/generateCSV.asp?ds=estimates" class="uri">https://extranet.who.int/tme/generateCSV.asp?ds=estimates</a></p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">table1</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">table2</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">table3</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">table4a  <span class="co"># cases</span></a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">table4b  <span class="co"># population</span></a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country         `1999`     `2000`
+## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan   19987071   20595360
+## 2 Brazil       172006362  174504898
+## 3 China       1272915272 1280428583</code></pre>
+<p>Även om data är desamma är tabellerna inte lika användbara. Om data vore organiserade utifrån principerna i “the tidy dataset”, kommer datasetet att vara betydligt enklare att arbeta med.
+Det finns tre sammanhängande regler vilka gör ett dataset till ett “tidy” dataset:</p>
+<ol style="list-style-type: decimal">
+<li>Varje variabel måste ha sin egen kolumn</li>
+<li>Varje observation måste ha sin egen rad</li>
+<li>Varje värde måste ha sin egen cell</li>
+</ol>
+<p>Detta illustreras i nedanstående figur:</p>
+<p>OBS FIGYR SAKNAS</p>
+<p>Dessa tre regler hänger samman genom att det är omöjligt att tillgodose endast två av de tre.
+Varför bör man göra detta då? Det finns två fördelar:</p>
+<ol style="list-style-type: decimal">
+<li>Det finns en generell poäng med att välja ett konsistent sätt att lagra data. Med ett dataset som är <em>tidy</em> är det lättare att lära sig verktygen för att bearbeta dessa data genom att verktygen har en underliggande gemensam struktur. <code>dplyr</code>, <code>ggplot2</code> och övriga packages i <code>tidyverse</code> är utformade för att arbeta med <em>tidy data</em>.</li>
+<li>Det finns en speciell fördel med att placera variabler i kolumner genom att det utnyttjar R:s vektor-baserade arbetssätt maximalt. Som vi såg i <code>mutate()</code> och <code>summarise()</code>-funktionerna arbetar dessa liksom de flesta funktioner med vektorer. Det gör <em>tidy data</em> till ett naturligt sätt att organisera data i R.</li>
+</ol>
+<p>Här är några exempel på hur du kan arbeta med TB-data från tabell 1 ovan:</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="co"># Beräkna antal per 10,000</span></a>
+<a class="sourceLine" id="cb252-2" data-line-number="2">table1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">rate =</span> cases <span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="dv">10000</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   country      year  cases population  rate
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt; &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071 0.373
+## 2 Afghanistan  2000   2666   20595360 1.29 
+## 3 Brazil       1999  37737  172006362 2.19 
+## 4 Brazil       2000  80488  174504898 4.61 
+## 5 China        1999 212258 1272915272 1.67 
+## 6 China        2000 213766 1280428583 1.67</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="co"># Beräkna antal per år</span></a>
+<a class="sourceLine" id="cb254-2" data-line-number="2">table1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb254-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(year, <span class="dt">wt =</span> cases)</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##    year      n
+##   &lt;int&gt;  &lt;int&gt;
+## 1  1999 250740
+## 2  2000 296920</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="co"># Visualisera förändring över tid </span></a>
+<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb256-3" data-line-number="3"><span class="kw">ggplot</span>(table1, <span class="kw">aes</span>(year, cases)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> country), <span class="dt">colour =</span> <span class="st">&quot;grey50&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb256-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> country))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="70%" /></p>
+</div>
+<div id="spreading-and-gathering" class="section level2">
+<h2><span class="header-section-number">12.2</span> Spreading and gathering</h2>
+<p>Om data inte är <em>tidy</em> behöver man rensa datasetet. Vi ska gå igenom ett antal funktioner för detta.
+Det första steget är att identifiera vad som är variabler och vad som är observationer, vilket ibland är uppenbart, ibland svårare. Det andra steget är att lösa ettdera av två vanliga problem:</p>
+<ol style="list-style-type: decimal">
+<li>En variabel kan vara spridd över flera kolumner</li>
+<li>En observation kan vara spridd över flera kolumner</li>
+</ol>
+<p>För att fixa detta finns två funktioner tillgängliga i <em>tidyr</em>: <code>gather()</code> and <code>spread()</code>.</p>
+<div id="gathering" class="section level3">
+<h3><span class="header-section-number">12.2.1</span> Gathering</h3>
+<p>Ett vanligt problem är när ett kolumn-namn inte är variabelnamn utan ett värde på en variabel. Se tabell 4a: kolumnerna “199” och “2000” representerar värden av variabeln “year” vilket innebär att varje rad representerar två observationer, inte en:</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">table4a</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<p>För att göra detta till ett <em>tidy</em> dataset behöver vi samla ihop (<em>gather</em>) dessa två kolumner till en. Vi behöver tre parametrar för detta:</p>
+<ol style="list-style-type: decimal">
+<li>De kolumner som representerar värden, t.ex. kolumnerna 1999 och 2000.</li>
+<li>Namnet på variabeln vars värden bildar kolumnerna, dvs en “nyckel”. I detta fall kallar vi benämner vi nyckeln “year”.</li>
+<li>Namnet på variabeln som ska representera värden på nyckeln, i detta fall “cases”.
+Dessa tre parametrar är de argument som behövs för <code>gather()</code>:</li>
+</ol>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">table4a <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766</code></pre>
+<p>Kolumnerna specificeras som då man använder <code>select()</code>. Här är det bara två kolumner så då spec:ar vi dem individuellt. Observera att “1999” och “2000” är “non-syntactic names”, eftersom de inte börjar med en bokstav så vi behöver omge dem med “backticks”, se <code>?select</code>.</p>
+<p>De ursprungliga kolumnerna 1999 och 2000 har ersatts med “year” och “cases”. Relationerna mellan de ursprungliga variablerna är dock ofäörändrade.</p>
+<p>På samma sätt kan man göra med tabell 4b:</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">table4b <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     year  population
+##   &lt;chr&gt;       &lt;chr&gt;      &lt;int&gt;
+## 1 Afghanistan 1999    19987071
+## 2 Brazil      1999   172006362
+## 3 China       1999  1272915272
+## 4 Afghanistan 2000    20595360
+## 5 Brazil      2000   174504898
+## 6 China       2000  1280428583</code></pre>
+<p>För att kombinera de rensade tabellerna till en gemensam behöver vi använda <code>left_join()</code>:</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">tidy4a &lt;-<span class="st"> </span>table4a <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>)</a>
+<a class="sourceLine" id="cb263-3" data-line-number="3">tidy4b &lt;-<span class="st"> </span>table4b <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb263-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="st">`</span><span class="dt">1999</span><span class="st">`</span>, <span class="st">`</span><span class="dt">2000</span><span class="st">`</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;population&quot;</span>)</a>
+<a class="sourceLine" id="cb263-5" data-line-number="5"><span class="kw">left_join</span>(tidy4a, tidy4b)</a></code></pre></div>
+<pre><code>## Joining, by = c(&quot;country&quot;, &quot;year&quot;)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country     year   cases population
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan 1999     745   19987071
+## 2 Brazil      1999   37737  172006362
+## 3 China       1999  212258 1272915272
+## 4 Afghanistan 2000    2666   20595360
+## 5 Brazil      2000   80488  174504898
+## 6 China       2000  213766 1280428583</code></pre>
+</div>
+<div id="spreading" class="section level3">
+<h3><span class="header-section-number">12.2.2</span> Spreading</h3>
+<p><em>Spreading</em> är motsatsen till <em>gathering</em>. Man använder det då en observation är spridd över flera rader. T.ex. tabell 2: en observation är ett land i ett visst år, men varje observation är fördelad på två rader:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">table2</a></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<p>För att rensa dessa data behövs endast två parametrar:</p>
+<ol style="list-style-type: decimal">
+<li>Kolumnen som innehåller variabelnamnen, i detta fall <em>type</em></li>
+<li>Kolumnen som innehåller motsvarande värden, i detta fall <em>count</em></li>
+</ol>
+<p>Vi använder dessa parametrar som argument i <code>spread()</code>:</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">table2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="st">    </span><span class="kw">spread</span>(<span class="dt">key =</span> type, <span class="dt">value =</span> count)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+<div id="ovningar-14" class="section level2">
+<h2><span class="header-section-number">12.3</span> Övningar</h2>
+<ol style="list-style-type: decimal">
+<li>Varför fungerar inte nedanstående kod?</li>
+</ol>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">table4a <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb270-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(<span class="dv">1999</span>, <span class="dv">2000</span>, <span class="dt">key =</span> <span class="st">&quot;year&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>)</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Varför fungerar inte <code>spread</code> på nedanstående tibble? Kan man t.ex. addera en ny kolumn för att lösa problemet?</li>
+</ol>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">people &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb271-2" data-line-number="2">  <span class="op">~</span>name,             <span class="op">~</span>key,    <span class="op">~</span>value,</a>
+<a class="sourceLine" id="cb271-3" data-line-number="3">  <span class="co">#-----------------|--------|------</span></a>
+<a class="sourceLine" id="cb271-4" data-line-number="4">  <span class="st">&quot;Phillip Woods&quot;</span>,   <span class="st">&quot;age&quot;</span>,       <span class="dv">45</span>,</a>
+<a class="sourceLine" id="cb271-5" data-line-number="5">  <span class="st">&quot;Phillip Woods&quot;</span>,   <span class="st">&quot;height&quot;</span>,   <span class="dv">186</span>,</a>
+<a class="sourceLine" id="cb271-6" data-line-number="6">  <span class="st">&quot;Phillip Woods&quot;</span>,   <span class="st">&quot;age&quot;</span>,       <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb271-7" data-line-number="7">  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;age&quot;</span>,       <span class="dv">37</span>,</a>
+<a class="sourceLine" id="cb271-8" data-line-number="8">  <span class="st">&quot;Jessica Cordero&quot;</span>, <span class="st">&quot;height&quot;</span>,   <span class="dv">156</span></a>
+<a class="sourceLine" id="cb271-9" data-line-number="9">)</a></code></pre></div>
+</div>
+<div id="separera-och-forena" class="section level2">
+<h2><span class="header-section-number">12.4</span> Separera och förena</h2>
+<p>I tabell 3 finns ett annat problem, nämligen att en kolumn (<code>rate</code>) innehåller två variabler (<code>cases</code> och <code>population</code>). För att lösa detta används <code>separate()</code>.
+Komplementet till <code>separate()</code> är <code>unite()</code>, vilket används då ett värde är spritt över flera kolumner.</p>
+<div id="separate" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> Separate</h3>
+<p><code>separate()</code> drar isär en kolumn till fler kolumner med hjälp av ett icke-alfanumeriskt tecken som förekommer i kolumnen (= default) eller ett annat tecken som spec:as med argumentet <code>sep =</code>. Se tabell 3:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">table3</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<p>Kolumnen <code>rate</code> innehåller både <code>cases</code> och <code>population</code>. Vi behöver dela upp den på två variabler. Argumenten till <code>separate()</code> är namnet på kolumnen som ska delas upp, och namnen på kolumnerna som är resultatet av uppdelningen. Se exempel och figur nedan:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb274-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  population
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Som default kommer <code>separate()</code> att göra delningen där det finns ett icke-alfanumeriskt tecken, t.ex. “//” i exemplet ovan. Man kan dock specificera valfritt tecken i ett argument som heter <code>sep</code>, se nedan:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  population
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Notera att de nya kolumnerna (liksom den ursprungliga) är <code>chr</code> vilket inte är särskilt användbart. Vi kan emellertid använda argumentet <code>convert = TRUE</code> för att <code>separate()</code> ska konvetera de nya kolumnerna till numeriska:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(rate, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;cases&quot;</span>, <span class="st">&quot;population&quot;</span>), <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+## * &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Vi kan även ange en numerisk vektor till <code>sep.</code> <code>separate()</code> kommer då att tolka siffrorna som positioner där delningen ska ske. Positiva värden börjar vid 1 till vänster av textsträngen, negativa värden börjar vid -1 längst till höger:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1">table3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   country     century year  rate             
+## * &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583</code></pre>
+</div>
+<div id="unite" class="section level3">
+<h3><span class="header-section-number">12.4.2</span> Unite</h3>
+<p><code>unite()</code> är komplementet till <code>separate()</code>: det kombinerar flera kolumner till en.</p>
+<p>Vi kan använda <code>unite()</code> för att återförena <code>century</code> och <code>year</code> som skapades i förra exemplet. <code>unite()</code> använder en <em>data frame</em>, namnet på den nya variabeln och ett set av kolumner som ska kombineras:</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">table5 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb282-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(new, century, year)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     new   rate             
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19_99 745/19987071     
+## 2 Afghanistan 20_00 2666/20595360    
+## 3 Brazil      19_99 37737/172006362  
+## 4 Brazil      20_00 80488/174504898  
+## 5 China       19_99 212258/1272915272
+## 6 China       20_00 213766/1280428583</code></pre>
+<p>I det härt fallet bör vi också använda <code>sep</code> Som default använder <code>sep</code>en underscore (_) mellan värden från de olika kolumnerna. Det vill vi inte ha här så vi använder separatorn <code>&quot;&quot;</code>:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">table5 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="st">  </span><span class="kw">unite</span>(new, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##   country     new   rate             
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 1999  745/19987071     
+## 2 Afghanistan 2000  2666/20595360    
+## 3 Brazil      1999  37737/172006362  
+## 4 Brazil      2000  80488/174504898  
+## 5 China       1999  212258/1272915272
+## 6 China       2000  213766/1280428583</code></pre>
+</div>
+</div>
+<div id="ovningar-15" class="section level2">
+<h2><span class="header-section-number">12.5</span> Övningar</h2>
+<ol style="list-style-type: decimal">
+<li>Vad gör argumenten <code>extra</code> och <code>fill</code>? Experimentera med de olika alternativen med följande datasets:</li>
+</ol>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e,f,g&quot;</span>, <span class="st">&quot;h,i,j&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</a>
+<a class="sourceLine" id="cb286-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb286-4" data-line-number="4"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;a,b,c&quot;</span>, <span class="st">&quot;d,e&quot;</span>, <span class="st">&quot;f,g,i&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb286-5" data-line-number="5"><span class="st">  </span><span class="kw">separate</span>(x, <span class="kw">c</span>(<span class="st">&quot;one&quot;</span>, <span class="st">&quot;two&quot;</span>, <span class="st">&quot;three&quot;</span>))</a></code></pre></div>
+</div>
+<div id="missing-values" class="section level2">
+<h2><span class="header-section-number">12.6</span> Missing values</h2>
+<p>När vi förändrar ett dataset uppstår ofta ett problem med <em>missing values</em>. Ett värde kan vara <em>missing</em> på två sätt:</p>
+<ol style="list-style-type: decimal">
+<li>Explicit, dvs flaggad med NA.</li>
+<li>Implicit, dvs. finns helt enkelt inte med i data.</li>
+</ol>
+<p>Vi illustrerar detta med nedanstående tibble:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">stocks &lt;-<span class="st"> </span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb287-2" data-line-number="2">  <span class="dt">year   =</span> <span class="kw">c</span>(<span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2016</span>, <span class="dv">2016</span>),</a>
+<a class="sourceLine" id="cb287-3" data-line-number="3">  <span class="dt">qtr    =</span> <span class="kw">c</span>(   <span class="dv">1</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>,    <span class="dv">2</span>,    <span class="dv">3</span>,    <span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb287-4" data-line-number="4">  <span class="dt">return =</span> <span class="kw">c</span>(<span class="fl">1.88</span>, <span class="fl">0.59</span>, <span class="fl">0.35</span>,   <span class="ot">NA</span>, <span class="fl">0.92</span>, <span class="fl">0.17</span>, <span class="fl">2.66</span>)</a>
+<a class="sourceLine" id="cb287-5" data-line-number="5">)</a></code></pre></div>
+<p>Här finns två <em>missing values</em>:</p>
+<ul>
+<li><em>return</em> för fjärde kvartalet 2015 är explicit <em>missing</em>, dvs innehåller NA.</li>
+<li><em>return</em> för första kvartalet 2016 är implicit <em>missing</em> eftersom deti inte finns med i data.</li>
+</ul>
+<p>Sättet på vilket data representeras kan göra implicit <em>missing values</em> explicit. Till exempel kan vi göra detta genom att sätta <code>year</code>i kolumner:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">stocks <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(year, return)</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##     qtr `2015` `2016`
+##   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     1   1.88  NA   
+## 2     2   0.59   0.92
+## 3     3   0.35   0.17
+## 4     4  NA      2.66</code></pre>
+<p>Om <em>missing values</em> i en viss situation inte behöver ha någon betydelse kan man använda argumentet <code>na.rm = TRUE</code> i <code>gather()</code> för att göra ett <em>missing value</em> implicit:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">stocks <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2"><span class="st">  </span><span class="kw">spread</span>(year, return) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb290-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(year, return, <span class="st">`</span><span class="dt">2015</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2016</span><span class="st">`</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##     qtr year  return
+## * &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1     1 2015    1.88
+## 2     2 2015    0.59
+## 3     3 2015    0.35
+## 4     2 2016    0.92
+## 5     3 2016    0.17
+## 6     4 2016    2.66</code></pre>
+<p>Ett annat viktigt verktyg för att göra <em>missing values</em> explicit är <code>complete()</code>:</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">stocks <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="st">  </span><span class="kw">complete</span>(year, qtr)</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 3
+##    year   qtr return
+##   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1  2015     1   1.88
+## 2  2015     2   0.59
+## 3  2015     3   0.35
+## 4  2015     4  NA   
+## 5  2016     1  NA   
+## 6  2016     2   0.92
+## 7  2016     3   0.17
+## 8  2016     4   2.66</code></pre>
+<p><code>complete()</code> använder en uppsättning kolumner och identifierar alla unika kombinationer. Därigenom försäkrar man sig om att data innehåller samtliga värden (med explicita NAs där det behövs).</p>
+<p>Det finns ett ytterligare bra verktyg för att arbeta med <em>missing values</em>. Man stöter ibland på data där <em>missing values</em> indikerar att ett tidigare värde gäller, t.ex. i en tabell som nedan:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">treatment &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">  <span class="op">~</span><span class="st"> </span>person,           <span class="op">~</span><span class="st"> </span>treatment, <span class="op">~</span>response,</a>
+<a class="sourceLine" id="cb294-3" data-line-number="3">  <span class="st">&quot;Derrick Whitmore&quot;</span>, <span class="dv">1</span>,           <span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb294-4" data-line-number="4">  <span class="ot">NA</span>,                 <span class="dv">2</span>,           <span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb294-5" data-line-number="5">  <span class="ot">NA</span>,                 <span class="dv">3</span>,           <span class="dv">9</span>,</a>
+<a class="sourceLine" id="cb294-6" data-line-number="6">  <span class="st">&quot;Katherine Burke&quot;</span>,  <span class="dv">1</span>,           <span class="dv">4</span></a>
+<a class="sourceLine" id="cb294-7" data-line-number="7">)</a></code></pre></div>
+<p>Du kan fylla i sådana <em>missing values</em> med <code>fill()</code>. Det använder ett set av kolumner där du vill ersätta <em>missing values</em> med det senaste förekommande värdet som inte är <code>NA</code> (“last observation carried forward”):</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">treatment <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="st">  </span><span class="kw">fill</span>(person)</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   person           treatment response
+##   &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;
+## 1 Derrick Whitmore         1        7
+## 2 Derrick Whitmore         2       10
+## 3 Derrick Whitmore         3        9
+## 4 Katherine Burke          1        4</code></pre>
+</div>
+<div id="ovningar-16" class="section level2">
+<h2><span class="header-section-number">12.7</span> Övningar</h2>
+<ol style="list-style-type: decimal">
+<li>Jämför argumentet <code>fill</code> med <code>spread()</code> och <code>complete()</code>. Skillnader?</li>
+<li>Vad gör riktningsargumentet <code>.direction</code> till <code>fill()</code> ?</li>
+</ol>
+</div>
+<div id="en-case-study" class="section level2">
+<h2><span class="header-section-number">12.8</span> En case study</h2>
+<p>Som en avslutning på detta avsnitt ska vi använda funktionerna för att rensa ett ganska komplext dataset. Det är ett dataset hämtat från WHO och innehåller data om tuberkulos nedbrutet på år, nation, ålder, gender och diagnositisk metod. Källan är 2014 World Health Organization Global Tuberculosis Report, och finns på <a href="http://www.who.int/tb/country/data/download/en/" class="uri">http://www.who.int/tb/country/data/download/en/</a>. Det finns också inbyggt i <code>tidyr</code> och hämtas med hjälp av</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">tidyr<span class="op">::</span>who</a></code></pre></div>
+<pre><code>## # A tibble: 7,240 x 60
+##    country iso2  iso3   year new_sp_m014 new_sp_m1524 new_sp_m2534
+##    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;int&gt;       &lt;int&gt;        &lt;int&gt;        &lt;int&gt;
+##  1 Afghan~ AF    AFG    1980          NA           NA           NA
+##  2 Afghan~ AF    AFG    1981          NA           NA           NA
+##  3 Afghan~ AF    AFG    1982          NA           NA           NA
+##  4 Afghan~ AF    AFG    1983          NA           NA           NA
+##  5 Afghan~ AF    AFG    1984          NA           NA           NA
+##  6 Afghan~ AF    AFG    1985          NA           NA           NA
+##  7 Afghan~ AF    AFG    1986          NA           NA           NA
+##  8 Afghan~ AF    AFG    1987          NA           NA           NA
+##  9 Afghan~ AF    AFG    1988          NA           NA           NA
+## 10 Afghan~ AF    AFG    1989          NA           NA           NA
+## # ... with 7,230 more rows, and 53 more variables: new_sp_m3544 &lt;int&gt;,
+## #   new_sp_m4554 &lt;int&gt;, new_sp_m5564 &lt;int&gt;, new_sp_m65 &lt;int&gt;,
+## #   new_sp_f014 &lt;int&gt;, new_sp_f1524 &lt;int&gt;, new_sp_f2534 &lt;int&gt;,
+## #   new_sp_f3544 &lt;int&gt;, new_sp_f4554 &lt;int&gt;, new_sp_f5564 &lt;int&gt;,
+## #   new_sp_f65 &lt;int&gt;, new_sn_m014 &lt;int&gt;, new_sn_m1524 &lt;int&gt;,
+## #   new_sn_m2534 &lt;int&gt;, new_sn_m3544 &lt;int&gt;, new_sn_m4554 &lt;int&gt;,
+## #   new_sn_m5564 &lt;int&gt;, new_sn_m65 &lt;int&gt;, new_sn_f014 &lt;int&gt;,
+## #   new_sn_f1524 &lt;int&gt;, new_sn_f2534 &lt;int&gt;, new_sn_f3544 &lt;int&gt;,
+## #   new_sn_f4554 &lt;int&gt;, new_sn_f5564 &lt;int&gt;, new_sn_f65 &lt;int&gt;,
+## #   new_ep_m014 &lt;int&gt;, new_ep_m1524 &lt;int&gt;, new_ep_m2534 &lt;int&gt;,
+## #   new_ep_m3544 &lt;int&gt;, new_ep_m4554 &lt;int&gt;, new_ep_m5564 &lt;int&gt;,
+## #   new_ep_m65 &lt;int&gt;, new_ep_f014 &lt;int&gt;, new_ep_f1524 &lt;int&gt;,
+## #   new_ep_f2534 &lt;int&gt;, new_ep_f3544 &lt;int&gt;, new_ep_f4554 &lt;int&gt;,
+## #   new_ep_f5564 &lt;int&gt;, new_ep_f65 &lt;int&gt;, newrel_m014 &lt;int&gt;,
+## #   newrel_m1524 &lt;int&gt;, newrel_m2534 &lt;int&gt;, newrel_m3544 &lt;int&gt;,
+## #   newrel_m4554 &lt;int&gt;, newrel_m5564 &lt;int&gt;, newrel_m65 &lt;int&gt;,
+## #   newrel_f014 &lt;int&gt;, newrel_f1524 &lt;int&gt;, newrel_f2534 &lt;int&gt;,
+## #   newrel_f3544 &lt;int&gt;, newrel_f4554 &lt;int&gt;, newrel_f5564 &lt;int&gt;,
+## #   newrel_f65 &lt;int&gt;</code></pre>
+<p>Det finns även en nyckel till detta dataset vilken hämtas med</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">?who</a></code></pre></div>
+<p>Detta är ett exempel på ett <em>messy</em> dataset, med mängder av redundanta kolumner, udda variabelnamn, massor av NA:s, som gjort för en övning i att rensa ett data set.</p>
+<p>Ett rimligt sätt att börja är att samla ihop alla kolumner som inte är variabler:
+<code>country</code>, <code>iso2</code> och <code>iso3</code> är tre variabler som alla anger namnet på nationen.
+<code>year</code> är uppenbart också en variabel.</p>
+<p>Om vi kikar på de övriga kolumnnamnen (t.ex. <code>new_sp_m014</code>, <code>new_ep_m014</code>, <code>new_ep_f014</code>, osv) och deras innehåll verkar dessa vara värden, inte variabler.</p>
+<p>Så låt oss börja med att samla ihop alla dessa kolumner. Eftersom vi inte riktigt vet vad kolumnerna representerar så anger vi den nya nyckel-kolumnen med det generiska <code>key</code> och eftersom vi antar att cellerna representerar <em>antal</em> TB-fall anger vi den nya värde-kolumnen som <code>cases</code>. Här finns massor av <em>missing values</em> så tills vidare använder vi <code>na.rm = TRUE</code> för att kunna fokusera på de befintliga värdena:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">who1 &lt;-<span class="st"> </span>who <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(new_sp_m014<span class="op">:</span>newrel_f65, <span class="dt">key =</span> <span class="st">&quot;key&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;cases&quot;</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb300-4" data-line-number="4">who1</a></code></pre></div>
+<pre><code>## # A tibble: 76,046 x 6
+##    country     iso2  iso3   year key         cases
+##  * &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;       &lt;int&gt;
+##  1 Afghanistan AF    AFG    1997 new_sp_m014     0
+##  2 Afghanistan AF    AFG    1998 new_sp_m014    30
+##  3 Afghanistan AF    AFG    1999 new_sp_m014     8
+##  4 Afghanistan AF    AFG    2000 new_sp_m014    52
+##  5 Afghanistan AF    AFG    2001 new_sp_m014   129
+##  6 Afghanistan AF    AFG    2002 new_sp_m014    90
+##  7 Afghanistan AF    AFG    2003 new_sp_m014   127
+##  8 Afghanistan AF    AFG    2004 new_sp_m014   139
+##  9 Afghanistan AF    AFG    2005 new_sp_m014   151
+## 10 Afghanistan AF    AFG    2006 new_sp_m014   193
+## # ... with 76,036 more rows</code></pre>
+<p>Vi kan få en aning om strukturen bland värdena i den nya nyckel-kolumnen genom att räkna antalet kategorier:</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">who1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb302-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(key)</a></code></pre></div>
+<pre><code>## # A tibble: 56 x 2
+##    key              n
+##    &lt;chr&gt;        &lt;int&gt;
+##  1 new_ep_f014   1032
+##  2 new_ep_f1524  1021
+##  3 new_ep_f2534  1021
+##  4 new_ep_f3544  1021
+##  5 new_ep_f4554  1017
+##  6 new_ep_f5564  1017
+##  7 new_ep_f65    1014
+##  8 new_ep_m014   1038
+##  9 new_ep_m1524  1026
+## 10 new_ep_m2534  1020
+## # ... with 46 more rows</code></pre>
+<p>Enligt kodnyckeln (<code>?who</code>) tolkas kategorierna på följande sätt:</p>
+<ul>
+<li>De första tre bokstäverna anger om TB-fallet är nytt eller gammalt.</li>
+<li>Nästa två bokstäver beskriver typen av TB:</li>
+<li><em>rel</em> står för återfall (relapse)</li>
+<li><em>ep</em> står för TB utanför lungvävnaden (extrapulmonary TB)</li>
+<li><em>sn</em> står för lung-TBC so inte kunnat diagnosticeras med hjälp av prov på upphostning (smear negative)</li>
+<li><em>sp</em> står för lung-TBC som kunnat diagnosticeras med hjälp av prov på upphostning (smear positive)</li>
+<li>Den sjätte bokstaven står för kön hos TB-patienten (males (m) och females (f)).</li>
+<li>Övriga siffror anger åldersgrupp (7 st):
+<ul>
+<li>014 = 0 – 14 years old</li>
+<li>1524 = 15 – 24 years old</li>
+<li>2534 = 25 – 34 years old</li>
+<li>3544 = 35 – 44 years old</li>
+<li>4554 = 45 – 54 years old</li>
+<li>5564 = 55 – 64 years old</li>
+<li>65 = 65 or older</li>
+</ul></li>
+</ul>
+<p>Det finns en liten inkonsistens i nyckel-kolumnen: istället för <code>new_rel</code> används <code>newrel</code> (svårt att se vid i tibble-översikten men ses med hjälp av <code>names(who)</code>). Det behöver korrigeras för att få <code>separate()</code> att fungera som det ska. Vi fixar det genom att ersätta <code>newrel</code> med <code>new_rel</code>.
+För detta använder vi <code>str_replace()</code> (återkommer till denna funktion i senare avsnitt.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">who2 &lt;-<span class="st"> </span>who1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">key =</span> stringr<span class="op">::</span><span class="kw">str_replace</span>(key, <span class="st">&quot;newrel&quot;</span>, <span class="st">&quot;new_rel&quot;</span>))</a>
+<a class="sourceLine" id="cb304-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb304-4" data-line-number="4">who2</a></code></pre></div>
+<pre><code>## # A tibble: 76,046 x 6
+##    country     iso2  iso3   year key         cases
+##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;       &lt;int&gt;
+##  1 Afghanistan AF    AFG    1997 new_sp_m014     0
+##  2 Afghanistan AF    AFG    1998 new_sp_m014    30
+##  3 Afghanistan AF    AFG    1999 new_sp_m014     8
+##  4 Afghanistan AF    AFG    2000 new_sp_m014    52
+##  5 Afghanistan AF    AFG    2001 new_sp_m014   129
+##  6 Afghanistan AF    AFG    2002 new_sp_m014    90
+##  7 Afghanistan AF    AFG    2003 new_sp_m014   127
+##  8 Afghanistan AF    AFG    2004 new_sp_m014   139
+##  9 Afghanistan AF    AFG    2005 new_sp_m014   151
+## 10 Afghanistan AF    AFG    2006 new_sp_m014   193
+## # ... with 76,036 more rows</code></pre>
+<p>Vi kollar resultatet med</p>
+<p><code>names(who2)</code></p>
+<p>Vi kan separera värdena under varje kategori med två omgångar med <code>separate()</code>. Först delar vi upp kategorierna vid varje underscore:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">who3 &lt;-<span class="st"> </span>who2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb306-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(key, <span class="kw">c</span>(<span class="st">&quot;new&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;sexage&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>)</a>
+<a class="sourceLine" id="cb306-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb306-4" data-line-number="4">who3</a></code></pre></div>
+<pre><code>## # A tibble: 76,046 x 8
+##    country     iso2  iso3   year new   type  sexage cases
+##    &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;
+##  1 Afghanistan AF    AFG    1997 new   sp    m014       0
+##  2 Afghanistan AF    AFG    1998 new   sp    m014      30
+##  3 Afghanistan AF    AFG    1999 new   sp    m014       8
+##  4 Afghanistan AF    AFG    2000 new   sp    m014      52
+##  5 Afghanistan AF    AFG    2001 new   sp    m014     129
+##  6 Afghanistan AF    AFG    2002 new   sp    m014      90
+##  7 Afghanistan AF    AFG    2003 new   sp    m014     127
+##  8 Afghanistan AF    AFG    2004 new   sp    m014     139
+##  9 Afghanistan AF    AFG    2005 new   sp    m014     151
+## 10 Afghanistan AF    AFG    2006 new   sp    m014     193
+## # ... with 76,036 more rows</code></pre>
+<p>Vi kan göra oss av med kolumnerna <code>new</code> (den är konstant), <code>iso2</code> och <code>iso3</code> (redundanta):</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">who4 &lt;-<span class="st"> </span>who3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb308-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>new, <span class="op">-</span>iso2, <span class="op">-</span>iso3)</a></code></pre></div>
+<p>Sedan separerar vi <code>sexage</code> till <code>sex</code> och <code>age</code> genom att dela upp värdena vid den första bokstaven:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">who5 &lt;-<span class="st"> </span>who4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb309-2" data-line-number="2"><span class="st">  </span><span class="kw">separate</span>(sexage, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb309-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb309-4" data-line-number="4">who5</a></code></pre></div>
+<pre><code>## # A tibble: 76,046 x 6
+##    country      year type  sex   age   cases
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
+##  1 Afghanistan  1997 sp    m     014       0
+##  2 Afghanistan  1998 sp    m     014      30
+##  3 Afghanistan  1999 sp    m     014       8
+##  4 Afghanistan  2000 sp    m     014      52
+##  5 Afghanistan  2001 sp    m     014     129
+##  6 Afghanistan  2002 sp    m     014      90
+##  7 Afghanistan  2003 sp    m     014     127
+##  8 Afghanistan  2004 sp    m     014     139
+##  9 Afghanistan  2005 sp    m     014     151
+## 10 Afghanistan  2006 sp    m     014     193
+## # ... with 76,036 more rows</code></pre>
+<p>Därmed har vi rensat data till att bli ett <em>tidy</em> dataset.</p>
+<p>Istället för att göra det ett steg i sänder kan du göra samma sak genom att bygga upp en “pipe”:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1">who <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="st">  </span><span class="kw">gather</span>(key, value, new_sp_m014<span class="op">:</span>newrel_f65, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">key =</span> stringr<span class="op">::</span><span class="kw">str_replace</span>(key, <span class="st">&quot;newrel&quot;</span>, <span class="st">&quot;new_rel&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb311-4" data-line-number="4"><span class="st">  </span><span class="kw">separate</span>(key, <span class="kw">c</span>(<span class="st">&quot;new&quot;</span>, <span class="st">&quot;var&quot;</span>, <span class="st">&quot;sexage&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb311-5" data-line-number="5"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>new, <span class="op">-</span>iso2, <span class="op">-</span>iso3) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb311-6" data-line-number="6"><span class="st">  </span><span class="kw">separate</span>(sexage, <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;age&quot;</span>), <span class="dt">sep =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 76,046 x 6
+##    country      year var   sex   age   value
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
+##  1 Afghanistan  1997 sp    m     014       0
+##  2 Afghanistan  1998 sp    m     014      30
+##  3 Afghanistan  1999 sp    m     014       8
+##  4 Afghanistan  2000 sp    m     014      52
+##  5 Afghanistan  2001 sp    m     014     129
+##  6 Afghanistan  2002 sp    m     014      90
+##  7 Afghanistan  2003 sp    m     014     127
+##  8 Afghanistan  2004 sp    m     014     139
+##  9 Afghanistan  2005 sp    m     014     151
+## 10 Afghanistan  2006 sp    m     014     193
+## # ... with 76,036 more rows</code></pre>
+</div>
+<div id="ovningar-17" class="section level2">
+<h2><span class="header-section-number">12.9</span> Övningar</h2>
+<ol style="list-style-type: decimal">
+<li>Här satte vi <code>na.rm = TRUE</code> bara för att göra det enklare att kolla att vi hade korrekta värden. Men är det rimligt att göra så? Finns implicita/explicita <em>missing values</em>?</li>
+<li>Vad händer om man inte gör beräkningen? (<code>mutate(key = stringr::str_replace(key, &quot;newrel&quot;, &quot;new_rel&quot;))</code>)</li>
+<li>Vi antog att <code>iso2</code> och <code>iso3</code> var redundanta med country. Bekräfta detta.</li>
+</ol>
+</div>
+<div id="non-tidy-data" class="section level2">
+<h2><span class="header-section-number">12.10</span> Non-tidy data</h2>
+<p>Wickham använder ordet “messy” om data som inte är “tidy”. Men han är också noga med att framhålla att det är en grov förenkling - det finns massor av användbara och välorgansierade data som inte är “tidy” i Wickhams betydelse och det kan finnas goda skäl att använda andra sätt att representera data än <em>tidy data</em>. Han refererar till ett tänkvärt blogginlägg för att lära mer om <em>non-tidy data</em>.
+<a href="http://simplystatistics.org/2016/02/17/non-tidy-data/" class="uri">http://simplystatistics.org/2016/02/17/non-tidy-data/</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="importera-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="relationer-mellan-datamangder.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

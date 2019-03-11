@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Kurskompendium - introduktion till R</title>
+  <meta name="description" content="Kurskompendium - introduktion till R">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Kurskompendium - introduktion till R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kurskompendium - introduktion till R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="introduction.html">
+<link rel="next" href="bygga-modeller-i-r.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.3.1/str_view.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.1</b> Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-konsolen"><i class="fa fa-check"></i><b>1.2</b> R-konsolen</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hjalpfunktioner"><i class="fa fa-check"></i><b>1.4</b> Hjälpfunktioner</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="utforska-data.html"><a href="utforska-data.html"><i class="fa fa-check"></i><b>2</b> Utforska data</a></li>
+<li class="chapter" data-level="3" data-path="visualisering.html"><a href="visualisering.html"><i class="fa fa-check"></i><b>3</b> Visualisering</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualisering.html"><a href="visualisering.html#ett-forsta-diagram"><i class="fa fa-check"></i><b>3.1</b> Ett första diagram</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="visualisering.html"><a href="visualisering.html#ladda-data"><i class="fa fa-check"></i><b>3.1.1</b> Ladda data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="visualisering.html"><a href="visualisering.html#skapa-en-ggplot"><i class="fa fa-check"></i><b>3.1.2</b> Skapa en ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="visualisering.html"><a href="visualisering.html#en-grafikmall"><i class="fa fa-check"></i><b>3.2</b> En grafikmall</a></li>
+<li class="chapter" data-level="3.3" data-path="visualisering.html"><a href="visualisering.html#ovningar"><i class="fa fa-check"></i><b>3.3</b> Övningar</a></li>
+<li class="chapter" data-level="3.4" data-path="visualisering.html"><a href="visualisering.html#aes-funktionen-och-mappings"><i class="fa fa-check"></i><b>3.4</b> <code>aes()</code>-funktionen och mappings</a></li>
+<li class="chapter" data-level="3.5" data-path="visualisering.html"><a href="visualisering.html#ovningar-1"><i class="fa fa-check"></i><b>3.5</b> Övningar</a></li>
+<li class="chapter" data-level="3.6" data-path="visualisering.html"><a href="visualisering.html#vanliga-problem"><i class="fa fa-check"></i><b>3.6</b> Vanliga problem</a></li>
+<li class="chapter" data-level="3.7" data-path="visualisering.html"><a href="visualisering.html#facets"><i class="fa fa-check"></i><b>3.7</b> Facets</a></li>
+<li class="chapter" data-level="3.8" data-path="visualisering.html"><a href="visualisering.html#ovningar-2"><i class="fa fa-check"></i><b>3.8</b> Övningar</a></li>
+<li class="chapter" data-level="3.9" data-path="visualisering.html"><a href="visualisering.html#geometriska-objekt---geoms"><i class="fa fa-check"></i><b>3.9</b> “Geometriska” objekt - geoms</a></li>
+<li class="chapter" data-level="3.10" data-path="visualisering.html"><a href="visualisering.html#ovningar-3"><i class="fa fa-check"></i><b>3.10</b> Övningar</a></li>
+<li class="chapter" data-level="3.11" data-path="visualisering.html"><a href="visualisering.html#statistiska-transformationer"><i class="fa fa-check"></i><b>3.11</b> Statistiska transformationer</a></li>
+<li class="chapter" data-level="3.12" data-path="visualisering.html"><a href="visualisering.html#ovningar-4"><i class="fa fa-check"></i><b>3.12</b> Övningar</a></li>
+<li class="chapter" data-level="3.13" data-path="visualisering.html"><a href="visualisering.html#positionering"><i class="fa fa-check"></i><b>3.13</b> Positionering</a></li>
+<li class="chapter" data-level="3.14" data-path="visualisering.html"><a href="visualisering.html#ovningar-5"><i class="fa fa-check"></i><b>3.14</b> Övningar</a></li>
+<li class="chapter" data-level="3.15" data-path="visualisering.html"><a href="visualisering.html#koordinatsystem"><i class="fa fa-check"></i><b>3.15</b> Koordinatsystem</a></li>
+<li class="chapter" data-level="3.16" data-path="visualisering.html"><a href="visualisering.html#ovningar-6"><i class="fa fa-check"></i><b>3.16</b> Övningar</a></li>
+<li class="chapter" data-level="3.17" data-path="visualisering.html"><a href="visualisering.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>3.17</b> “The layered grammar of graphics”</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="workflow-basics.html"><a href="workflow-basics.html"><i class="fa fa-check"></i><b>4</b> Workflow: Basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="workflow-basics.html"><a href="workflow-basics.html#skriva-kod"><i class="fa fa-check"></i><b>4.1</b> Skriva kod</a></li>
+<li class="chapter" data-level="4.2" data-path="workflow-basics.html"><a href="workflow-basics.html#anropa-funktioner"><i class="fa fa-check"></i><b>4.2</b> Anropa funktioner</a></li>
+<li class="chapter" data-level="4.3" data-path="workflow-basics.html"><a href="workflow-basics.html#ovningar-7"><i class="fa fa-check"></i><b>4.3</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="transformering-av-data.html"><a href="transformering-av-data.html"><i class="fa fa-check"></i><b>5</b> Transformering av data</a><ul>
+<li class="chapter" data-level="5.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#introduktion-1"><i class="fa fa-check"></i><b>5.1</b> Introduktion</a></li>
+<li class="chapter" data-level="5.2" data-path="transformering-av-data.html"><a href="transformering-av-data.html#forberedelser"><i class="fa fa-check"></i><b>5.2</b> Förberedelser</a></li>
+<li class="chapter" data-level="5.3" data-path="transformering-av-data.html"><a href="transformering-av-data.html#dplyr-grunder"><i class="fa fa-check"></i><b>5.3</b> <code>dplyr</code> grunder</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#filtrera-raderposter-med-filter"><i class="fa fa-check"></i><b>5.3.1</b> Filtrera rader/poster med <code>filter()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-8"><i class="fa fa-check"></i><b>5.4</b> Övningar</a></li>
+<li class="chapter" data-level="5.5" data-path="transformering-av-data.html"><a href="transformering-av-data.html#arrangera-poster-med-arrange"><i class="fa fa-check"></i><b>5.5</b> Arrangera poster med <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-9"><i class="fa fa-check"></i><b>5.6</b> Övningar</a></li>
+<li class="chapter" data-level="5.7" data-path="transformering-av-data.html"><a href="transformering-av-data.html#valj-kolumner-med-select"><i class="fa fa-check"></i><b>5.7</b> Välj kolumner med <code>select()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-10"><i class="fa fa-check"></i><b>5.8</b> Övningar</a></li>
+<li class="chapter" data-level="5.9" data-path="transformering-av-data.html"><a href="transformering-av-data.html#lagg-till-flera-variabler-med-hjalp-av-mutate"><i class="fa fa-check"></i><b>5.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a><ul>
+<li class="chapter" data-level="5.9.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#funktioner-och-operatorer-att-anvandas-med-mutate"><i class="fa fa-check"></i><b>5.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-11"><i class="fa fa-check"></i><b>5.10</b> Övningar</a></li>
+<li class="chapter" data-level="5.11" data-path="transformering-av-data.html"><a href="transformering-av-data.html#kombinera-multipla-operationer-med-the-pipe"><i class="fa fa-check"></i><b>5.11</b> Kombinera multipla operationer med the pipe</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arbetsflode-scripts.html"><a href="arbetsflode-scripts.html"><i class="fa fa-check"></i><b>6</b> Arbetsflöde: scripts</a></li>
+<li class="chapter" data-level="7" data-path="explorerande-analys-av-data.html"><a href="explorerande-analys-av-data.html"><i class="fa fa-check"></i><b>7</b> Explorerande analys av data</a></li>
+<li class="chapter" data-level="8" data-path="workflow-projects.html"><a href="workflow-projects.html"><i class="fa fa-check"></i><b>8</b> Workflow: Projects</a><ul>
+<li class="chapter" data-level="8.1" data-path="workflow-projects.html"><a href="workflow-projects.html#vad-ar-viktigt"><i class="fa fa-check"></i><b>8.1</b> Vad är viktigt?</a></li>
+<li class="chapter" data-level="8.2" data-path="workflow-projects.html"><a href="workflow-projects.html#vart-lever-analysen-arbetsbiblioteket"><i class="fa fa-check"></i><b>8.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
+<li class="chapter" data-level="8.3" data-path="workflow-projects.html"><a href="workflow-projects.html#sokvagar-och-bibliotekmappar"><i class="fa fa-check"></i><b>8.3</b> Sökvägar och bibliotek/mappar</a></li>
+<li class="chapter" data-level="8.4" data-path="workflow-projects.html"><a href="workflow-projects.html#rstudio-projects-viktigt"><i class="fa fa-check"></i><b>8.4</b> RStudio projects VIKTIGT!</a></li>
+<li class="chapter" data-level="8.5" data-path="workflow-projects.html"><a href="workflow-projects.html#sammanfattningsvis"><i class="fa fa-check"></i><b>8.5</b> Sammanfattningsvis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="wrangle-att-braka-med-data.html"><a href="wrangle-att-braka-med-data.html"><i class="fa fa-check"></i><b>9</b> Wrangle - att bråka med data</a><ul>
+<li class="chapter" data-level="9.1" data-path="wrangle-att-braka-med-data.html"><a href="wrangle-att-braka-med-data.html#introduktion-2"><i class="fa fa-check"></i><b>9.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a><ul>
+<li class="chapter" data-level="10.1" data-path="tibbles.html"><a href="tibbles.html#skapa-tibbles"><i class="fa fa-check"></i><b>10.1</b> Skapa tibbles</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="tibbles.html"><a href="tibbles.html#tibbles-vs-data-frames"><i class="fa fa-check"></i><b>10.1.1</b> Tibbles vs data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="tibbles.html"><a href="tibbles.html#utskrift-printing"><i class="fa fa-check"></i><b>10.2</b> Utskrift (Printing)</a></li>
+<li class="chapter" data-level="10.3" data-path="tibbles.html"><a href="tibbles.html#urval"><i class="fa fa-check"></i><b>10.3</b> Urval</a></li>
+<li class="chapter" data-level="10.4" data-path="tibbles.html"><a href="tibbles.html#anvanda-aldre-kod"><i class="fa fa-check"></i><b>10.4</b> Använda äldre kod</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="importera-data.html"><a href="importera-data.html"><i class="fa fa-check"></i><b>11</b> Importera data</a><ul>
+<li class="chapter" data-level="11.1" data-path="importera-data.html"><a href="importera-data.html#jamforelse-med-base-r"><i class="fa fa-check"></i><b>11.1</b> Jämförelse med base R</a></li>
+<li class="chapter" data-level="11.2" data-path="importera-data.html"><a href="importera-data.html#ovningar-12"><i class="fa fa-check"></i><b>11.2</b> Övningar</a></li>
+<li class="chapter" data-level="11.3" data-path="importera-data.html"><a href="importera-data.html#omvandla-vektorer"><i class="fa fa-check"></i><b>11.3</b> Omvandla vektorer</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="importera-data.html"><a href="importera-data.html#numeriska-variabler"><i class="fa fa-check"></i><b>11.3.1</b> Numeriska variabler</a></li>
+<li class="chapter" data-level="11.3.2" data-path="importera-data.html"><a href="importera-data.html#textstrangar"><i class="fa fa-check"></i><b>11.3.2</b> Textsträngar</a></li>
+<li class="chapter" data-level="11.3.3" data-path="importera-data.html"><a href="importera-data.html#kategoriska-data"><i class="fa fa-check"></i><b>11.3.3</b> Kategoriska data</a></li>
+<li class="chapter" data-level="11.3.4" data-path="importera-data.html"><a href="importera-data.html#datum-och-tid"><i class="fa fa-check"></i><b>11.3.4</b> Datum och tid</a></li>
+<li class="chapter" data-level="11.3.5" data-path="importera-data.html"><a href="importera-data.html#ovningar-13"><i class="fa fa-check"></i><b>11.3.5</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="importera-data.html"><a href="importera-data.html#hur-readr-plockar-isar-parse-en-fil"><i class="fa fa-check"></i><b>11.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
+<li class="chapter" data-level="11.5" data-path="importera-data.html"><a href="importera-data.html#problem"><i class="fa fa-check"></i><b>11.5</b> Problem</a></li>
+<li class="chapter" data-level="11.6" data-path="importera-data.html"><a href="importera-data.html#skriva-till-en-fil"><i class="fa fa-check"></i><b>11.6</b> Skriva till en fil</a></li>
+<li class="chapter" data-level="11.7" data-path="importera-data.html"><a href="importera-data.html#andra-datatyper"><i class="fa fa-check"></i><b>11.7</b> Andra datatyper</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html"><i class="fa fa-check"></i><b>12</b> Städa data (tidy data)</a><ul>
+<li class="chapter" data-level="12.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#introduktion-3"><i class="fa fa-check"></i><b>12.1</b> Introduktion</a></li>
+<li class="chapter" data-level="12.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>12.2</b> Spreading and gathering</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#gathering"><i class="fa fa-check"></i><b>12.2.1</b> Gathering</a></li>
+<li class="chapter" data-level="12.2.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#spreading"><i class="fa fa-check"></i><b>12.2.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-14"><i class="fa fa-check"></i><b>12.3</b> Övningar</a></li>
+<li class="chapter" data-level="12.4" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#separera-och-forena"><i class="fa fa-check"></i><b>12.4</b> Separera och förena</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#separate"><i class="fa fa-check"></i><b>12.4.1</b> Separate</a></li>
+<li class="chapter" data-level="12.4.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#unite"><i class="fa fa-check"></i><b>12.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-15"><i class="fa fa-check"></i><b>12.5</b> Övningar</a></li>
+<li class="chapter" data-level="12.6" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#missing-values"><i class="fa fa-check"></i><b>12.6</b> Missing values</a></li>
+<li class="chapter" data-level="12.7" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-16"><i class="fa fa-check"></i><b>12.7</b> Övningar</a></li>
+<li class="chapter" data-level="12.8" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#en-case-study"><i class="fa fa-check"></i><b>12.8</b> En case study</a></li>
+<li class="chapter" data-level="12.9" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-17"><i class="fa fa-check"></i><b>12.9</b> Övningar</a></li>
+<li class="chapter" data-level="12.10" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>12.10</b> Non-tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html"><i class="fa fa-check"></i><b>13</b> Relationer mellan datamängder</a><ul>
+<li class="chapter" data-level="13.1" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#introduktion-4"><i class="fa fa-check"></i><b>13.1</b> Introduktion</a></li>
+<li class="chapter" data-level="13.2" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#nycflights13"><i class="fa fa-check"></i><b>13.2</b> <code>nycflights13</code></a></li>
+<li class="chapter" data-level="13.3" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#keys"><i class="fa fa-check"></i><b>13.3</b> Keys</a></li>
+<li class="chapter" data-level="13.4" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#mutating-joins"><i class="fa fa-check"></i><b>13.4</b> <em>Mutating joins</em></a><ul>
+<li class="chapter" data-level="13.4.1" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#att-forsta-joins"><i class="fa fa-check"></i><b>13.4.1</b> Att förstå <em>joins</em></a></li>
+<li class="chapter" data-level="13.4.2" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#inner-join"><i class="fa fa-check"></i><b>13.4.2</b> Inner join</a></li>
+<li class="chapter" data-level="13.4.3" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#outer-joins"><i class="fa fa-check"></i><b>13.4.3</b> Outer joins</a></li>
+<li class="chapter" data-level="13.4.4" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#duplicate-keys"><i class="fa fa-check"></i><b>13.4.4</b> Duplicate keys</a></li>
+<li class="chapter" data-level="13.4.5" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#definiera-nyckel-kolumner-key-columns"><i class="fa fa-check"></i><b>13.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
+<li class="chapter" data-level="13.4.6" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#ovningar-18"><i class="fa fa-check"></i><b>13.4.6</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#filtering-joins"><i class="fa fa-check"></i><b>13.5</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="13.6" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#problem-med-joins"><i class="fa fa-check"></i><b>13.6</b> Problem med <em>joins</em></a></li>
+<li class="chapter" data-level="13.7" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#set-operations"><i class="fa fa-check"></i><b>13.7</b> Set operations</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html"><i class="fa fa-check"></i><b>14</b> Textsträngar (strings)</a><ul>
+<li class="chapter" data-level="14.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#introduktion-5"><i class="fa fa-check"></i><b>14.1</b> Introduktion</a></li>
+<li class="chapter" data-level="14.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#basics-1"><i class="fa fa-check"></i><b>14.2</b> Basics</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#stringr-funktioner"><i class="fa fa-check"></i><b>14.2.1</b> <code>stringr</code>-funktioner</a></li>
+<li class="chapter" data-level="14.2.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#kombinera-strangar"><i class="fa fa-check"></i><b>14.2.2</b> Kombinera strängar</a></li>
+<li class="chapter" data-level="14.2.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#extrahera-delar-av-textstrangar-subsetting"><i class="fa fa-check"></i><b>14.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
+<li class="chapter" data-level="14.2.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ovningar-19"><i class="fa fa-check"></i><b>14.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#matcha-textmonster-med-hjalp-av-regular-expressions"><i class="fa fa-check"></i><b>14.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a><ul>
+<li class="chapter" data-level="14.3.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#basic-matches"><i class="fa fa-check"></i><b>14.3.1</b> Basic matches</a></li>
+<li class="chapter" data-level="14.3.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ankare-anchors"><i class="fa fa-check"></i><b>14.3.2</b> Ankare (Anchors)</a></li>
+<li class="chapter" data-level="14.3.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#tecken-klasser"><i class="fa fa-check"></i><b>14.3.3</b> Tecken-klasser</a></li>
+<li class="chapter" data-level="14.3.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#repeterande-tecken"><i class="fa fa-check"></i><b>14.3.4</b> Repeterande tecken</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#verktyg"><i class="fa fa-check"></i><b>14.4</b> Verktyg</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#upptack-matchningar"><i class="fa fa-check"></i><b>14.4.1</b> Upptäck matchningar</a></li>
+<li class="chapter" data-level="14.4.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ovningar-22"><i class="fa fa-check"></i><b>14.4.2</b> Övningar</a></li>
+<li class="chapter" data-level="14.4.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#extrahera-matchningar"><i class="fa fa-check"></i><b>14.4.3</b> Extrahera matchningar</a></li>
+<li class="chapter" data-level="14.4.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#gruppereade-matchningar"><i class="fa fa-check"></i><b>14.4.4</b> Gruppereade matchningar</a></li>
+<li class="chapter" data-level="14.4.5" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ersatt-matchningar"><i class="fa fa-check"></i><b>14.4.5</b> Ersätt matchningar</a></li>
+<li class="chapter" data-level="14.4.6" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#dela-upp-textstrangar"><i class="fa fa-check"></i><b>14.4.6</b> Dela upp textsträngar</a></li>
+<li class="chapter" data-level="14.4.7" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#hitta-matchningar"><i class="fa fa-check"></i><b>14.4.7</b> Hitta matchningar</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#andra-typer-av-monster"><i class="fa fa-check"></i><b>14.5</b> Andra typer av mönster</a></li>
+<li class="chapter" data-level="14.6" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#andra-typer-av-regexps"><i class="fa fa-check"></i><b>14.6</b> Andra typer av regexps</a></li>
+<li class="chapter" data-level="14.7" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#stringi"><i class="fa fa-check"></i><b>14.7</b> stringi</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html"><i class="fa fa-check"></i><b>15</b> Kategoriska variabler (Factors)</a><ul>
+<li class="chapter" data-level="15.1" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#introduktion-6"><i class="fa fa-check"></i><b>15.1</b> Introduktion</a></li>
+<li class="chapter" data-level="15.2" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#skapa-factors"><i class="fa fa-check"></i><b>15.2</b> Skapa factors</a></li>
+<li class="chapter" data-level="15.3" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#general-social-survey"><i class="fa fa-check"></i><b>15.3</b> General Social Survey</a></li>
+<li class="chapter" data-level="15.4" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-ordningen-av-factors"><i class="fa fa-check"></i><b>15.4</b> Modifiera ordningen av factors</a></li>
+<li class="chapter" data-level="15.5" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-factor-levels"><i class="fa fa-check"></i><b>15.5</b> Modifiera factor levels</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html"><i class="fa fa-check"></i><b>16</b> Datum och tidsformat</a><ul>
+<li class="chapter" data-level="16.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#introduktion-7"><i class="fa fa-check"></i><b>16.1</b> Introduktion</a></li>
+<li class="chapter" data-level="16.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#skapa-datum-och-tid"><i class="fa fa-check"></i><b>16.2</b> Skapa datum och tid</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-textstrangar"><i class="fa fa-check"></i><b>16.2.1</b> Från textsträngar</a></li>
+<li class="chapter" data-level="16.2.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-enskilda-kompnenter"><i class="fa fa-check"></i><b>16.2.2</b> Från enskilda kompnenter</a></li>
+<li class="chapter" data-level="16.2.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-andra-datumtid-format"><i class="fa fa-check"></i><b>16.2.3</b> Från andra datum/tid-format</a></li>
+<li class="chapter" data-level="16.2.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ovningar-23"><i class="fa fa-check"></i><b>16.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#datumtid-komponenter"><i class="fa fa-check"></i><b>16.3</b> Datum/tid-komponenter</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#extrahera-komponenter"><i class="fa fa-check"></i><b>16.3.1</b> Extrahera komponenter</a></li>
+<li class="chapter" data-level="16.3.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#avrundning"><i class="fa fa-check"></i><b>16.3.2</b> Avrundning</a></li>
+<li class="chapter" data-level="16.3.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ange-komponenter"><i class="fa fa-check"></i><b>16.3.3</b> Ange komponenter</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#tidsintervall"><i class="fa fa-check"></i><b>16.4</b> Tidsintervall</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#varaktighet"><i class="fa fa-check"></i><b>16.4.1</b> Varaktighet</a></li>
+<li class="chapter" data-level="16.4.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#perioder"><i class="fa fa-check"></i><b>16.4.2</b> Perioder</a></li>
+<li class="chapter" data-level="16.4.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#intervall"><i class="fa fa-check"></i><b>16.4.3</b> Intervall</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#summering"><i class="fa fa-check"></i><b>16.5</b> Summering</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="programmering-i-r.html"><a href="programmering-i-r.html"><i class="fa fa-check"></i><b>17</b> Programmering i R</a><ul>
+<li class="chapter" data-level="17.1" data-path="programmering-i-r.html"><a href="programmering-i-r.html#introduktion-8"><i class="fa fa-check"></i><b>17.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>18</b> Pipes</a></li>
+<li class="chapter" data-level="19" data-path="funktioner.html"><a href="funktioner.html"><i class="fa fa-check"></i><b>19</b> Funktioner</a><ul>
+<li class="chapter" data-level="19.1" data-path="funktioner.html"><a href="funktioner.html#nar-bor-du-skapa-en-funktion"><i class="fa fa-check"></i><b>19.1</b> När bör du skapa en funktion?</a></li>
+<li class="chapter" data-level="19.2" data-path="funktioner.html"><a href="funktioner.html#funktioner-ar-till-for-manniskor-och-datorer"><i class="fa fa-check"></i><b>19.2</b> Funktioner är till för människor och datorer</a></li>
+<li class="chapter" data-level="19.3" data-path="funktioner.html"><a href="funktioner.html#villkorlig-exekvering"><i class="fa fa-check"></i><b>19.3</b> Villkorlig exekvering</a><ul>
+<li class="chapter" data-level="19.3.1" data-path="funktioner.html"><a href="funktioner.html#villkor"><i class="fa fa-check"></i><b>19.3.1</b> Villkor</a></li>
+<li class="chapter" data-level="19.3.2" data-path="funktioner.html"><a href="funktioner.html#multipla-villkor"><i class="fa fa-check"></i><b>19.3.2</b> Multipla villkor</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="funktioner.html"><a href="funktioner.html#funktionsargument"><i class="fa fa-check"></i><b>19.4</b> Funktionsargument</a></li>
+<li class="chapter" data-level="19.5" data-path="funktioner.html"><a href="funktioner.html#kolla-varden"><i class="fa fa-check"></i><b>19.5</b> Kolla värden</a></li>
+<li class="chapter" data-level="19.6" data-path="funktioner.html"><a href="funktioner.html#punkt-punkt-punkt"><i class="fa fa-check"></i><b>19.6</b> punkt-punkt-punkt</a></li>
+<li class="chapter" data-level="19.7" data-path="funktioner.html"><a href="funktioner.html#returnera-varden"><i class="fa fa-check"></i><b>19.7</b> Returnera värden</a><ul>
+<li class="chapter" data-level="19.7.1" data-path="funktioner.html"><a href="funktioner.html#explicita-return-uttryck"><i class="fa fa-check"></i><b>19.7.1</b> Explicita <code>return</code>-uttryck</a></li>
+</ul></li>
+<li class="chapter" data-level="19.8" data-path="funktioner.html"><a href="funktioner.html#skriva-funktioner-med-hjalp-av-pipes"><i class="fa fa-check"></i><b>19.8</b> Skriva funktioner med hjälp av pipes</a></li>
+<li class="chapter" data-level="19.9" data-path="funktioner.html"><a href="funktioner.html#environment-svart-hitta-ett-svenskt-uttryck"><i class="fa fa-check"></i><b>19.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="vektorer.html"><a href="vektorer.html"><i class="fa fa-check"></i><b>20</b> Vektorer</a><ul>
+<li class="chapter" data-level="20.1" data-path="vektorer.html"><a href="vektorer.html#introduktion-9"><i class="fa fa-check"></i><b>20.1</b> Introduktion</a></li>
+<li class="chapter" data-level="20.2" data-path="vektorer.html"><a href="vektorer.html#atomic-vectors"><i class="fa fa-check"></i><b>20.2</b> Atomic vectors</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="vektorer.html"><a href="vektorer.html#logical-vectors"><i class="fa fa-check"></i><b>20.2.1</b> Logical vectors</a></li>
+<li class="chapter" data-level="20.2.2" data-path="vektorer.html"><a href="vektorer.html#numeriska-vektorer"><i class="fa fa-check"></i><b>20.2.2</b> Numeriska vektorer</a></li>
+<li class="chapter" data-level="20.2.3" data-path="vektorer.html"><a href="vektorer.html#character"><i class="fa fa-check"></i><b>20.2.3</b> Character</a></li>
+<li class="chapter" data-level="20.2.4" data-path="vektorer.html"><a href="vektorer.html#anvanda-atomic-vectors"><i class="fa fa-check"></i><b>20.2.4</b> Använda atomic vectors</a></li>
+<li class="chapter" data-level="20.2.5" data-path="vektorer.html"><a href="vektorer.html#scalars-och-recycling"><i class="fa fa-check"></i><b>20.2.5</b> Scalars och recycling</a></li>
+<li class="chapter" data-level="20.2.6" data-path="vektorer.html"><a href="vektorer.html#rekursiva-vektorer-lists"><i class="fa fa-check"></i><b>20.2.6</b> Rekursiva vektorer (lists)</a></li>
+<li class="chapter" data-level="20.2.7" data-path="vektorer.html"><a href="vektorer.html#attribut"><i class="fa fa-check"></i><b>20.2.7</b> Attribut</a></li>
+<li class="chapter" data-level="20.2.8" data-path="vektorer.html"><a href="vektorer.html#forstarkta-vektorer-augmented-vectors"><i class="fa fa-check"></i><b>20.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="itereringar.html"><a href="itereringar.html"><i class="fa fa-check"></i><b>21</b> Itereringar</a><ul>
+<li class="chapter" data-level="21.1" data-path="itereringar.html"><a href="itereringar.html#for-loops"><i class="fa fa-check"></i><b>21.1</b> For-loops</a></li>
+<li class="chapter" data-level="21.2" data-path="itereringar.html"><a href="itereringar.html#variationer-av-for-loopar"><i class="fa fa-check"></i><b>21.2</b> Variationer av for-loopar</a><ul>
+<li class="chapter" data-level="21.2.1" data-path="itereringar.html"><a href="itereringar.html#modifiera-ett-existerande-obkjekt"><i class="fa fa-check"></i><b>21.2.1</b> Modifiera ett existerande obkjekt</a></li>
+<li class="chapter" data-level="21.2.2" data-path="itereringar.html"><a href="itereringar.html#nar-langden-pa-output-inte-ar-kand"><i class="fa fa-check"></i><b>21.2.2</b> När längden på output inte är känd</a></li>
+<li class="chapter" data-level="21.2.3" data-path="itereringar.html"><a href="itereringar.html#nar-sekvensens-langd-ar-okand"><i class="fa fa-check"></i><b>21.2.3</b> När sekvensens längd är okänd</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="itereringar.html"><a href="itereringar.html#for-loops-vs.funktioner"><i class="fa fa-check"></i><b>21.3</b> for-loops vs. Funktioner</a></li>
+<li class="chapter" data-level="21.4" data-path="itereringar.html"><a href="itereringar.html#mappningsfunktioner"><i class="fa fa-check"></i><b>21.4</b> Mappningsfunktioner</a><ul>
+<li class="chapter" data-level="21.4.1" data-path="itereringar.html"><a href="itereringar.html#genvagar"><i class="fa fa-check"></i><b>21.4.1</b> Genvägar</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="itereringar.html"><a href="itereringar.html#hantera-errors"><i class="fa fa-check"></i><b>21.5</b> Hantera errors</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>22</b> Introduction</a></li>
+<li class="chapter" data-level="23" data-path="modellering-basics.html"><a href="modellering-basics.html"><i class="fa fa-check"></i><b>23</b> Modellering: basics</a><ul>
+<li class="chapter" data-level="23.1" data-path="modellering-basics.html"><a href="modellering-basics.html#en-enkel-modell"><i class="fa fa-check"></i><b>23.1</b> En enkel modell</a></li>
+<li class="chapter" data-level="23.2" data-path="modellering-basics.html"><a href="modellering-basics.html#visualisera-modeller"><i class="fa fa-check"></i><b>23.2</b> Visualisera modeller</a><ul>
+<li class="chapter" data-level="23.2.1" data-path="modellering-basics.html"><a href="modellering-basics.html#prediktioner"><i class="fa fa-check"></i><b>23.2.1</b> Prediktioner</a></li>
+<li class="chapter" data-level="23.2.2" data-path="modellering-basics.html"><a href="modellering-basics.html#residualer"><i class="fa fa-check"></i><b>23.2.2</b> Residualer</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="modellering-basics.html"><a href="modellering-basics.html#formler-och-modell-familjer"><i class="fa fa-check"></i><b>23.3</b> Formler och modell-familjer</a><ul>
+<li class="chapter" data-level="23.3.1" data-path="modellering-basics.html"><a href="modellering-basics.html#kategoriska-variabler"><i class="fa fa-check"></i><b>23.3.1</b> Kategoriska variabler</a></li>
+<li class="chapter" data-level="23.3.2" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner"><i class="fa fa-check"></i><b>23.3.2</b> Interaktioner</a></li>
+<li class="chapter" data-level="23.3.3" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner-tva-kontinuerliga-variabler"><i class="fa fa-check"></i><b>23.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
+<li class="chapter" data-level="23.3.4" data-path="modellering-basics.html"><a href="modellering-basics.html#transformationer"><i class="fa fa-check"></i><b>23.3.4</b> Transformationer</a></li>
+</ul></li>
+<li class="chapter" data-level="23.4" data-path="modellering-basics.html"><a href="modellering-basics.html#missing-values-1"><i class="fa fa-check"></i><b>23.4</b> Missing values</a><ul>
+<li class="chapter" data-level="23.4.1" data-path="modellering-basics.html"><a href="modellering-basics.html#andra-modell-familjer"><i class="fa fa-check"></i><b>23.4.1</b> Andra modell-familjer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html"><i class="fa fa-check"></i><b>24</b> Bygga modeller i R</a><ul>
+<li class="chapter" data-level="24.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#varfor-ar-diamanter-av-lag-kvalitet-dyrare"><i class="fa fa-check"></i><b>24.1</b> Varför är diamanter av låg kvalitet dyrare?</a><ul>
+<li class="chapter" data-level="24.1.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#sambandet-pris-och-karat"><i class="fa fa-check"></i><b>24.1.1</b> Sambandet pris och karat</a></li>
+<li class="chapter" data-level="24.1.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#en-mer-komplicerad-modell"><i class="fa fa-check"></i><b>24.1.2</b> En mer komplicerad modell</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#vad-ar-det-som-paverkar-antalet-dagliga-flighter"><i class="fa fa-check"></i><b>24.2</b> Vad är det som påverkar antalet dagliga flighter?</a><ul>
+<li class="chapter" data-level="24.2.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#veckodag"><i class="fa fa-check"></i><b>24.2.1</b> Veckodag</a></li>
+<li class="chapter" data-level="24.2.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lordags-effekten"><i class="fa fa-check"></i><b>24.2.2</b> Lördags-effekten</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lara-mer-om-modellering"><i class="fa fa-check"></i><b>24.3</b> Lära mer om modellering</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html"><i class="fa fa-check"></i><b>25</b> Grafik för att kommunicera</a><ul>
+<li class="chapter" data-level="25.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#etiketter-labels"><i class="fa fa-check"></i><b>25.1</b> Etiketter (labels)</a></li>
+<li class="chapter" data-level="25.2" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#annoteringar"><i class="fa fa-check"></i><b>25.2</b> Annoteringar</a></li>
+<li class="chapter" data-level="25.3" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#scales"><i class="fa fa-check"></i><b>25.3</b> Scales</a><ul>
+<li class="chapter" data-level="25.3.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#axis-ticks-och-teckenforklaringar"><i class="fa fa-check"></i><b>25.3.1</b> Axis ticks och teckenförklaringar</a></li>
+<li class="chapter" data-level="25.3.2" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#teckenforklaringens-legend-layout"><i class="fa fa-check"></i><b>25.3.2</b> Teckenförklaringens (legend) layout</a></li>
+<li class="chapter" data-level="25.3.3" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#byta-ut-en-scale"><i class="fa fa-check"></i><b>25.3.3</b> Byta ut en scale</a></li>
+</ul></li>
+<li class="chapter" data-level="25.4" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#zooming"><i class="fa fa-check"></i><b>25.4</b> Zooming</a><ul>
+<li class="chapter" data-level="25.4.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#teman-themes"><i class="fa fa-check"></i><b>25.4.1</b> Teman (themes)</a></li>
+</ul></li>
+<li class="chapter" data-level="25.5" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#spara-graferna"><i class="fa fa-check"></i><b>25.5</b> Spara graferna</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Kurskompendium - introduktion till R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modellering-basics" class="section level1">
+<h1><span class="header-section-number">23</span> Modellering: basics</h1>
+<p>Wickhams bok innehåller en del statistisk teori om modellering vilket vi här kommer att lämna därhän. För den som är intresserad av att ta del av detta hänvisas till <a href="http://r4ds.had.co.nz/model-intro.html" class="uri">http://r4ds.had.co.nz/model-intro.html</a></p>
+<p>Vi kommer istället att lägga fokus på hur man skapar statistiska modeller i R/Rstudio hands-on alltså. Vi ska börja med att känna på R:s grundläggande begrepp för att bygga upp modeller med hjälp av simulerade data för att senare arbeta mer praktiskt med verkliga dataset.</p>
+<p>Det finns två delar i en <em>modell</em> i R:</p>
+<ol style="list-style-type: decimal">
+<li>Först behöver du definiera vilken modell-familj (<em>family of models</em>) som ska användas. Det handlar om vilken typ av funktion som bäst beskriver dina data, det kan vara en rät linje eller en kvadratisk eller en polynomisk.</li>
+<li>Du använder denna funktion till att hitta den modell som bäst beskriver dina data.</li>
+</ol>
+<p>Vi laddar in modulerna som vi ska använda:</p>
+<div class="sourceCode" id="cb914"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb914-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb914-2" data-line-number="2"><span class="kw">library</span>(modelr)</a>
+<a class="sourceLine" id="cb914-3" data-line-number="3"><span class="kw">options</span>(<span class="dt">na.action =</span> na.warn)</a></code></pre></div>
+<p>Modulen <code>modelr</code> innehåller en rad funktioner för att få R:s bas-funktioner för modellering att fungera i pipes.</p>
+<div id="en-enkel-modell" class="section level2">
+<h2><span class="header-section-number">23.1</span> En enkel modell</h2>
+<p>Låt oss titta på ett simulerat dataset, <code>sim1</code>, som finns i <code>modelr</code>. Det innehåller två kontinuerliga variabler, <code>x</code> och <code>y</code>, vilka vi plottar för att se hur de är relaterade:</p>
+<div class="sourceCode" id="cb915"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb915-1" data-line-number="1"><span class="kw">ggplot</span>(sim1, <span class="kw">aes</span>(x, y)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb915-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-374-1.png" width="70%" /></p>
+<p>Här finns ett tydligt mönster. Vi ska hitta en modell som fångar detta mönster explicit. Relationen mellan <code>x</code> och <code>y</code> förefaller vara linjär vilket kan skrivas <code>y = a_0 + b_1 * x</code>.</p>
+<p>R har ett specifikt verktyg för linjära modeller <code>lm()</code>, <em>l</em>inear <em>m</em>odel. Som argument i detta verktyg används <em>formler</em> för att specificera modellen. Formler i R har formen <code>y ~ x</code>. Pröva:</p>
+<div class="sourceCode" id="cb916"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb916-1" data-line-number="1">sim1_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim1)</a>
+<a class="sourceLine" id="cb916-2" data-line-number="2"><span class="kw">summary</span>(sim1_mod)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = sim1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1469 -1.5197  0.1331  1.4670  4.6516 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   4.2208     0.8688   4.858 4.09e-05 ***
+## x             2.0515     0.1400  14.651 1.17e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.203 on 28 degrees of freedom
+## Multiple R-squared:  0.8846, Adjusted R-squared:  0.8805 
+## F-statistic: 214.7 on 1 and 28 DF,  p-value: 1.173e-14</code></pre>
+</div>
+<div id="visualisera-modeller" class="section level2">
+<h2><span class="header-section-number">23.2</span> Visualisera modeller</h2>
+<div id="prediktioner" class="section level3">
+<h3><span class="header-section-number">23.2.1</span> Prediktioner</h3>
+<p>Vi ska kika lite på prediktioner som ett sätt att förstå en modell. Vi börjar med att generera en “grid” av värden som täcker in det intervall som täcker våra data. Det enklaste sättet att göra det på är att använda <code>modelr::data_grid()</code>. Dess första argument är en dataram, och för varje ytterligare argument finner funktionen de unika variablerna och genererar alla kombinationer:</p>
+<div class="sourceCode" id="cb918"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb918-1" data-line-number="1">grid &lt;-<span class="st"> </span>sim1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb918-2" data-line-number="2"><span class="st">  </span><span class="kw">data_grid</span>(x) </a>
+<a class="sourceLine" id="cb918-3" data-line-number="3">grid</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 1
+##        x
+##    &lt;int&gt;
+##  1     1
+##  2     2
+##  3     3
+##  4     4
+##  5     5
+##  6     6
+##  7     7
+##  8     8
+##  9     9
+## 10    10</code></pre>
+<p>Därefter adderar vi prediktionerna med hjälp av <code>modelr::add_predictions()</code>. Den tar en dataram och en modell och lägger till prediktionerna givet data och modellen:</p>
+<div class="sourceCode" id="cb920"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb920-1" data-line-number="1">grid &lt;-<span class="st"> </span>grid <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb920-2" data-line-number="2"><span class="st">  </span><span class="kw">add_predictions</span>(sim1_mod) </a>
+<a class="sourceLine" id="cb920-3" data-line-number="3">grid</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##        x  pred
+##    &lt;int&gt; &lt;dbl&gt;
+##  1     1  6.27
+##  2     2  8.32
+##  3     3 10.4 
+##  4     4 12.4 
+##  5     5 14.5 
+##  6     6 16.5 
+##  7     7 18.6 
+##  8     8 20.6 
+##  9     9 22.7 
+## 10    10 24.7</code></pre>
+<p>Sedan plottar vi prediktionerna. Vi gör det tillsammans med de observerade värdena.</p>
+<div class="sourceCode" id="cb922"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb922-1" data-line-number="1"><span class="kw">ggplot</span>(sim1, <span class="kw">aes</span>(x)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb922-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb922-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> pred), <span class="dt">data =</span> grid, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-378-1.png" width="70%" /></p>
+<p>Man kan även använda funktionen <code>geom_abline()</code> för att visualisera en linjär regressionslinje men fördelen med att använda <code>add_predictions()</code> är att denna funktion fungerar för vilken modell som helst, oavsett komplexitet. För fler sätt att visualisera komplexa modeller se gärna <a href="http://vita.had.co.nz/papers/model-vis.html" class="uri">http://vita.had.co.nz/papers/model-vis.html</a>.</p>
+</div>
+<div id="residualer" class="section level3">
+<h3><span class="header-section-number">23.2.2</span> Residualer</h3>
+<p>Residualer är komplementet till prediktioner och är differensen mellan de observerade värdena och predicerade värdena.
+Vi lägger till residualerna med hjälp av <code>add_residuals()</code>, som fungerar ungefär som <code>add_predictions()</code>. Men här behövs förstås det ursprungliga data där y-värdena finns:</p>
+<div class="sourceCode" id="cb923"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb923-1" data-line-number="1">sim1 &lt;-<span class="st"> </span>sim1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb923-2" data-line-number="2"><span class="st">  </span><span class="kw">add_residuals</span>(sim1_mod)</a>
+<a class="sourceLine" id="cb923-3" data-line-number="3">sim1</a></code></pre></div>
+<pre><code>## # A tibble: 30 x 3
+##        x     y    resid
+##    &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+##  1     1  4.20 -2.07   
+##  2     1  7.51  1.24   
+##  3     1  2.13 -4.15   
+##  4     2  8.99  0.665  
+##  5     2 10.2   1.92   
+##  6     2 11.3   2.97   
+##  7     3  7.36 -3.02   
+##  8     3 10.5   0.130  
+##  9     3 10.5   0.136  
+## 10     4 12.4   0.00763
+## # ... with 20 more rows</code></pre>
+<p>Det finns några olika sätt att förstå vad residualerna ger för information om modellen vi valt. Ett sätt är att göra en <em>frekvenspolygon</em> för att se spridningen av residualerna:</p>
+<div class="sourceCode" id="cb925"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb925-1" data-line-number="1"><span class="kw">ggplot</span>(sim1, <span class="kw">aes</span>(resid)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb925-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-380-1.png" width="70%" /></p>
+<p>Här framgår hur långt från regressionslinjen (prediktionerna) finns de observerade värdena.</p>
+<p>För att kunna se residualerna hellre än prediktionerna:</p>
+<div class="sourceCode" id="cb926"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb926-1" data-line-number="1"><span class="kw">ggplot</span>(sim1, <span class="kw">aes</span>(x, resid)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb926-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_ref_line</span>(<span class="dt">h =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb926-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() </a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-381-1.png" width="70%" /></p>
+<p>Residualerna förefaller fördelas slumpmässigt vilket talar för att modellen fångar essensen i data ganska väl.</p>
+</div>
+</div>
+<div id="formler-och-modell-familjer" class="section level2">
+<h2><span class="header-section-number">23.3</span> Formler och modell-familjer</h2>
+<p>Formler i R är av en speciell karaktär. Formler i R är ett generellt sätt att fånga “ett speciellt beteende”. Snarare än att utvärdera variabelvärden fångar R-formeln in data så att de kan tolkas av den funktion man vill använda.</p>
+<p>De flesta modellfunktioner i R använder ett standardiserat sätt att omvandla formler till funktioner. Omvandlingen vi använde innan, <code>y ~ x</code> omvandlas av funktionen <code>lm()</code> till <code>y = a + b_1*x</code>. Det framgår tydligare om vi tar fram modell-matrisen med hjälp av funktionen <code>model_matrix()</code>. Den tar en dataram och en formel och genererar en tibble som definierar modellens ekvation: varje kolumn i tibblen är associerad till en koefficient i modellen. Vi kollar i den enklaste modellen, <code>y~x1</code>:</p>
+<div class="sourceCode" id="cb927"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb927-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb927-2" data-line-number="2">  <span class="op">~</span>y, <span class="op">~</span>x1, <span class="op">~</span>x2,</a>
+<a class="sourceLine" id="cb927-3" data-line-number="3">  <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb927-4" data-line-number="4">  <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">6</span></a>
+<a class="sourceLine" id="cb927-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb927-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb927-7" data-line-number="7"><span class="kw">model_matrix</span>(df, y <span class="op">~</span><span class="st"> </span>x1)</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   `(Intercept)`    x1
+##           &lt;dbl&gt; &lt;dbl&gt;
+## 1             1     2
+## 2             1     1</code></pre>
+<p>Lägger man till fler variabler till modellen utvidgas matrisen:</p>
+<div class="sourceCode" id="cb929"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb929-1" data-line-number="1"><span class="kw">model_matrix</span>(df, y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2)</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   `(Intercept)`    x1    x2
+##           &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1             1     2     5
+## 2             1     1     6</code></pre>
+<p>Sättet som R lägger till interceptet till modellen är via en kolumn fylld med värdet 1. För den som är intresserad av algebra kan rekommenderas <em>Wilkinson &amp; Rogers Symbolic Description of Factorial Models for Analysis of Variance</em>,
+<a href="https://www.jstor.org/stable/2346786" class="uri">https://www.jstor.org/stable/2346786</a> som beskriver och motiverar detta sätt att definiera ekvationen och modellmatrisen.</p>
+<p>Låt oss kika på hur detta fungerar för kategoriska variabler, interaktioner och transformeringar.</p>
+<div id="kategoriska-variabler" class="section level3">
+<h3><span class="header-section-number">23.3.1</span> Kategoriska variabler</h3>
+<p>Låt oss säga att vi har en formel <code>y ~ sex</code>, där <code>sex</code> kan vara antingen man eller kvinna. I detta fall är ju <code>sex</code> en kategorisk variabel vilken i R konverteras till dummyvariabler, i detta fall i modellen <code>y~a + b_1 * sex_man</code> där <code>sex_man</code> är 1 om <code>sex</code> är en man och 0 om <code>sex</code> är en kvinna:</p>
+<div class="sourceCode" id="cb931"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb931-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb931-2" data-line-number="2">  <span class="op">~</span><span class="st"> </span>sex, <span class="op">~</span><span class="st"> </span>response,</a>
+<a class="sourceLine" id="cb931-3" data-line-number="3">  <span class="st">&quot;male&quot;</span>, <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb931-4" data-line-number="4">  <span class="st">&quot;female&quot;</span>, <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb931-5" data-line-number="5">  <span class="st">&quot;male&quot;</span>, <span class="dv">1</span></a>
+<a class="sourceLine" id="cb931-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb931-7" data-line-number="7"><span class="kw">model_matrix</span>(df, response <span class="op">~</span><span class="st"> </span>sex)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   `(Intercept)` sexmale
+##           &lt;dbl&gt;   &lt;dbl&gt;
+## 1             1       1
+## 2             1       0
+## 3             1       1</code></pre>
+<p>Vi kan utveckla detta resonemang med hjälp av <code>sim2</code>:</p>
+<div class="sourceCode" id="cb933"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb933-1" data-line-number="1"><span class="kw">ggplot</span>(sim2) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb933-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x, y))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-385-1.png" width="70%" /></p>
+<p>Vi kan anpassa en modell till dessa data och generera prediktioner:</p>
+<div class="sourceCode" id="cb934"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb934-1" data-line-number="1">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> sim2)</a>
+<a class="sourceLine" id="cb934-2" data-line-number="2">grid &lt;-<span class="st"> </span>sim2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb934-3" data-line-number="3"><span class="st">  </span><span class="kw">data_grid</span>(x) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb934-4" data-line-number="4"><span class="st">  </span><span class="kw">add_predictions</span>(mod2)</a>
+<a class="sourceLine" id="cb934-5" data-line-number="5">grid</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   x      pred
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 a      1.15
+## 2 b      8.12
+## 3 c      6.13
+## 4 d      1.91</code></pre>
+<p>Prediktionerna från en modell med kategoriska data kommer att vara lika med kategoriernas medelvärden eftersom dessa minimerar prediktionernas summerade avvikelse från modellens regressionlinje the root mean squared distance. Det blir uppenbart genom att lägga till medelvärden för kategorierna i grafen:</p>
+<div class="sourceCode" id="cb936"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb936-1" data-line-number="1"><span class="kw">ggplot</span>(sim2, <span class="kw">aes</span>(x)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb936-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb936-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> grid, <span class="kw">aes</span>(<span class="dt">y =</span> pred), <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-387-1.png" width="70%" /></p>
+</div>
+<div id="interaktioner" class="section level3">
+<h3><span class="header-section-number">23.3.2</span> Interaktioner</h3>
+<p>Vad händer när du kombinerar en kontinerlig och en kategorisk variabel? I <code>sim3</code> finns en kategorisk variabel och en kontinuerlig:</p>
+<div class="sourceCode" id="cb937"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb937-1" data-line-number="1"><span class="kw">ggplot</span>(sim3, <span class="kw">aes</span>(x1, y)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb937-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> x2))</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-388-1.png" width="70%" /></p>
+<p>Dessa data kan beskrivas på två sätt:</p>
+<div class="sourceCode" id="cb938"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb938-1" data-line-number="1">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2, <span class="dt">data =</span> sim3)</a>
+<a class="sourceLine" id="cb938-2" data-line-number="2">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2, <span class="dt">data =</span> sim3)</a></code></pre></div>
+<p>När man adderar två variabler med <code>+</code> kommer modellen att utvärdera effekten för varje variabel oberoende av de övriga. När man lägger till variabler med <code>*</code> utvärderas interaktionen mellan de två variablerna. Till exempel tolkas formeln <code>y~x1 * x2</code> som <code>y = a + b1*x1 + b2*x2 + b3*x1*x2</code>. Använder man <code>*</code> istället för <code>+</code> inkluderas alltså både de enskilda variablerna och interaktionsvariabeln.</p>
+<p>För att visualisera dessa modeller behöver vi justera koden från det tidigare exemplet:</p>
+<ol style="list-style-type: decimal">
+<li>Vi har två variabler så vi behöver ge <code>data_grid()</code> båda. Då kommer funktionen att ange samtliga unika värden på <code>x1</code> och <code>x2</code> och generera alla kombinationer av dessa.</li>
+<li>För att generera prediktioner från båda modellerna samtidigt kan vi använda <code>gather_predictions()</code> som lägger till varje prediktion som en rad. Komplementet till <code>gather_predictions()</code> är <code>spread_predictions()</code> som lägger till varje prediktion till en ny kolumn.</li>
+</ol>
+<p>Sammantaget ger oss detta:</p>
+<div class="sourceCode" id="cb939"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb939-1" data-line-number="1">grid &lt;-<span class="st"> </span>sim3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb939-2" data-line-number="2"><span class="st">  </span><span class="kw">data_grid</span>(x1, x2) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb939-3" data-line-number="3"><span class="st">  </span><span class="kw">gather_predictions</span>(mod1, mod2)</a>
+<a class="sourceLine" id="cb939-4" data-line-number="4">grid</a></code></pre></div>
+<pre><code>## # A tibble: 80 x 4
+##    model    x1 x2     pred
+##    &lt;chr&gt; &lt;int&gt; &lt;fct&gt; &lt;dbl&gt;
+##  1 mod1      1 a      1.67
+##  2 mod1      1 b      4.56
+##  3 mod1      1 c      6.48
+##  4 mod1      1 d      4.03
+##  5 mod1      2 a      1.48
+##  6 mod1      2 b      4.37
+##  7 mod1      2 c      6.28
+##  8 mod1      2 d      3.84
+##  9 mod1      3 a      1.28
+## 10 mod1      3 b      4.17
+## # ... with 70 more rows</code></pre>
+<p>Vi kan visualisera resultaten för båda modellerna genom att använda <code>facets</code>:</p>
+<div class="sourceCode" id="cb941"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb941-1" data-line-number="1"><span class="kw">ggplot</span>(sim3, <span class="kw">aes</span>(x1, y, <span class="dt">colour =</span> x2)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb941-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb941-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> grid, <span class="kw">aes</span>(<span class="dt">y =</span> pred)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb941-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>model)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-391-1.png" width="70%" /></p>
+<p>Notera att modellen som använder <code>+</code> har samma lutning för varje regressionslinje men skilda intercept, medan modellen med interaktionsvariabeln (<code>*</code>) har regressionslinjer med olika lutning.</p>
+<p>Vilken modell passar data bäst? Vi kan kika på residualerna. Vi använder <code>facets</code> för modell och <code>x2</code> för att kunna se mönster inom varje grupp:</p>
+<div class="sourceCode" id="cb942"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb942-1" data-line-number="1">sim3 &lt;-<span class="st"> </span>sim3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb942-2" data-line-number="2"><span class="st">  </span><span class="kw">gather_residuals</span>(mod1, mod2)</a>
+<a class="sourceLine" id="cb942-3" data-line-number="3"><span class="kw">ggplot</span>(sim3, <span class="kw">aes</span>(x1, resid, <span class="dt">colour =</span> x2)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb942-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb942-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_grid</span>(model <span class="op">~</span><span class="st"> </span>x2)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-392-1.png" width="70%" /></p>
+<p>Det finns inte något uppenbart mönster beträffande residualerna för de olika kategorierna a-d i modell 2. Residualerna i modell 1 uppvisar knappast något slumpmässigt mönster; i b är detta uppenbart men även för de övriga kategorierna, vilket kan tolkas som att modell 1 återspeglar data sämre än modell 2.</p>
+</div>
+<div id="interaktioner-tva-kontinuerliga-variabler" class="section level3">
+<h3><span class="header-section-number">23.3.3</span> Interaktioner (två kontinuerliga variabler)</h3>
+<p>Vi kikar på motsvarande modell för två kontinuerliga variabler. Vi kan i princip upprepa koden från ovanstående exempel till att börja med:</p>
+<div class="sourceCode" id="cb943"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb943-1" data-line-number="1">mod1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2, <span class="dt">data =</span> sim4)</a>
+<a class="sourceLine" id="cb943-2" data-line-number="2">mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span>x2, <span class="dt">data =</span> sim4)</a>
+<a class="sourceLine" id="cb943-3" data-line-number="3">grid &lt;-<span class="st"> </span>sim4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb943-4" data-line-number="4"><span class="st">  </span><span class="kw">data_grid</span>(</a>
+<a class="sourceLine" id="cb943-5" data-line-number="5">    <span class="dt">x1 =</span> <span class="kw">seq_range</span>(x1, <span class="dv">5</span>), </a>
+<a class="sourceLine" id="cb943-6" data-line-number="6">    <span class="dt">x2 =</span> <span class="kw">seq_range</span>(x2, <span class="dv">5</span>) </a>
+<a class="sourceLine" id="cb943-7" data-line-number="7">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb943-8" data-line-number="8"><span class="st">  </span><span class="kw">gather_predictions</span>(mod1, mod2)</a>
+<a class="sourceLine" id="cb943-9" data-line-number="9">grid</a></code></pre></div>
+<pre><code>## # A tibble: 50 x 4
+##    model    x1    x2   pred
+##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 mod1   -1    -1    0.996
+##  2 mod1   -1    -0.5 -0.395
+##  3 mod1   -1     0   -1.79 
+##  4 mod1   -1     0.5 -3.18 
+##  5 mod1   -1     1   -4.57 
+##  6 mod1   -0.5  -1    1.91 
+##  7 mod1   -0.5  -0.5  0.516
+##  8 mod1   -0.5   0   -0.875
+##  9 mod1   -0.5   0.5 -2.27 
+## 10 mod1   -0.5   1   -3.66 
+## # ... with 40 more rows</code></pre>
+<p>Notera funktionen <code>seq_range()</code> som ett argument i <code>data_grid()</code>. Istället för att använda varje unikt värde i <code>x</code> använder vi en regelbunden <em>grid</em> bestående av fem värden inom intervallet minsta och högsta värde på <code>x</code>. Det finns två andra användbara argument till <code>seq_range()</code>:</p>
+<ol style="list-style-type: decimal">
+<li><code>pretty = TRUE</code> genererar en “pretty” sekvens, dvs som ser snyggt ut för ögat. Detta kan vara bra om man vill skapa tabeller från output.</li>
+</ol>
+<div class="sourceCode" id="cb945"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb945-1" data-line-number="1"><span class="kw">seq_range</span>(<span class="kw">c</span>(<span class="fl">0.0123</span>, <span class="fl">0.923423</span>), <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1] 0.0123000 0.2400808 0.4678615 0.6956423 0.9234230</code></pre>
+<div class="sourceCode" id="cb947"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb947-1" data-line-number="1"><span class="kw">seq_range</span>(<span class="kw">c</span>(<span class="fl">0.0123</span>, <span class="fl">0.923423</span>), <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">pretty =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 0.0 0.2 0.4 0.6 0.8 1.0</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><code>trim = 0.1</code> klipper 10% av svansvärdena vilket kan vara användbart om du är mer intresserad av värden nära centralvärden i en skev fördelning.</li>
+</ol>
+<div class="sourceCode" id="cb949"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb949-1" data-line-number="1">x1 &lt;-<span class="st"> </span><span class="kw">rcauchy</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb949-2" data-line-number="2"><span class="kw">seq_range</span>(x1, <span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1]  -389.2927  2303.7231  4996.7389  7689.7547 10382.7706</code></pre>
+<div class="sourceCode" id="cb951"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb951-1" data-line-number="1"><span class="kw">seq_range</span>(x1, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">trim =</span> <span class="fl">0.10</span>)</a></code></pre></div>
+<pre><code>## [1] -5.471760 -3.235923 -1.000087  1.235750  3.471587</code></pre>
+<div class="sourceCode" id="cb953"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb953-1" data-line-number="1"><span class="kw">seq_range</span>(x1, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">trim =</span> <span class="fl">0.25</span>)</a></code></pre></div>
+<pre><code>## [1] -2.23426853 -1.10077363  0.03272128  1.16621618  2.29971109</code></pre>
+<div class="sourceCode" id="cb955"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb955-1" data-line-number="1"><span class="kw">seq_range</span>(x1, <span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">trim =</span> <span class="fl">0.50</span>)</a></code></pre></div>
+<pre><code>## [1] -1.141117967 -0.569778792  0.001560383  0.572899558  1.144238733</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><code>expand = 0.1</code> är på sätt o vis motsatsen till trim - det expanderar omfånget (the range) med 10%</li>
+</ol>
+<p>Låt oss visualisera den här modellen. Vi kan plotta prediktionerna för en av variablerna givet ett visst värde för den andra:</p>
+<div class="sourceCode" id="cb957"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb957-1" data-line-number="1"><span class="kw">ggplot</span>(grid, <span class="kw">aes</span>(x1, pred, <span class="dt">colour =</span> x2, <span class="dt">group =</span> x2)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb957-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb957-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>model)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-396-1.png" width="70%" /></p>
+<div class="sourceCode" id="cb958"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb958-1" data-line-number="1"><span class="kw">ggplot</span>(grid, <span class="kw">aes</span>(x2, pred, <span class="dt">colour =</span> x1, <span class="dt">group =</span> x1)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb958-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb958-3" data-line-number="3"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>model)</a></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-396-2.png" width="70%" /></p>
+<p>Detta visar att interaktioner med kontinuerliga variabler fungerar i princip på samma sätt som för kategoriska - för att predicera <code>y</code> behöver man beakta värdena för båda variablerna simultant.</p>
+</div>
+<div id="transformationer" class="section level3">
+<h3><span class="header-section-number">23.3.4</span> Transformationer</h3>
+<p>Du kan även utföra transformationer inuti formeln för modellen. Till exempel, <code>log(y) ~ sqrt(x1) + x2</code> transformeras till <code>log(y) = a + b1*sqrt(x1) + b2*x2</code>.</p>
+<p>Om din transformation innehåller <code>+</code>, <code>-</code>, <code>*</code> eller <code>^</code> behöver du “paketera” uttrycket i funktionen <code>I()</code> så att R inte behandlar uttrycket som en del av modell-specifikationen. Till exempel:</p>
+<p><code>y ~ x + I(x^2)</code> tolkas som <code>y = a + b1*x + b2*x^2</code>. om du glömmer <code>I()</code> och specificerar modellen till
+<code>y ~ x^2 + x</code> kommer R att tolka modellen som <code>y = x * x + x</code> där <code>x*x</code> är i R en interaktion av <code>x</code> med sig själv vilket är lika med <code>x</code> och därmed blir modellen enligt R:s sätt att se <code>y = x + x</code>. Eftersom R automatiskt droppar redundanta variabler kommer uttrcket <code>y ~ x^2 + x</code> att tolkas som <code>y = a + b1*x</code> vilket inte är vad vi ville.</p>
+<p>Om du funderar på hur R tolkar ett uttryck kan du använda <code>model_matrix()</code> för att se vilken ekvation som <code>lm()</code> utvärderar:</p>
+<div class="sourceCode" id="cb959"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb959-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb959-2" data-line-number="2">  <span class="op">~</span>y, <span class="op">~</span>x,</a>
+<a class="sourceLine" id="cb959-3" data-line-number="3">   <span class="dv">1</span>,  <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb959-4" data-line-number="4">   <span class="dv">2</span>,  <span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb959-5" data-line-number="5">   <span class="dv">3</span>,  <span class="dv">3</span></a>
+<a class="sourceLine" id="cb959-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb959-7" data-line-number="7"><span class="kw">model_matrix</span>(df, y <span class="op">~</span><span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>x)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   `(Intercept)`     x
+##           &lt;dbl&gt; &lt;dbl&gt;
+## 1             1     1
+## 2             1     2
+## 3             1     3</code></pre>
+<div class="sourceCode" id="cb961"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb961-1" data-line-number="1"><span class="kw">model_matrix</span>(df, y <span class="op">~</span><span class="st"> </span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>x)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   `(Intercept)` `I(x^2)`     x
+##           &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1             1        1     1
+## 2             1        4     2
+## 3             1        9     3</code></pre>
+<p>Wickham har några fler finesser beträffande transformationer i sin bok, se <a href="http://r4ds.had.co.nz/model-basics.html#transformations" class="uri">http://r4ds.had.co.nz/model-basics.html#transformations</a>, men vi lämnar dem därhän för nu.</p>
+</div>
+</div>
+<div id="missing-values-1" class="section level2">
+<h2><span class="header-section-number">23.4</span> Missing values</h2>
+<p>Eftersom missing values inte innehåller någon användbar information om relationen mellan variabler droppar R automatiskt rader med sådana värden. Man får dock en varning om att detta har skett, t.ex.:</p>
+<div class="sourceCode" id="cb963"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb963-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">tribble</span>(</a>
+<a class="sourceLine" id="cb963-2" data-line-number="2">  <span class="op">~</span>x, <span class="op">~</span>y,</a>
+<a class="sourceLine" id="cb963-3" data-line-number="3">  <span class="dv">1</span>, <span class="fl">2.2</span>,</a>
+<a class="sourceLine" id="cb963-4" data-line-number="4">  <span class="dv">2</span>, <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb963-5" data-line-number="5">  <span class="dv">3</span>, <span class="fl">3.5</span>,</a>
+<a class="sourceLine" id="cb963-6" data-line-number="6">  <span class="dv">4</span>, <span class="fl">8.3</span>,</a>
+<a class="sourceLine" id="cb963-7" data-line-number="7">  <span class="ot">NA</span>, <span class="dv">10</span></a>
+<a class="sourceLine" id="cb963-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb963-9" data-line-number="9">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</a></code></pre></div>
+<pre><code>## Warning: Dropping 2 rows with missing values</code></pre>
+<p>För att undertrycka varningen kan du ange argumentet <code>na.action = na.exclude</code>:</p>
+<div class="sourceCode" id="cb965"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb965-1" data-line-number="1">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df, <span class="dt">na.action =</span> na.exclude)</a></code></pre></div>
+<p>Du kan alltid se hur många observationer som använts i <code>lm()</code> genom <code>nobs()</code>:</p>
+<div class="sourceCode" id="cb966"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb966-1" data-line-number="1"><span class="kw">nobs</span>(mod)</a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div id="andra-modell-familjer" class="section level3">
+<h3><span class="header-section-number">23.4.1</span> Andra modell-familjer</h3>
+<p>R hanterar förstås andra än linjära modeller som vi just diskuterat t.ex.:</p>
+<ul>
+<li><em>Generaliserade linjära modeller (GLM)</em> - t.ex. <code>stats::glm()</code>. GLM hanterar icke-kontinuerliga utfall såsom binära eller antal (counts).</li>
+<li><em>Generaliserade additiva modeller (GAM)</em> - t.ex. <code>mgcv::gam()</code> vilka utvecklar GLMs till att inkludera godtyckliga smoothing-funktioner. Det innebär att du kan ange en formel <code>y ~s(x)</code> vilket blir tolkat som en ekvation av typ <code>y = f(x)</code> och låpter <code>gam()</code> estimera vad den funktionen är .</li>
+<li><em>Penalised linear models</em>, <em>robust linear models</em>, <em>trees</em>, <em>random forests</em> och ett antal ytterligare. Men det är överkurs här. Det är emellertid på sin plats att påpekat att modellerna i R fungerar på i princip ett likartat sätt vilket innebär att när du väl bemästrar linjära modller kommer du att känna dig hemma när du ska hantera övriga, mer komplexa modeller.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bygga-modeller-i-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>
