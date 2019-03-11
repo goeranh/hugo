@@ -1,5 +1,5 @@
 {
-    "path" : "~/R/hugo/static/rbook",
+    "path" : "~/R/hugo/themes/hugo-lithium/layouts/_default",
     "sortOrder" : [
         {
             "ascending" : true,
