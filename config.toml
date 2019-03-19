@@ -9,13 +9,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
-[[menu.main]]
-    name = "About"
-    url = "/about/"
-
-[[menu.main]]
-    name = "Another item"
-    url = "/item2/"
+#[[menu.main]]
+#    name = "About"
+#    url = "/about/"
+#
+#[[menu.main]]
+#    name = "Another item"
+#    url = "/item2/"
     
 [[menu.main]]
     name = "rbook"
