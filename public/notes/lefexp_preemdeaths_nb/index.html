@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.54.0" />
+
+
+<title>Medellivslängd eller förtida död? - A Hugo website</title>
+<meta property="og:title" content="Medellivslängd eller förtida död? - A Hugo website">
+
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/%3cnil%3e"
+         width=""
+         height=""
+         alt="">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/rbook/">rbook</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">Medellivslängd eller förtida död?</h1>
+
+    
+
+    <div class="article-content">
+      
+
+
+<pre class="r"><code>knitr::opts_chunk$set(warning=FALSE, 
+                      message=FALSE)</code></pre>
+<div id="inledning" class="section level1">
+<h1>Inledning</h1>
+<p>Denna studie syftar till att jämföra medellivslängd med förtida död då de appliceras på relativt små geografiska områden. Följande frågeställningarutreds:</p>
+<ol style="list-style-type: decimal">
+<li>Hur har medellivslängd respektive förtida dödsfall utvecklats över tid?</li>
+<li>Hur stor är korrelationen mellan medellivslängd och förtida död?</li>
+<li>Vilken geografisk nivå är lämplig som aggregeringsnivå?</li>
+<li>Hur påverkas precisionen av att poola data över flera år, som rullande 3/5-årsmedelvärden?</li>
+</ol>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<div id="antal-doda" class="section level2">
+<h2>Antal döda</h2>
+<p>Data över antalet döda män och kvinnor 1990-2018 uppdelat på 1-årsintervall, bo-kommun och VG, hämtas från SCBs publika databas via myndighetens API och sparas ned till två filer, <code>deaths.RData</code> och <code>pop.RData</code>:</p>
+<p>Filerna sparas separat på grund av att de tar relativt lång tid att ladda bned dem. Därefter slås de båda filerna ihop till en arbetsfil, <code>df_mort</code> :</p>
+<pre class="r"><code>library(tidyverse)
+library(demography)
+library(roll)
+library(huxtable)
+
+df_mort &lt;- read.csv2(&quot;~/R/equityindicators/data/1_premdeaths/df_mort.csv&quot;, encoding = &quot;UTF-8&quot;)</code></pre>
+</div>
+</div>
+<div id="metod" class="section level1">
+<h1>Metod</h1>
+<p>I ett första steg beräknar jag <em>medellivslängdens utveckling</em> i VG 1990 - 2018 uppdelat per kön samt <em>förtida död</em> (definierat som antalet dödsfall per 100 000 före 65 års ålder) under samma tidsperiod. Medellivslängden beräknas enligt SCBs metod (KÄLLA). Medellivslängden kan ses som en funktion av</p>
+<ol style="list-style-type: decimal">
+<li>åldersspecifik dödsrisk</li>
+<li>populationens storlek</li>
+<li>populationens åldersfördelning (åldersspecifik populationsstorlek)</li>
+</ol>
+<p>ad 1. Antalet döda betraktas som en Poisson-fördelad variabel med väntevärdet <span class="math inline">\(\lambda\)</span></p>
+<p><span class="math display">\[m_i = \frac{x_i}{n_i} \tag{1}\]</span></p>
+<p><span class="math display">\[x_i \sim Poisson(\lambda = m_{vg}*n_i) \tag{2}\]</span></p>
+<p>där <span class="math inline">\(x_i\)</span> är antalet dödsfall i åldersintervallet <em>i</em>, <span class="math inline">\(n_i\)</span> är antalet i befolkningen i samma åldersintervall. <span class="math inline">\(m_{vg}\)</span> är dödsrisken för populationen i hela Västra Götaland i åldersintervallet. Vi antar alltså att den underliggande dödsrisken i ett visst åldersintervall i en viss kommun är densamma som för länet.</p>
+<p>Indikatorn förtida död beräknas genom att dividera antalet dödsfall som inträffar innan 65 års ålder dividerat med folkmängden (31 dec resp år) under 65 års ålder.</p>
+<p><span class="math display">\[m = \frac{\sum_{i=0}^{64} x_i}{\sum_{i=0}^{64} n_i} \tag{3}\]</span></p>
+<pre class="r"><code>### life_exp.R
+
+# libs --------------------------------------------------------------------
+
+library(tidyverse)
+library(demography)
+
+
+# data --------------------------------------------------------------------
+
+df_le &lt;- df_mort %&gt;%
+  filter(!is.na(ålder))
+
+df_le_m &lt;- df_mort %&gt;%
+  filter(region == &quot;14 Västra Götalands län&quot; &amp; kön == &quot;män&quot; &amp; !is.na(ålder)) %&gt;%
+  mutate(mort = cases/antal) %&gt;%
+  arrange(year, ålder)
+
+df_le_1421 &lt;- df_mort %&gt;%
+  filter(region == &quot;1421 Orust&quot; &amp; kön == &quot;män&quot; &amp; !is.na(ålder)) %&gt;%
+  mutate(mort = cases/antal) %&gt;%
+  arrange(year, ålder)
+
+df_p_m &lt;- df_mort %&gt;%
+  filter(region == &quot;14 Västra Götalands län&quot; &amp; kön == &quot;män&quot; &amp; !is.na(ålder)) %&gt;%
+  arrange(year, ålder)
+
+df_le_f &lt;- df_mort %&gt;%
+  filter(region == &quot;14 Västra Götalands län&quot; &amp; kön == &quot;kvinnor&quot; &amp; !is.na(ålder)) %&gt;%
+  mutate(mort = cases/antal) %&gt;%
+  arrange(year, ålder)
+
+df_p_f &lt;- df_mort %&gt;%
+  filter(region == &quot;14 Västra Götalands län&quot; &amp; kön == &quot;kvinnor&quot; &amp; !is.na(ålder)) %&gt;%
+  arrange(year, ålder)
+
+
+
+# medellivslängd ----------------------------------------------------------
+
+## män
+mx_mort_m &lt;- matrix(df_le_m$mort, ncol = 29, byrow = FALSE)
+mx_pop_m &lt;- matrix(df_le_m$antal, ncol = 29, byrow = FALSE)
+
+dg_mort_m &lt;- demogdata(data = mx_mort_m, pop = mx_pop_m, ages = 0:90, years = 1990:2018,
+                     type = &quot;mortality&quot;, label = &quot;VG&quot;, name = &quot;male&quot;)
+
+le_male &lt;- e0(dg_mort_m)
+
+mx_mort_f &lt;- matrix(df_le_f$mort, ncol = 29, byrow = FALSE)
+mx_pop_f &lt;- matrix(df_le_f$antal, ncol = 29, byrow = FALSE)
+
+dg_mort_f &lt;- demogdata(data = mx_mort_f, pop = mx_pop_f, ages = 0:90, years = 1990:2018,
+                       type = &quot;mortality&quot;, label = &quot;VG&quot;, name = &quot;female&quot;)
+
+le_fem &lt;- e0(dg_mort_f)
+
+
+# förtida död -------------------------------------------------------------
+
+df_prem65 &lt;- df_mort %&gt;%
+  filter(region == &quot;14 Västra Götalands län&quot; &amp; ålder &lt; 65) %&gt;%
+  group_by(kön, year) %&gt;%
+  summarise(cases = sum(cases),
+            antal = sum(antal)) %&gt;%
+  mutate(mort = cases/antal)
+
+mort_m65 &lt;- df_prem65$mort[df_prem65$kön == &quot;män&quot;]
+
+mort_f65 &lt;- df_prem65$mort[df_prem65$kön == &quot;kvinnor&quot;]
+
+df_comp &lt;- data.frame(mort_m65, le_m = as.numeric(le_male), mort_f65, le_f = as.numeric(le_fem))</code></pre>
+<p>Korrelationen (Spearman´s) mellan medellivslängd och förtida död beräknas för perioden 1990 till 2018.</p>
+<p><strong>Den tredje frågeställningen</strong> handlar om vilken aggregeringsnivå som kan vara rimlig beträffande precisionen. Tentativt uppfattas att en precision beträffande medellivslängd på <span class="math inline">\(\pm\)</span> 0.2 levnadsår kan vara rimlig medan en rimlig precision beträffande förtida dödsfall kan vara <span class="math inline">\(\pm\)</span> 20 dödsfall per 100 000.
+Här använder jag data för 1990 och beräknar dels medellivslängden per kommun, dels dödlihet i förtid per kommun (1990 för att antalet dödsfall var som högst under den studerade perioden) på samma sätt som ovan.<br />
+Jag använde Monte Carlo-teknik för att simulera en fördelning av antalet döda per 1-årsåldersintervall och per kommun, med den åldersspecifika dödligheten i Västra Götaland tillsammans med den ålderspecifika befolkningsstorleekn i respektive kommun (se ekvation (2) ovan). Den åldersspecifika dödligheten och befolknigsstorleken användes för att konstruera de två matriser som behövs för att upprätta livslängdstabeller i <code>demography</code> ur vilka medellivslängden sedan lätt kan extraheras (argumenten <code>data</code> och <code>pop</code>).</p>
+<p>I ett andra steg beräknades standardfelet för skattningarna av medellivslängd respektive förtida dödsfall för olika (hypotetiska) populationsstorlekar (från 1000 till 200 000). På så sätt kan en rimlig precision “titreras” ut. Här använde jag också en Monte Carlo-simulering för att generera en fördelning av respektive indikator. Från dessa beräknades medelvärde och standardavvikelse för varje nivå av populationsstorleken.</p>
+<p>För att besvara <strong>den fjärde frågeställningen</strong> undersöker jag hur prcisionen förändras då data poolas dels över tid, dels geografiskt. Beräkningarna enligt ovan görs med 1) data poolade över 3- respektive 5-årsintervall, och 2) data poolade över lokala arbetsmarknader samt över kommunalförbundsområden.</p>
+<p>För beräkningarna användes R ver 3.5.0, för beräkningen av medellivslängd <code>demography</code>-paketet.</p>
+</div>
+<div id="resultat" class="section level1">
+<h1>Resultat</h1>
+<div id="anchor1" class="section level2">
+<h2>Medellivslängdens utveckling 1990 - 2018</h2>
+<p>Medellivslängden har ökat för både kvinnor ocjh män. För männen från 75.6 i början av 1990-talet till 81 år 2018. Motsvarande ökning för kvinnor är 80.9 år 1990, 84.3 år 2018 (se figur nedan).</p>
+<pre class="r"><code># df_comp &lt;- data.frame(mort_m65, le_m = as.numeric(le_male), mort_f65, le_f = as.numeric(le_fem))
+
+ggplot(df_comp) +
+  geom_line(aes(x = 1990:2018, y = le_m), col = 4)+
+  geom_line(aes(x = 1990:2018, y = le_f), col = 2)</code></pre>
+<div class="figure">
+<img src="/notes/lefexp_preemdeaths_nb_files/figure-html/fig_lifeexp-1.png" alt="Medellivslängd för kvinnor och män 1990 - 2018 i Västra Götaland" width="672" />
+<p class="caption">
+(#fig:fig_lifeexp)Medellivslängd för kvinnor och män 1990 - 2018 i Västra Götaland
+</p>
+</div>
+<pre class="r"><code>#legend ska läggas till</code></pre>
+</div>
+<div id="anchor2" class="section level2">
+<h2>Utvecklingen av förtida dödsfall 1990 - 2018</h2>
+<p>Antalet förtida dödsfall har på motsvarande sätt sjunkit över tid. 1990 noterades för männen 242.3 dödsfall per 100 000 yngre än 65 år, 2018 hade andelen sjunkit till 151.4 per 100 000. Motsvarande andelar för kvinnor var 242.3 per 100 000 och 242.3 per 100 000.</p>
+<pre class="r"><code>ggplot(df_comp) +
+  geom_line(aes(x = 1990:2018, y = mort_m65), col = 4)+
+  geom_line(aes(x = 1990:2018, y = mort_f65), col = 2)+
+  ylim(0, 0.003)</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/fig_premdeaths-1.png" width="672" /></p>
+<pre class="r"><code># lägg till legend</code></pre>
+</div>
+<div id="korrelationen-mellan-medellivslangd-och-fortida-dod" class="section level2">
+<h2>Korrelationen mellan medellivslängd och förtida död</h2>
+<p>Som väntat finns ett reciprokt mönster med stigande medellivslängd och sjunkande förtida dödsfall. Beräknat med Spearman´s korrelationskoefficient är korrelationen -0.98 för männen och för kvinnorna -0.93. Den starka korrelationen illustreras i figuren nedan.</p>
+<pre class="r"><code>ggplot(df_comp) +
+  geom_point(mapping = aes(x = mort_m65, y = le_m), col = 4)+
+  geom_point(mapping = aes(x = mort_f65, y = le_f), col = 2)</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/fig_corr-1.png" width="672" /></p>
+</div>
+</div>
+<div id="vilken-geografisk-niva-ar-lamplig-som-aggregeringsniva" class="section level1">
+<h1>Vilken geografisk nivå är lämplig som aggregeringsnivå?</h1>
+<p>Med data för 1990 beräknades i etty första steg medellivslängd och förtida död per kommun. Med hjälp av en Monte Carlo-simulering erhölls kommunspecifika fördelningar av medellivslängd tillsammans med ett 95% konfidensintervall samt standardfel. I ett andra steg undersökte jag hur standardfelet förändras med olika popualtionsstorlekar.</p>
+<div id="steg-1-medellivslangd-och-fortida-dod-pa-kommunniva" class="section level2">
+<h2>Steg 1: Medellivslängd och förtida död på kommunnivå</h2>
+<p>Som väntat varierar punktskattningar av medellivslängd och förtida död mellan kommunerna. Med tanke på att populationerna i de 49 kommunerna varierar starkt kan åtminstone en del av variationen vara slumpmässigt betingad eftersom dödsfall trots allt är relativt sällsynta och antalet observationer därmed relativt små.
+I figuren {#anchor3}nedan reovisas punktskattningarna för medellivslängden för män tillsammans med 95% konfiodensintervall per kommun och region.</p>
+<pre class="r"><code>df_e0 &lt;- read_csv(&quot;~/R/equityindicators/resultat/compare_munics_male.csv&quot;)
+ggplot(df_e0, aes(x = kommun, y = e0))+
+  geom_point()+
+  geom_errorbar(aes(ymin = ci_low, ymax = ci_high))+
+  coord_flip()</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/comp_munics-1.png" width="768" /></p>
+<p>Punktskattningarna varierar mellan 75.6 och 76 år. Men som blir uppenbart är osäkerheten i skattningarna mycket stor och det är enbart på regionnivå som precisionen understiger ett halvt levnadsår.</p>
+<p>På liknande sätt förhåller det sig med precisionen i skattningar av vförtida dödsfall.</p>
+<pre class="r"><code>ggplot(df_e0, aes(x = kommun, y = m65*10^5))+
+ geom_point()+
+ geom_errorbar(aes(ymin = ci_low65*10^5, ymax = ci_high65*10^5))+
+ coord_flip()</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/com_munics_pd-1.png" width="768" /></p>
+<p>Även här är punktskattningarna relaivt samlade mellan 218 och 281. Det är enbart på regionnivå och i Göteborg som konmfidensintervallet är omkring <span class="math inline">\(\pm\)</span> 20 döda per 100 000.</p>
+</div>
+<div id="steg2-titrering-av-standardavvikelsen" class="section level2">
+<h2>Steg2: “Titrering” av standardavvikelsen</h2>
+<p>I nedasntående figur redovisas hur standardavvikelsen för medellivslängd berpor av populationsstorleken. Därigenom kan man få en uppfattning om hur stor populationen bör vara för att uppnå en önskad precision.</p>
+<pre class="r"><code>df_e0 &lt;- read_csv(&quot;~/R/equityindicators/resultat/compare_nx_e0_male.csv&quot;)
+
+ggplot(df_e0, aes(x = Nx, y = S.E.))+
+  geom_point()+
+  geom_line()+
+  geom_hline(yintercept = 0.3, linetype = 2)  # se = 0.3 motsvarar ett CI på +/- 0.6 år.</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/fig_sd_e0-1.png" width="672" /></p>
+<p>I figuren är populationsstorleken på x-axeln och standardfelet anges på y-axeln. Den streckade linjen anger ett standardfel på 0.3 vilket motsvarar en osäkerhet på ca <span class="math inline">\(\pm\)</span> 0.6 levnadsår. Det är först då man kommer upp i en population på omkring 150 000 - 175 000 individer som denna precision nås.</p>
+<p>Motsvarande resultat för förtida dödsfall ses i figuren nedan.</p>
+<pre class="r"><code>tmp &lt;- read_csv(&quot;~/R/equityindicators/resultat/compare_nx_m65_male.csv&quot;)
+
+ggplot(tmp, aes(x = Nx, y = S.E.*10^5))+
+  geom_point()+
+  geom_line()+
+  geom_hline(yintercept = 0.0002*10^5, linetype = 2)  # se = 0.3 motsvarar ett CI på +/- 0.6 år.</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/fig_sd_pd-1.png" width="672" /></p>
+<p>Här anger den streckade linjen ett standardfel som motsvarar <span class="math inline">\(\pm\)</span> 20 dödsfall per 100 000 individer. De precisionen uppnås vid en population kring 75 000 individer.</p>
+</div>
+</div>
+<div id="hur-paverkas-precisionen-av-att-poola-data" class="section level1">
+<h1>Hur påverkas precisionen av att poola data?</h1>
+<p>Att poola data innebär i princip att man ökar antalet individer och därmed precisionen. Det kan göras på i princip två sätt: genom att aggregera observationer över tid och att aggregera individer geografiskt.</p>
+<div id="poola-data-over-tid" class="section level2">
+<h2>Poola data över tid</h2>
+<p>Genom att poola data över tid, i detta fall 3- respektive 5 år, ökar man antalet observationer och därmed precisionen. Effekten illustreras i nedanstående graf som visar utfallet för Orust kommun, som ett exempel.</p>
+<pre class="r"><code>### väljer 1421 
+nyears = 29
+
+source(&quot;~/R/equityindicators/funcs/ind_funcs.R&quot;)
+
+e01_1421 &lt;- f_lifeexp(df_le_1421)
+
+e03_1421 &lt;- read_csv(&quot;~/R/equityindicators/resultat/df_e03.csv&quot;) %&gt;% 
+  filter(substr(kommun, 1, 4) == &quot;1421&quot;) %&gt;%  
+  mutate(year = year - 1)
+
+e05_1421 &lt;- read_csv(&quot;~/R/equityindicators/resultat/df_e05.csv&quot;) %&gt;% 
+  filter(substr(kommun, 1, 4) == &quot;1421&quot;) %&gt;%  
+  select(-kommun, year, e05 = e0) %&gt;% 
+  mutate(year = year - 2)
+
+
+e0_comp_vg &lt;- tibble(year = 1990:2018, vg = df_comp$le_m)
+
+e0_comp_1421 &lt;- tibble(year = 1990:2018, e01 = as.numeric(e01_1421)) %&gt;% 
+  full_join(e03_1421) %&gt;% 
+  full_join(e05_1421) %&gt;% 
+  full_join(e0_comp_vg) %&gt;% 
+  select(year, vg, e01, e03 = e0, e05) %&gt;% 
+  gather(key = interval, value = e0, -year)
+
+
+ggplot(e0_comp_1421, aes(x = year, y = e0, color = interval)) +
+  geom_line()+
+  geom_point()</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/rolling_averages-1.png" width="672" /></p>
+<p>Medellivslängden för Västra Götaland (VG, lila linje) visar en tydlig uppåtgående trend med små variatioener över tid. Motsvarande utveckling för Orust (e01, röd linje) uppvisar en väsentlig variation över tid även om man anar en uppåtgående trend. Observationerna varierar till exempel mellan 2013 och 2016 med drygt 6 levnadsår.
+Den gröna linjen beskriver rullande 3-årsmedelvärden vilket minskar variationen över tid men fortfarande återstår betydande variationer. Till exempel förefaller medellivslängden sjunka med 2 levnadsår under 2010-talets första år.
+Om man använder rullande 5-års medelvärden minskar variationen något. Som mest varierar då medellivslängden med ett drygt levnnadsår från ett år till ett annat (2011-2015 till 2012-2016).</p>
+</div>
+<div id="fortida-dod" class="section level2">
+<h2>Förtida död</h2>
+<p>Antalet förtida dödsfall har minskat i Västra Götalqand, från ca 250 per 100 000 män år 1990 till omkring 150 per 100 000. Hur ter sig motsvarande trend i en mindre kommun? I figuren nedan illustreras detta med data från Orust. 1-årsdata (röd linjke) visar en avseväred variation och det är svårt att utläsa om trenden har en riktning.</p>
+<pre class="r"><code>#males
+tmp_vg_m &lt;- df_le_m %&gt;%
+  filter(substr(region, 1, 4) == &quot;14 V&quot; &amp; ålder &lt; 65) %&gt;%
+  group_by(year) %&gt;%
+  summarise(cases = sum(cases),
+            antal = sum (antal)) %&gt;%
+  mutate(VG = cases/antal)
+
+tmp1421m &lt;- df_le_1421 %&gt;%
+  filter(substr(region, 1, 4) == &quot;1421&quot; &amp; ålder &lt; 65) %&gt;%
+  group_by(year) %&gt;%
+  summarise(cases = sum(cases),
+            antal = sum (antal)) %&gt;%
+  mutate(agg1_mort = cases/antal,
+         VG = tmp_vg_m$VG)
+
+
+
+# ggplot(tmp1421m, aes(year, mort))+
+#   geom_line()
+
+
+
+agg3_cases = roll_sum(as.matrix(tmp1421m$cases), 3)
+agg3_antal = roll_sum(as.matrix(tmp1421m$antal), 3)
+agg5_cases = roll_sum(as.matrix(tmp1421m$cases), 5)
+agg5_antal = roll_sum(as.matrix(tmp1421m$antal), 5)
+
+agg3_mort = agg3_cases / agg3_antal
+agg5_mort = agg5_cases / agg5_antal
+
+tmp3 &lt;- tibble(year = 1989:2017, agg3_mort) %&gt;% 
+  filter(year &gt; 1990)
+
+tmp5 &lt;- tibble(year = 1988:2016, agg5_mort) %&gt;% 
+  filter(year &gt; 1991)
+
+fd1421m &lt;- full_join(tmp1421m, tmp3)
+
+fd1421m &lt;- full_join(fd1421m, tmp5) %&gt;%
+  select(-c(cases, antal)) %&gt;%
+  gather(key = interval, value = mort, -year) %&gt;%
+  filter(year &gt; 1989)
+
+ggplot(fd1421m, aes(x = year, y = mort*10^5, color = interval))+
+  geom_line()+
+  geom_point()</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Variationen minskar påtagligt med hjälp av rullande 3-års medelvärden (grön linje) och ger intyryck av att mortaliteten varit relativt oförändrad över tid med en period av minskande dödlighet i början av 2000-talet men en ökning under 2010-talet. Samma bild ges med hjälp av rullande 5-årsmedelvärden vilket också minskar vartiationen ytterligare.</p>
+<p>Frågan är om detta ska ses som en “sann” fluktuation - skiljer sig dödligheten i Orust ommun från den i länet som helhet eller är fluktuationen en effekt av slumpmässig variation? För att närma oss ett svar gjordes en Monte Carlo-simulering med rullande 3-årsmedelvärden för att få fram en skattning av precisionen i dessa observationer.</p>
+<p>Resulatet redovisas i figuren nedan. Den heldragna linjen motsvarar det skattade 3-årsmedelvärdet, det blå området beskriver ett 95%-konfidensintervall och den streckade linjen anger förtida dödlighet på länsnivå.</p>
+<pre class="r"><code>tbl1421 &lt;- read_csv(&quot;~/R/equityindicators/resultat/premdeaths1421.csv&quot;)
+
+ggplot(tbl1421, aes(x = year, y = mean))+
+  geom_ribbon(aes(ymin = low_ci, ymax = high_ci), fill = &quot;steelblue&quot;, alpha = 0.4)+
+  geom_line()+
+  geom_line(aes(x= year, y = vg), linetype = 2)+
+  ylim(0, 400)</code></pre>
+<p><img src="/notes/lefexp_preemdeaths_nb_files/figure-html/premdeaths1421-1.png" width="672" /></p>
+<p>Trots poolade data är osäkerheten i skatningarna batydande och omsluter i stort sett läns-trenden. Man kan inte med säkerhet hävda att dödligheten på Orust skiljer sig från den i länet.</p>
+</div>
+<div id="poolade-data-utiffran-geografiska-omraden" class="section level2">
+<h2>poolade data utiffrån geografiska områden</h2>
+<p>Vi har sett att osäkerheten i skattningar på kommunnivå är osäker. Men vad händer om vi aggregerar data till andra geografiska nivåer? Som vi sett är precisionen fr.a. avhängigt popualtionsstorleken. Därmed kan man anta att ju större geografiskt område desto större popualtion och därmed större precision. Lokala arbetsmarknader (LA 2014) är sju stycken i VG och omfattar alltså i genomsnitt 7 kommuner. En tänkbar högre aggergeringsnivå är de fyra kommunalförbunden alternativt de fem hälso- och sjukvårdsnämnderna.</p>
+<p>I tabellen nedan framgår populationsstorleken i respektive geografiskt område.</p>
+<pre class="r"><code>pop2018 &lt;- df_mort %&gt;% 
+  filter(year == 2018) %&gt;% 
+  group_by(region, kön) %&gt;% 
+  summarise(pop = sum(antal))
+
+codes &lt;- read_csv(&quot;~/R/equityindicators/data/KommunkoderMM.csv&quot;)
+
+pop2018 &lt;- left_join(pop2018, codes, by = c(&quot;region&quot; = &quot;numtext&quot;)) %&gt;% 
+  select(kön, region, la14, kf, hsn, pop) %&gt;% 
+  filter(region != &quot;14 Västra Götalands län&quot;) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(la_t = paste0(&quot;la14_&quot;, la14),
+         kf_t = paste0(&quot;kf_&quot;, kf)) %&gt;% 
+  fill()
+
+pop_la14 &lt;- pop2018 %&gt;% 
+  group_by(kön, geo = la_t) %&gt;% 
+  summarise(pop = sum(pop))%&gt;% 
+  spread(key = kön, value = pop)
+
+pop_kf &lt;- pop2018 %&gt;% 
+  group_by(kön, geo = kf_t) %&gt;% 
+  summarise(pop = sum(pop))%&gt;% 
+  spread(key = kön, value = pop)
+
+pop_hsn &lt;- pop2018 %&gt;% 
+  group_by(kön, geo = hsn) %&gt;% 
+  summarise(pop = sum(pop))%&gt;% 
+  spread(key = kön, value = pop)
+
+df1 &lt;- cbind(&quot;id&quot; = rownames(pop_la14), pop_la14)
+df2 &lt;- cbind(&quot;id&quot; = rownames(pop_kf), pop_kf)
+df3 &lt;- cbind(&quot;id&quot; = rownames(pop_hsn), pop_hsn)
+
+tmp_tbl &lt;- full_join(df1, df2, by = &quot;id&quot;)
+tmp_tbl &lt;- full_join(tmp_tbl, df3, by = &quot;id&quot;) %&gt;% 
+  select(-id)
+
+## tabell 1. Antal elever som deltagit i undersökningen
+
+hx &lt;- hux(tmp_tbl)
+
+  heads1 &lt;- c(&quot;Lokala arbetsmarknader&quot;, &quot;&quot;, &quot; &quot;, &quot;Kommunalförbund&quot;, &quot; &quot;, &quot;&quot;, &quot;HSN&quot;, &quot;&quot;, &quot;&quot;)  
+  heads2 &lt;- c(&quot; &quot;, &quot;Kvinnor&quot;, &quot;Män&quot;, &quot;&quot;, &quot;Kvinnor&quot;, &quot;Män&quot;, &quot; &quot;, &quot;Kvinnor&quot;, &quot;Män&quot;)
+
+  hx%&gt;% insert_row(heads2, after = 0) %&gt;%  
+    insert_row(heads1, after = 0)%&gt;% 
+    merge_cells(c(1, 1), c(1, 3)) %&gt;% 
+    merge_cells(c(1,1), c(4, 6)) %&gt;% 
+    merge_cells(c(1,1), c(7, 9)) %&gt;% 
+    set_bottom_border(2, 1:9, 1) %&gt;% 
+    set_bottom_border(10, 1:9, 1) %&gt;% 
+    set_top_border(1, 1:9, 1) %&gt;% 
+    set_align(1:2, 1:9, &quot;center&quot;) %&gt;%   
+#    set_align(1, 1:9, &quot;center&quot;) %&gt;% 
+    set_width(0.8) %&gt;% 
+    set_number_format(row = 3:10, col = 1:9, value = 0)%&gt;% 
+    theme_blue() %&gt;% 
+    set_background_color(row = 1:2, col = 1:9, &quot;steelblue&quot;) %&gt;% 
+    set_background_color(row = 1:10, col = c(1, 4, 7), &quot;steelblue&quot;) %&gt;% 
+    set_bold(1:10, c(1, 4, 7), TRUE) %&gt;% 
+    set_text_color(row = 1:2, col = 1:9, &quot;white&quot;) %&gt;% 
+    set_text_color(row = 1:10, col = c(1, 4, 7), &quot;white&quot;) %&gt;% 
+    set_caption(&quot;Antal kvinnor och män per geografiskt område&quot;)</code></pre>
+<table class="huxtable" style="border-collapse: collapse; margin-bottom: 2em; margin-top: 2em; width: 80%; margin-left: auto; margin-right: auto;  ">
+<caption style="caption-side: top; text-align: center;">Antal kvinnor och män per geografiskt område</caption><col><col><col><col><col><col><col><col><col><tr>
+<td colspan="3" style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Lokala arbetsmarknader</span></td>
+<td colspan="3" style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">Kommunalförbund</span></td>
+<td colspan="3" style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">HSN</span></td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"> </span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180);"><span style="color: rgb(255, 255, 255);">Kvinnor</span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180);"><span style="color: rgb(255, 255, 255);">Män</span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180);"><span style="color: rgb(255, 255, 255);">Kvinnor</span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180);"><span style="color: rgb(255, 255, 255);">Män</span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"> </span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180);"><span style="color: rgb(255, 255, 255);">Kvinnor</span></td>
+<td style="vertical-align: top; text-align: center; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180);"><span style="color: rgb(255, 255, 255);">Män</span></td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_1</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">488938</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">492157</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">kf_1</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">471154</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">473746</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">hsn1</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">185309</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">187723</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_2</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">104088</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">106141</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">kf_2</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">111304</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">113236</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">hsn2</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">134858</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">138248</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_3</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">12821</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">13305</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">kf_3</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">132164</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">135104</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">hsn3</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">111304</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">113236</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_4</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">7038</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">7614</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">kf_4</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">134858</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">138248</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">hsn4</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">132164</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">135104</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_5</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">100948</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">102507</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);"></td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">hsn5</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">285845</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">286023</td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_6</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">36916</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">37818</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_7</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">92415</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);">94388</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);"></td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(169, 204, 227);"></td>
+</tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);">la14_NA</span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">6316</td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);">6404</td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+<td style="vertical-align: top; text-align: left; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(70, 130, 180); font-weight: bold;"><span style="color: rgb(255, 255, 255);"></span></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+<td style="vertical-align: top; text-align: right; white-space: nowrap; border-style: solid solid solid solid; border-width: 1pt 1pt 1pt 1pt; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 4pt 4pt 4pt 4pt; background-color: rgb(212, 230, 241);"></td>
+</tr>
+</table>
+
+<p>Den aggregeringsnivå som är närmast ovanför kommunen är de lokala arbetsmarknaderna. LA14 betcknar lokala arbetsmarknadaer enligt 12014 års indelning och är 7 stycken. Antalet invånare varierar mellan drygt 6000 till nästan ½ miljon. En beräkning av mortaliteten med befolkingen per lokal arbetsmarknad skulle leda till ett obalanserat dataset med mycket olika precision. Detsamma gäller kommunalförbundsnivån där antalet förvisso är jämt mellan jsuhärads KF, Fyrbodals KF och Skaraborgs KF men där befolkningen i Göteborgsregionen är omkring fuyra gånger så stor som i de övriga förbunden. En något jämnare situation finns beträffade befolkingarna i hälso- och sjukvårdsnämnderna även om befolkningen i HSN Götenborg är betydligt större.</p>
+</div>
+</div>
+<div id="diskussion" class="section level1">
+<h1>Diskussion</h1>
+<p>Medellivslängden har liksom i riket i övrigt ökat i Västra Götaland, både bland män och kvinnor (se <a href="#anchor1">Medellivslängdens utveckling 1990 - 2018</a>), för män i Västra Götaland är medellivslängden f.n. 81 år och för kvinnor drygt 84 år. På motsvarande sätt har förtida dödlighet (definierat som antal dödsfall per 100 000 i befolkningen under 65 års ålder) sjunkit betydligt (<a href="#anchor2">Utvecklingen av förtida dödsfall 1990 - 2018</a>).</p>
+<p>Det är värt att notera att korrelationen mellan de två måtten är mycket stor (Pearson´s = -0.98 för män och -0.93 för kvinnor), trots att förändringen i medellivslängd under de senaste decennierna bedöms bero framför allt på att dödligheten minskat mest i de äldre åldersintervallen <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Men om man är intresserad av att veta hur medellivslängden utvecklas på t.ex. kommunnivå stöter man på problemet med de små talens förbannelse - antalet inträffade dödsfall är helt enkelt för få för att göra säkra skattningar då befiolkningen är mindre eftersom slumpmässigt inträffade dödsfall påverkar medellivslängden i större utsträckning om befolkningsunderlaget är litet. Det innebär att enstaka dödsfall i yngr åldrar kan ha stor betdelse för medellivslängden. Bewräkningen av medellivslängden är mer komplicerad än beräknngen av förtida dödsfall - medan den senare innebär att man summerar antalet dödsfall under 65 års ålder och dividerar med befolkningen i samma åldersintervall, beräknas medellivslängden med hjälp av åldersspecifika dödstal, i detta fall dödlighet per 1-årsintervall, vilka därefter används i en s.k. livslängdstabell vilken utgår från en bestämd fiktiv folkmängd, vanligen 100 000 vid åldern 0 och som reduceras med hjälp av de ålderspecifika dödstalen för varje levnadsår till dess inga individer återstår av den fiktiva populationen. Medellivslängden brukar då definieras som den genomsnittliga förväntade livslängden vid födelsen under antagandet att de framtida dödsriskerna är desamma som används för beräkningen.</p>
+<p>Av detta följer att (den slumpmässiga) variationen vid beräknng av medellivslängd uppstår på två sätt - dels finns en variation i vardera av de åldersspecifika dödsriskerna, dels finns en varuiation <em>mellan</em> de ålderspecifika dödsriskerna. Vid beräkningen av förtida dölighet uppstår variationen enbart i skattnngen av antalet dödsfall i relation till populationen och kan därmed sägas vara mindre känslig för slumpmässiga förändringar.</p>
+<p>Även om förtida dödlighet kan vara ett mer robust mått än medellivslängd är det fortfarande svårt att använda på mindre geogarfiska nivåer, typ kommun, beroende på att dödsfall ändå är relativt sällsynta. Det blir tydligt då man plottar medellivslängd och förtida dödlighet tillsammans med ett 95% konfidensinterbvall (se [figurerna] @ref(fig:comp_munics) under avsnittet Steg 1: Medellivslängd och förttida död på kommunnivå). Inte i något fall kan man hävda att medellivslängd eller förtida dödlighet på kommunnivå skiljer sig från den regionala. I figurerna framgår också tydlöigt att graden av osäkerhet sammanhänger med befolkngsstorlek - mindre kommun = större osäkerhet.</p>
+<p>En viktig fråga blir då hur stor befolkingne bör vara för att en tillräcklig säkerhet ska uppnås. Enligt simuleringen under Steg2: Titrerng av standardavvikelsen behövs omkring 150 000 - 170 000 individer för att nå en säkerhet på <span class="math inline">\(\pm\)</span> 0.2 levnadsår. För att uppnå en säkerhet på <span class="math inline">\(\pm\)</span> 20 dödsfall per 100 000 invånare behövs omkring 75 000 invånare, alltså ungefär hälften av vad som behövdes för medellivslängd (under antagandet att <span class="math inline">\(\pm\)</span> 0.2 levnadsår respektive <span class="math inline">\(\pm\)</span> 20 dödsfall per 100 000 invånare är en rimlig grad av säkerhet).</p>
+<p>Följer man detta resonemang behövs alltså väsentligt större populationer för att kunna göra meningsfulla beräkningar av medellivslängd men även av förtida dödlighet. Det finns två sätt att “öka” befolkingsstorleken: genom att poola data över flera år och genom att slå samman geografiska områden, t.ex. kommuner till större geografiska områden. Man inser genast att för de mindre kommunerna behöver man poola data för många år för att nå en rimlig säkerhet. I exemplen ovan beräknades medellivslängd respektive förtida dödlighet för Orust kommun. Även med data poolade över 5 år blir osäkerheten relativt stor, för medellivslängd omkring 1 levnadsår, för förtida dödlighet omkring 25 förtida dödsfall per 100 000. Beträffande förtida dödlighet ger utvecklingen över tid ett intryck av en relativt stabil trend i Orust kommun där dödligheten legat kring 200 per 100 000 invånare. men som framgår av figuren är osäkerheten ändå så pass stor att man inte helt kan utesluta att den “sanna” trenden i orust är densamma som för regionen i sin helhet.</p>
+<p>Man kan naturligtvis poola data över längre tid men måste väga det mot att man tappar information om en underliggande trend. Om man poolar data över t.ex. en 10-årsperiod kommer man att missa att dödligheten i början av perioden sannolikt var högre än i slutet av perioden.</p>
+</div>
+<div id="slutsatser" class="section level1">
+<h1>Slutsatser</h1>
+<ul>
+<li><p>Förtida dödsfall har fördelar framför medellivslängd då man söker ett mått på dödlighet i mindre geografiska områden. Dels är det ett mer robust mått, man når en rmilig precision med en mindre populationsstorlek, dels är det enklare att beräkna.</p></li>
+<li><p>Förtida dödlighet liksom medellivslängd kräver ändå relativt stora populationer för att uppnå rimlig precision i skattningarna.</p></li>
+<li><p>Möjligheterna att poola data över tid på små områden är begränsade eftersom det krävs långa perioder för att uppnå en rimlig precision varför man kommer att förlora information om underliggande trend.</p></li>
+<li><p>En acceptabel kompromiss kan vara att använda HSN-områden som en relativt balanserad aggregeringsnivå. Notera att man ändå kan komma att behöva poola data över tid om man utöver kön vill stratifiera beräkningen på andra befolkingsgrupper.</p></li>
+</ul>
+</div>
+<div id="tabeller" class="section level1">
+<h1>Tabeller</h1>
+<div id="medellivslangd-och-fortida-dod-pa-kommunniva" class="section level2">
+<h2>Medellivslängd och förtida död på kommunnivå</h2>
+</div>
+<div id="standardavvikelsen-for-medellivslangd-och-fortida-dod" class="section level2">
+<h2>Standardavvikelsen för medellivslängd och förtida död</h2>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>SCB: Livslängden i Sverige 2011–2015. Livslängdstabeller för riket och länen.Demografiska rapporter: Rapport 2016:4.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
