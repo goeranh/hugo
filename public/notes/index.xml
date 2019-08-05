@@ -1,24 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Notes on A Hugo website</title>
-    <link>/notes/</link>
-    <description>Recent content in Notes on A Hugo website</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="/notes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Medellivslängd eller förtida död?</title>
-      <link>/notes/lefexp_preemdeaths_nb/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/notes/lefexp_preemdeaths_nb/</guid>
-      <description>knitr::opts_chunk$set(warning=FALSE, message=FALSE)InledningDenna studie syftar till att jämföra medellivslängd med förtida död då de appliceras på relativt små geografiska områden. Följande frågeställningarutreds:
-Hur har medellivslängd respektive förtida dödsfall utvecklats över tid?Hur stor är korrelationen mellan medellivslängd och förtida död?Vilken geografisk nivå är lämplig som aggregeringsnivå?Hur påverkas precisionen av att poola data över flera år, som rullande 3/5-årsmedelvärden?DataAntal dödaData över antalet döda män och kvinnor 1990-2018 uppdelat på 1-årsintervall, bo-kommun och VG, hämtas från SCBs publika databas via myndighetens API och sparas ned till två filer, deaths.</description>
-    </item>
-    
-  </channel>
-</rss>

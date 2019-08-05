@@ -3,39 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/2019/07/25/medellivsl%C3%A4ngd-eller-f%C3%B6rtida-d%C3%B6dlighet/</loc>
+    <loc>/goeranh/hugo/2019/08/02/l%C3%A4nk-test/</loc>
+    <lastmod>2019-08-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/goeranh/hugo/2019/07/25/medellivsl%C3%A4ngd-eller-f%C3%B6rtida-d%C3%B6dlighet/</loc>
     <lastmod>2019-07-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2019/07/25/linkfile/</loc>
-    <lastmod>2019-07-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/about/</loc>
+    <loc>/goeranh/hugo/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-07-25T00:00:00+00:00</lastmod>
+    <loc>/goeranh/hugo/</loc>
+    <lastmod>2019-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/goeranh/hugo/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2019-07-25T00:00:00+00:00</lastmod>
+    <loc>/goeranh/hugo/post/</loc>
+    <lastmod>2019-08-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/goeranh/hugo/tags/</loc>
     <priority>0</priority>
   </url>
   
