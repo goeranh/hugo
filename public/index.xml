@@ -2,40 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A Hugo website</title>
-    <link>/goeranh/hugo/</link>
+    <link>/</link>
     <description>Recent content on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 May 2016 21:48:51 -0700</lastBuildDate>
     
-	<atom:link href="/goeranh/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Länk-test</title>
-      <link>/goeranh/hugo/2019/08/02/l%C3%A4nk-test/</link>
-      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/goeranh/hugo/2019/08/02/l%C3%A4nk-test/</guid>
-      <description>testar att länka till extern fil på GitHub</description>
-    </item>
-    
-    <item>
-      <title>Medellivslängd eller förtida dödlighet?</title>
-      <link>/goeranh/hugo/2019/07/25/medellivsl%C3%A4ngd-eller-f%C3%B6rtida-d%C3%B6dlighet/</link>
-      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/goeranh/hugo/2019/07/25/medellivsl%C3%A4ngd-eller-f%C3%B6rtida-d%C3%B6dlighet/</guid>
-      <description>Förtida dödlighet har fördelar framför medellivslängd som indikator på ojämlkhet i hälsa i mindre geografiska områden. Det sammanhänger med att förtida dödlighet är mindre känsligt för enstaka dödsfall, särskilt i yngre åldrar. Förtida dödlighet är också starkt korrelerad till medellivslängd. Men man behöver fortfarande relativt stora populationer för att få rimlig säkerhet i skattningen av förtida dödlighet.
-En redovisning av utredningen finns här</description>
-    </item>
     
     <item>
       <title>About</title>
-      <link>/goeranh/hugo/about/</link>
+      <link>/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>/goeranh/hugo/about/</guid>
+      <guid>/about/</guid>
       <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
     </item>
     
