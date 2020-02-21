@@ -18,17 +18,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 #    url = "/item2/"
     
 [[menu.main]]
-    name = "rbook"
-    url = "/rbook/"
-    
-[[menu.main]]
     name = "rbook2"
     url = "/rbook2/"
     
-[[menu.main]]
-    name = "Shiny"
-    url = " https://gorhen.shinyapps.io/kolada/"
-
 [params]
     description = "A website built through Hugo and blogdown."
 
