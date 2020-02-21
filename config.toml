@@ -20,6 +20,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [[menu.main]]
     name = "rbook"
     url = "/rbook/"
+    name = "rbook2"
+    url = "/rbook2"
 
 [params]
     description = "A website built through Hugo and blogdown."
