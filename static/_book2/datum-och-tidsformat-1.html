@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>44 Datum och tidsformat | Kurskompendium - introduktion till R</title>
+  <meta name="description" content="44 Datum och tidsformat | Kurskompendium - introduktion till R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="44 Datum och tidsformat | Kurskompendium - introduktion till R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="44 Datum och tidsformat | Kurskompendium - introduktion till R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="kategoriska-variabler-factors-1.html"/>
+<link rel="next" href="programmering-i-r-1.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.1</b> Basics</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-konsolen"><i class="fa fa-check"></i><b>1.2</b> R-konsolen</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hjälpfunktioner"><i class="fa fa-check"></i><b>1.4</b> Hjälpfunktioner</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="utforska-data.html"><a href="utforska-data.html"><i class="fa fa-check"></i><b>2</b> Utforska data</a></li>
+<li class="chapter" data-level="3" data-path="visualisering.html"><a href="visualisering.html"><i class="fa fa-check"></i><b>3</b> Visualisering</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="visualisering.html"><a href="visualisering.html#ett-första-diagram"><i class="fa fa-check"></i><b>3.1</b> Ett första diagram</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="visualisering.html"><a href="visualisering.html#ladda-data"><i class="fa fa-check"></i><b>3.1.1</b> Ladda data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="visualisering.html"><a href="visualisering.html#skapa-en-ggplot"><i class="fa fa-check"></i><b>3.1.2</b> Skapa en ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="visualisering.html"><a href="visualisering.html#en-grafikmall"><i class="fa fa-check"></i><b>3.2</b> En grafikmall</a></li>
+<li class="chapter" data-level="3.3" data-path="visualisering.html"><a href="visualisering.html#övningar"><i class="fa fa-check"></i><b>3.3</b> Övningar</a></li>
+<li class="chapter" data-level="3.4" data-path="visualisering.html"><a href="visualisering.html#aes-funktionen-och-mappings"><i class="fa fa-check"></i><b>3.4</b> <code>aes()</code>-funktionen och mappings</a></li>
+<li class="chapter" data-level="3.5" data-path="visualisering.html"><a href="visualisering.html#övningar-1"><i class="fa fa-check"></i><b>3.5</b> Övningar</a></li>
+<li class="chapter" data-level="3.6" data-path="visualisering.html"><a href="visualisering.html#vanliga-problem"><i class="fa fa-check"></i><b>3.6</b> Vanliga problem</a></li>
+<li class="chapter" data-level="3.7" data-path="visualisering.html"><a href="visualisering.html#facets"><i class="fa fa-check"></i><b>3.7</b> Facets</a></li>
+<li class="chapter" data-level="3.8" data-path="visualisering.html"><a href="visualisering.html#övningar-2"><i class="fa fa-check"></i><b>3.8</b> Övningar</a></li>
+<li class="chapter" data-level="3.9" data-path="visualisering.html"><a href="visualisering.html#geometriska-objekt---geoms"><i class="fa fa-check"></i><b>3.9</b> “Geometriska” objekt - geoms</a></li>
+<li class="chapter" data-level="3.10" data-path="visualisering.html"><a href="visualisering.html#övningar-3"><i class="fa fa-check"></i><b>3.10</b> Övningar</a></li>
+<li class="chapter" data-level="3.11" data-path="visualisering.html"><a href="visualisering.html#statistiska-transformationer"><i class="fa fa-check"></i><b>3.11</b> Statistiska transformationer</a></li>
+<li class="chapter" data-level="3.12" data-path="visualisering.html"><a href="visualisering.html#övningar-4"><i class="fa fa-check"></i><b>3.12</b> Övningar</a></li>
+<li class="chapter" data-level="3.13" data-path="visualisering.html"><a href="visualisering.html#positionering"><i class="fa fa-check"></i><b>3.13</b> Positionering</a></li>
+<li class="chapter" data-level="3.14" data-path="visualisering.html"><a href="visualisering.html#övningar-5"><i class="fa fa-check"></i><b>3.14</b> Övningar</a></li>
+<li class="chapter" data-level="3.15" data-path="visualisering.html"><a href="visualisering.html#koordinatsystem"><i class="fa fa-check"></i><b>3.15</b> Koordinatsystem</a></li>
+<li class="chapter" data-level="3.16" data-path="visualisering.html"><a href="visualisering.html#övningar-6"><i class="fa fa-check"></i><b>3.16</b> Övningar</a></li>
+<li class="chapter" data-level="3.17" data-path="visualisering.html"><a href="visualisering.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>3.17</b> “The layered grammar of graphics”</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="workflow-basics.html"><a href="workflow-basics.html"><i class="fa fa-check"></i><b>4</b> Workflow: Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="workflow-basics.html"><a href="workflow-basics.html#skriva-kod"><i class="fa fa-check"></i><b>4.1</b> Skriva kod</a></li>
+<li class="chapter" data-level="4.2" data-path="workflow-basics.html"><a href="workflow-basics.html#anropa-funktioner"><i class="fa fa-check"></i><b>4.2</b> Anropa funktioner</a></li>
+<li class="chapter" data-level="4.3" data-path="workflow-basics.html"><a href="workflow-basics.html#övningar-7"><i class="fa fa-check"></i><b>4.3</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="transformering-av-data.html"><a href="transformering-av-data.html"><i class="fa fa-check"></i><b>5</b> Transformering av data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#introduktion-1"><i class="fa fa-check"></i><b>5.1</b> Introduktion</a></li>
+<li class="chapter" data-level="5.2" data-path="transformering-av-data.html"><a href="transformering-av-data.html#förberedelser"><i class="fa fa-check"></i><b>5.2</b> Förberedelser</a></li>
+<li class="chapter" data-level="5.3" data-path="transformering-av-data.html"><a href="transformering-av-data.html#dplyr-grunder"><i class="fa fa-check"></i><b>5.3</b> <code>dplyr</code> grunder</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#filtrera-raderposter-med-filter"><i class="fa fa-check"></i><b>5.3.1</b> Filtrera rader/poster med <code>filter()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-8"><i class="fa fa-check"></i><b>5.4</b> Övningar</a></li>
+<li class="chapter" data-level="5.5" data-path="transformering-av-data.html"><a href="transformering-av-data.html#arrangera-poster-med-arrange"><i class="fa fa-check"></i><b>5.5</b> Arrangera poster med <code>arrange()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-9"><i class="fa fa-check"></i><b>5.6</b> Övningar</a></li>
+<li class="chapter" data-level="5.7" data-path="transformering-av-data.html"><a href="transformering-av-data.html#välj-kolumner-med-select"><i class="fa fa-check"></i><b>5.7</b> Välj kolumner med <code>select()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-10"><i class="fa fa-check"></i><b>5.8</b> Övningar</a></li>
+<li class="chapter" data-level="5.9" data-path="transformering-av-data.html"><a href="transformering-av-data.html#lägg-till-flera-variabler-med-hjälp-av-mutate"><i class="fa fa-check"></i><b>5.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#funktioner-och-operatorer-att-användas-med-mutate"><i class="fa fa-check"></i><b>5.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-11"><i class="fa fa-check"></i><b>5.10</b> Övningar</a></li>
+<li class="chapter" data-level="5.11" data-path="transformering-av-data.html"><a href="transformering-av-data.html#grupperade-summeringar-med-summarise"><i class="fa fa-check"></i><b>5.11</b> Grupperade summeringar med <code>summarise()</code></a></li>
+<li class="chapter" data-level="5.12" data-path="transformering-av-data.html"><a href="transformering-av-data.html#kombinera-multipla-operationer-med-the-pipe"><i class="fa fa-check"></i><b>5.12</b> Kombinera multipla operationer med the pipe</a></li>
+<li class="chapter" data-level="5.13" data-path="transformering-av-data.html"><a href="transformering-av-data.html#missing-values"><i class="fa fa-check"></i><b>5.13</b> Missing values</a></li>
+<li class="chapter" data-level="5.14" data-path="transformering-av-data.html"><a href="transformering-av-data.html#antal-counts"><i class="fa fa-check"></i><b>5.14</b> Antal (counts)</a></li>
+<li class="chapter" data-level="5.15" data-path="transformering-av-data.html"><a href="transformering-av-data.html#användbara-summeringsfunktioner"><i class="fa fa-check"></i><b>5.15</b> Användbara summeringsfunktioner</a></li>
+<li class="chapter" data-level="5.16" data-path="transformering-av-data.html"><a href="transformering-av-data.html#gruppera-med-flera-variabler"><i class="fa fa-check"></i><b>5.16</b> Gruppera med flera variabler</a></li>
+<li class="chapter" data-level="5.17" data-path="transformering-av-data.html"><a href="transformering-av-data.html#av-gruppera"><i class="fa fa-check"></i><b>5.17</b> Av-gruppera</a></li>
+<li class="chapter" data-level="5.18" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-12"><i class="fa fa-check"></i><b>5.18</b> Övningar</a></li>
+<li class="chapter" data-level="5.19" data-path="transformering-av-data.html"><a href="transformering-av-data.html#grupperade-beräkningar-och-filtreringar"><i class="fa fa-check"></i><b>5.19</b> Grupperade beräkningar och filtreringar</a></li>
+<li class="chapter" data-level="5.20" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-13"><i class="fa fa-check"></i><b>5.20</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html"><i class="fa fa-check"></i><b>6</b> Arbetsflöde: scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html#att-köra-kod"><i class="fa fa-check"></i><b>6.1</b> Att köra kod</a></li>
+<li class="chapter" data-level="6.2" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html#diagnostics"><i class="fa fa-check"></i><b>6.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="6.3" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html#praktik"><i class="fa fa-check"></i><b>6.3</b> Praktik</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html"><i class="fa fa-check"></i><b>7</b> Explorativ analys av data</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#introduktion-2"><i class="fa fa-check"></i><b>7.1</b> Introduktion</a></li>
+<li class="chapter" data-level="7.2" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#frågor"><i class="fa fa-check"></i><b>7.2</b> Frågor</a></li>
+<li class="chapter" data-level="7.3" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#variation"><i class="fa fa-check"></i><b>7.3</b> Variation</a></li>
+<li class="chapter" data-level="7.4" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#visualisera-fördelningar"><i class="fa fa-check"></i><b>7.4</b> Visualisera fördelningar</a></li>
+<li class="chapter" data-level="7.5" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#outliers"><i class="fa fa-check"></i><b>7.5</b> Outliers</a></li>
+<li class="chapter" data-level="7.6" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#övningar-14"><i class="fa fa-check"></i><b>7.6</b> Övningar</a></li>
+<li class="chapter" data-level="7.7" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#missing-values-1"><i class="fa fa-check"></i><b>7.7</b> Missing values</a></li>
+<li class="chapter" data-level="7.8" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#samvarians---covariance"><i class="fa fa-check"></i><b>7.8</b> Samvarians - covariance</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#en-kategorisk-och-en-kontinuerlig-variabel"><i class="fa fa-check"></i><b>7.8.1</b> En kategorisk och en kontinuerlig variabel</a></li>
+<li class="chapter" data-level="7.8.2" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#övningar-15"><i class="fa fa-check"></i><b>7.8.2</b> Övningar</a></li>
+<li class="chapter" data-level="7.8.3" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#två-kategoriska-variabler"><i class="fa fa-check"></i><b>7.8.3</b> Två kategoriska variabler</a></li>
+<li class="chapter" data-level="7.8.4" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#två-kontinuerliga-variabler"><i class="fa fa-check"></i><b>7.8.4</b> Två kontinuerliga variabler</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#ggplot2-calls"><i class="fa fa-check"></i><b>7.9</b> <code>ggplot2</code> calls</a></li>
+<li class="chapter" data-level="7.10" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#att-lära-mer"><i class="fa fa-check"></i><b>7.10</b> Att lära mer</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html"><i class="fa fa-check"></i><b>8</b> Arbetsflöde: Projekt</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#vad-är-viktigt"><i class="fa fa-check"></i><b>8.1</b> Vad är viktigt?</a></li>
+<li class="chapter" data-level="8.2" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#vart-lever-analysen-arbetsbiblioteket"><i class="fa fa-check"></i><b>8.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
+<li class="chapter" data-level="8.3" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#sökvägar-och-bibliotekmappar"><i class="fa fa-check"></i><b>8.3</b> Sökvägar och bibliotek/mappar</a></li>
+<li class="chapter" data-level="8.4" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#rstudio-projects-viktigt"><i class="fa fa-check"></i><b>8.4</b> RStudio projects VIKTIGT!</a></li>
+<li class="chapter" data-level="8.5" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#sammanfattningsvis"><i class="fa fa-check"></i><b>8.5</b> Sammanfattningsvis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="wrangle-att-brottas-med-data.html"><a href="wrangle-att-brottas-med-data.html"><i class="fa fa-check"></i><b>9</b> Wrangle - att brottas med data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="wrangle-att-brottas-med-data.html"><a href="wrangle-att-brottas-med-data.html#introduktion-3"><i class="fa fa-check"></i><b>9.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tibbles.html"><a href="tibbles.html#skapa-tibbles"><i class="fa fa-check"></i><b>10.1</b> Skapa tibbles</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="tibbles.html"><a href="tibbles.html#tibbles-vs-data-frames"><i class="fa fa-check"></i><b>10.1.1</b> Tibbles vs data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="tibbles.html"><a href="tibbles.html#utskrift-printing"><i class="fa fa-check"></i><b>10.2</b> Utskrift (Printing)</a></li>
+<li class="chapter" data-level="10.3" data-path="tibbles.html"><a href="tibbles.html#urval"><i class="fa fa-check"></i><b>10.3</b> Urval</a></li>
+<li class="chapter" data-level="10.4" data-path="tibbles.html"><a href="tibbles.html#använda-äldre-kod"><i class="fa fa-check"></i><b>10.4</b> Använda äldre kod</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="importera-data.html"><a href="importera-data.html"><i class="fa fa-check"></i><b>11</b> Importera data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="importera-data.html"><a href="importera-data.html#jämförelse-med-base-r"><i class="fa fa-check"></i><b>11.1</b> Jämförelse med base R</a></li>
+<li class="chapter" data-level="11.2" data-path="importera-data.html"><a href="importera-data.html#övningar-16"><i class="fa fa-check"></i><b>11.2</b> Övningar</a></li>
+<li class="chapter" data-level="11.3" data-path="importera-data.html"><a href="importera-data.html#omvandla-vektorer"><i class="fa fa-check"></i><b>11.3</b> Omvandla vektorer</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="importera-data.html"><a href="importera-data.html#numeriska-variabler"><i class="fa fa-check"></i><b>11.3.1</b> Numeriska variabler</a></li>
+<li class="chapter" data-level="11.3.2" data-path="importera-data.html"><a href="importera-data.html#textsträngar"><i class="fa fa-check"></i><b>11.3.2</b> Textsträngar</a></li>
+<li class="chapter" data-level="11.3.3" data-path="importera-data.html"><a href="importera-data.html#kategoriska-data"><i class="fa fa-check"></i><b>11.3.3</b> Kategoriska data</a></li>
+<li class="chapter" data-level="11.3.4" data-path="importera-data.html"><a href="importera-data.html#datum-och-tid"><i class="fa fa-check"></i><b>11.3.4</b> Datum och tid</a></li>
+<li class="chapter" data-level="11.3.5" data-path="importera-data.html"><a href="importera-data.html#övningar-17"><i class="fa fa-check"></i><b>11.3.5</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="importera-data.html"><a href="importera-data.html#hur-readr-plockar-isär-parse-en-fil"><i class="fa fa-check"></i><b>11.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
+<li class="chapter" data-level="11.5" data-path="importera-data.html"><a href="importera-data.html#problem"><i class="fa fa-check"></i><b>11.5</b> Problem</a></li>
+<li class="chapter" data-level="11.6" data-path="importera-data.html"><a href="importera-data.html#skriva-till-en-fil"><i class="fa fa-check"></i><b>11.6</b> Skriva till en fil</a></li>
+<li class="chapter" data-level="11.7" data-path="importera-data.html"><a href="importera-data.html#andra-datatyper"><i class="fa fa-check"></i><b>11.7</b> Andra datatyper</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="excel-och-r.html"><a href="excel-och-r.html"><i class="fa fa-check"></i><b>12</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="excel-och-r.html"><a href="excel-och-r.html#skriv-till-en-excelfil"><i class="fa fa-check"></i><b>12.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="12.2" data-path="excel-och-r.html"><a href="excel-och-r.html#läsa-in-excel"><i class="fa fa-check"></i><b>12.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="12.3" data-path="excel-och-r.html"><a href="excel-och-r.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r"><i class="fa fa-check"></i><b>12.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html"><i class="fa fa-check"></i><b>13</b> Städa data (tidy data)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#introduktion-4"><i class="fa fa-check"></i><b>13.1</b> Introduktion</a></li>
+<li class="chapter" data-level="13.2" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>13.2</b> Spreading and gathering</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#gathering"><i class="fa fa-check"></i><b>13.2.1</b> Gathering</a></li>
+<li class="chapter" data-level="13.2.2" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#spreading"><i class="fa fa-check"></i><b>13.2.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-18"><i class="fa fa-check"></i><b>13.3</b> Övningar</a></li>
+<li class="chapter" data-level="13.4" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#separera-och-förena"><i class="fa fa-check"></i><b>13.4</b> Separera och förena</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#separate"><i class="fa fa-check"></i><b>13.4.1</b> Separate</a></li>
+<li class="chapter" data-level="13.4.2" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#unite"><i class="fa fa-check"></i><b>13.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-19"><i class="fa fa-check"></i><b>13.5</b> Övningar</a></li>
+<li class="chapter" data-level="13.6" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#missing-values-2"><i class="fa fa-check"></i><b>13.6</b> Missing values</a></li>
+<li class="chapter" data-level="13.7" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-20"><i class="fa fa-check"></i><b>13.7</b> Övningar</a></li>
+<li class="chapter" data-level="13.8" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#en-case-study"><i class="fa fa-check"></i><b>13.8</b> En case study</a></li>
+<li class="chapter" data-level="13.9" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-21"><i class="fa fa-check"></i><b>13.9</b> Övningar</a></li>
+<li class="chapter" data-level="13.10" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>13.10</b> Non-tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html"><i class="fa fa-check"></i><b>14</b> Relationer mellan datamängder</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#introduktion-5"><i class="fa fa-check"></i><b>14.1</b> Introduktion</a></li>
+<li class="chapter" data-level="14.2" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#nycflights13"><i class="fa fa-check"></i><b>14.2</b> <code>nycflights13</code></a></li>
+<li class="chapter" data-level="14.3" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#keys"><i class="fa fa-check"></i><b>14.3</b> Keys</a></li>
+<li class="chapter" data-level="14.4" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#mutating-joins"><i class="fa fa-check"></i><b>14.4</b> <em>Mutating joins</em></a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#att-förstå-joins"><i class="fa fa-check"></i><b>14.4.1</b> Att förstå <em>joins</em></a></li>
+<li class="chapter" data-level="14.4.2" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#inner-join"><i class="fa fa-check"></i><b>14.4.2</b> Inner join</a></li>
+<li class="chapter" data-level="14.4.3" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#outer-joins"><i class="fa fa-check"></i><b>14.4.3</b> Outer joins</a></li>
+<li class="chapter" data-level="14.4.4" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#duplicate-keys"><i class="fa fa-check"></i><b>14.4.4</b> Duplicate keys</a></li>
+<li class="chapter" data-level="14.4.5" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#definiera-nyckel-kolumner-key-columns"><i class="fa fa-check"></i><b>14.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
+<li class="chapter" data-level="14.4.6" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#övningar-22"><i class="fa fa-check"></i><b>14.4.6</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#filtering-joins"><i class="fa fa-check"></i><b>14.5</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="14.6" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#problem-med-joins"><i class="fa fa-check"></i><b>14.6</b> Problem med <em>joins</em></a></li>
+<li class="chapter" data-level="14.7" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#set-operations"><i class="fa fa-check"></i><b>14.7</b> Set operations</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html"><i class="fa fa-check"></i><b>15</b> Textsträngar (strings)</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#introduktion-6"><i class="fa fa-check"></i><b>15.1</b> Introduktion</a></li>
+<li class="chapter" data-level="15.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#basics-1"><i class="fa fa-check"></i><b>15.2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#stringr-funktioner"><i class="fa fa-check"></i><b>15.2.1</b> <code>stringr</code>-funktioner</a></li>
+<li class="chapter" data-level="15.2.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#kombinera-strängar"><i class="fa fa-check"></i><b>15.2.2</b> Kombinera strängar</a></li>
+<li class="chapter" data-level="15.2.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#extrahera-delar-av-textsträngar-subsetting"><i class="fa fa-check"></i><b>15.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
+<li class="chapter" data-level="15.2.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#övningar-23"><i class="fa fa-check"></i><b>15.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#matcha-textmönster-med-hjälp-av-regular-expressions"><i class="fa fa-check"></i><b>15.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#basic-matches"><i class="fa fa-check"></i><b>15.3.1</b> Basic matches</a></li>
+<li class="chapter" data-level="15.3.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#ankare-anchors"><i class="fa fa-check"></i><b>15.3.2</b> Ankare (Anchors)</a></li>
+<li class="chapter" data-level="15.3.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#tecken-klasser"><i class="fa fa-check"></i><b>15.3.3</b> Tecken-klasser</a></li>
+<li class="chapter" data-level="15.3.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#repeterande-tecken"><i class="fa fa-check"></i><b>15.3.4</b> Repeterande tecken</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#verktyg"><i class="fa fa-check"></i><b>15.4</b> Verktyg</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#upptäck-matchningar"><i class="fa fa-check"></i><b>15.4.1</b> Upptäck matchningar</a></li>
+<li class="chapter" data-level="15.4.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#övningar-26"><i class="fa fa-check"></i><b>15.4.2</b> Övningar</a></li>
+<li class="chapter" data-level="15.4.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#extrahera-matchningar"><i class="fa fa-check"></i><b>15.4.3</b> Extrahera matchningar</a></li>
+<li class="chapter" data-level="15.4.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#gruppereade-matchningar"><i class="fa fa-check"></i><b>15.4.4</b> Gruppereade matchningar</a></li>
+<li class="chapter" data-level="15.4.5" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#ersätt-matchningar"><i class="fa fa-check"></i><b>15.4.5</b> Ersätt matchningar</a></li>
+<li class="chapter" data-level="15.4.6" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#dela-upp-textsträngar"><i class="fa fa-check"></i><b>15.4.6</b> Dela upp textsträngar</a></li>
+<li class="chapter" data-level="15.4.7" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#hitta-matchningar"><i class="fa fa-check"></i><b>15.4.7</b> Hitta matchningar</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#andra-typer-av-mönster"><i class="fa fa-check"></i><b>15.5</b> Andra typer av mönster</a></li>
+<li class="chapter" data-level="15.6" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#andra-typer-av-regexps"><i class="fa fa-check"></i><b>15.6</b> Andra typer av regexps</a></li>
+<li class="chapter" data-level="15.7" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#stringi"><i class="fa fa-check"></i><b>15.7</b> stringi</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html"><i class="fa fa-check"></i><b>16</b> Kategoriska variabler (Factors)</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#introduktion-7"><i class="fa fa-check"></i><b>16.1</b> Introduktion</a></li>
+<li class="chapter" data-level="16.2" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#skapa-factors"><i class="fa fa-check"></i><b>16.2</b> Skapa factors</a></li>
+<li class="chapter" data-level="16.3" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#general-social-survey"><i class="fa fa-check"></i><b>16.3</b> General Social Survey</a></li>
+<li class="chapter" data-level="16.4" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-ordningen-av-factors"><i class="fa fa-check"></i><b>16.4</b> Modifiera ordningen av factors</a></li>
+<li class="chapter" data-level="16.5" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-factor-levels"><i class="fa fa-check"></i><b>16.5</b> Modifiera factor levels</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html"><i class="fa fa-check"></i><b>17</b> Datum och tidsformat</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#introduktion-8"><i class="fa fa-check"></i><b>17.1</b> Introduktion</a></li>
+<li class="chapter" data-level="17.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#skapa-datum-och-tid"><i class="fa fa-check"></i><b>17.2</b> Skapa datum och tid</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#från-textsträngar"><i class="fa fa-check"></i><b>17.2.1</b> Från textsträngar</a></li>
+<li class="chapter" data-level="17.2.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#från-enskilda-kompnenter"><i class="fa fa-check"></i><b>17.2.2</b> Från enskilda kompnenter</a></li>
+<li class="chapter" data-level="17.2.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#från-andra-datumtid-format"><i class="fa fa-check"></i><b>17.2.3</b> Från andra datum/tid-format</a></li>
+<li class="chapter" data-level="17.2.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#övningar-27"><i class="fa fa-check"></i><b>17.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#datumtid-komponenter"><i class="fa fa-check"></i><b>17.3</b> Datum/tid-komponenter</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#extrahera-komponenter"><i class="fa fa-check"></i><b>17.3.1</b> Extrahera komponenter</a></li>
+<li class="chapter" data-level="17.3.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#avrundning"><i class="fa fa-check"></i><b>17.3.2</b> Avrundning</a></li>
+<li class="chapter" data-level="17.3.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ange-komponenter"><i class="fa fa-check"></i><b>17.3.3</b> Ange komponenter</a></li>
+</ul></li>
+<li class="chapter" data-level="17.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#tidsintervall"><i class="fa fa-check"></i><b>17.4</b> Tidsintervall</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#varaktighet"><i class="fa fa-check"></i><b>17.4.1</b> Varaktighet</a></li>
+<li class="chapter" data-level="17.4.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#perioder"><i class="fa fa-check"></i><b>17.4.2</b> Perioder</a></li>
+<li class="chapter" data-level="17.4.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#intervall"><i class="fa fa-check"></i><b>17.4.3</b> Intervall</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#summering"><i class="fa fa-check"></i><b>17.5</b> Summering</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="programmering-i-r.html"><a href="programmering-i-r.html"><i class="fa fa-check"></i><b>18</b> Programmering i R</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="programmering-i-r.html"><a href="programmering-i-r.html#introduktion-9"><i class="fa fa-check"></i><b>18.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>19</b> Pipes</a></li>
+<li class="chapter" data-level="20" data-path="funktioner.html"><a href="funktioner.html"><i class="fa fa-check"></i><b>20</b> Funktioner</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="funktioner.html"><a href="funktioner.html#när-bör-du-skapa-en-funktion"><i class="fa fa-check"></i><b>20.1</b> När bör du skapa en funktion?</a></li>
+<li class="chapter" data-level="20.2" data-path="funktioner.html"><a href="funktioner.html#funktioner-är-till-för-människor-och-datorer"><i class="fa fa-check"></i><b>20.2</b> Funktioner är till för människor och datorer</a></li>
+<li class="chapter" data-level="20.3" data-path="funktioner.html"><a href="funktioner.html#villkorlig-exekvering"><i class="fa fa-check"></i><b>20.3</b> Villkorlig exekvering</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="funktioner.html"><a href="funktioner.html#villkor"><i class="fa fa-check"></i><b>20.3.1</b> Villkor</a></li>
+<li class="chapter" data-level="20.3.2" data-path="funktioner.html"><a href="funktioner.html#multipla-villkor"><i class="fa fa-check"></i><b>20.3.2</b> Multipla villkor</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="funktioner.html"><a href="funktioner.html#funktionsargument"><i class="fa fa-check"></i><b>20.4</b> Funktionsargument</a></li>
+<li class="chapter" data-level="20.5" data-path="funktioner.html"><a href="funktioner.html#kolla-värden"><i class="fa fa-check"></i><b>20.5</b> Kolla värden</a></li>
+<li class="chapter" data-level="20.6" data-path="funktioner.html"><a href="funktioner.html#punkt-punkt-punkt"><i class="fa fa-check"></i><b>20.6</b> punkt-punkt-punkt</a></li>
+<li class="chapter" data-level="20.7" data-path="funktioner.html"><a href="funktioner.html#returnera-värden"><i class="fa fa-check"></i><b>20.7</b> Returnera värden</a>
+<ul>
+<li class="chapter" data-level="20.7.1" data-path="funktioner.html"><a href="funktioner.html#explicita-return-uttryck"><i class="fa fa-check"></i><b>20.7.1</b> Explicita <code>return</code>-uttryck</a></li>
+</ul></li>
+<li class="chapter" data-level="20.8" data-path="funktioner.html"><a href="funktioner.html#skriva-funktioner-med-hjälp-av-pipes"><i class="fa fa-check"></i><b>20.8</b> Skriva funktioner med hjälp av pipes</a></li>
+<li class="chapter" data-level="20.9" data-path="funktioner.html"><a href="funktioner.html#environment-svårt-hitta-ett-svenskt-uttryck"><i class="fa fa-check"></i><b>20.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="vektorer.html"><a href="vektorer.html"><i class="fa fa-check"></i><b>21</b> Vektorer</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="vektorer.html"><a href="vektorer.html#introduktion-10"><i class="fa fa-check"></i><b>21.1</b> Introduktion</a></li>
+<li class="chapter" data-level="21.2" data-path="vektorer.html"><a href="vektorer.html#atomic-vectors"><i class="fa fa-check"></i><b>21.2</b> Atomic vectors</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="vektorer.html"><a href="vektorer.html#logical-vectors"><i class="fa fa-check"></i><b>21.2.1</b> Logical vectors</a></li>
+<li class="chapter" data-level="21.2.2" data-path="vektorer.html"><a href="vektorer.html#numeriska-vektorer"><i class="fa fa-check"></i><b>21.2.2</b> Numeriska vektorer</a></li>
+<li class="chapter" data-level="21.2.3" data-path="vektorer.html"><a href="vektorer.html#character"><i class="fa fa-check"></i><b>21.2.3</b> Character</a></li>
+<li class="chapter" data-level="21.2.4" data-path="vektorer.html"><a href="vektorer.html#använda-atomic-vectors"><i class="fa fa-check"></i><b>21.2.4</b> Använda atomic vectors</a></li>
+<li class="chapter" data-level="21.2.5" data-path="vektorer.html"><a href="vektorer.html#scalars-och-recycling"><i class="fa fa-check"></i><b>21.2.5</b> Scalars och recycling</a></li>
+<li class="chapter" data-level="21.2.6" data-path="vektorer.html"><a href="vektorer.html#rekursiva-vektorer-lists"><i class="fa fa-check"></i><b>21.2.6</b> Rekursiva vektorer (lists)</a></li>
+<li class="chapter" data-level="21.2.7" data-path="vektorer.html"><a href="vektorer.html#attribut"><i class="fa fa-check"></i><b>21.2.7</b> Attribut</a></li>
+<li class="chapter" data-level="21.2.8" data-path="vektorer.html"><a href="vektorer.html#förstärkta-vektorer-augmented-vectors"><i class="fa fa-check"></i><b>21.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="itereringar.html"><a href="itereringar.html"><i class="fa fa-check"></i><b>22</b> Itereringar</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="itereringar.html"><a href="itereringar.html#for-loops"><i class="fa fa-check"></i><b>22.1</b> For-loops</a></li>
+<li class="chapter" data-level="22.2" data-path="itereringar.html"><a href="itereringar.html#variationer-av-for-loopar"><i class="fa fa-check"></i><b>22.2</b> Variationer av for-loopar</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="itereringar.html"><a href="itereringar.html#modifiera-ett-existerande-obkjekt"><i class="fa fa-check"></i><b>22.2.1</b> Modifiera ett existerande obkjekt</a></li>
+<li class="chapter" data-level="22.2.2" data-path="itereringar.html"><a href="itereringar.html#när-längden-på-output-inte-är-känd"><i class="fa fa-check"></i><b>22.2.2</b> När längden på output inte är känd</a></li>
+<li class="chapter" data-level="22.2.3" data-path="itereringar.html"><a href="itereringar.html#när-sekvensens-längd-är-okänd"><i class="fa fa-check"></i><b>22.2.3</b> När sekvensens längd är okänd</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="itereringar.html"><a href="itereringar.html#for-loops-vs.-funktioner"><i class="fa fa-check"></i><b>22.3</b> for-loops vs. Funktioner</a></li>
+<li class="chapter" data-level="22.4" data-path="itereringar.html"><a href="itereringar.html#mappningsfunktioner"><i class="fa fa-check"></i><b>22.4</b> Mappningsfunktioner</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="itereringar.html"><a href="itereringar.html#genvägar"><i class="fa fa-check"></i><b>22.4.1</b> Genvägar</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="itereringar.html"><a href="itereringar.html#hantera-errors"><i class="fa fa-check"></i><b>22.5</b> Hantera errors</a></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>23</b> Introduction</a></li>
+<li class="chapter" data-level="24" data-path="modellering-basics.html"><a href="modellering-basics.html"><i class="fa fa-check"></i><b>24</b> Modellering: basics</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="modellering-basics.html"><a href="modellering-basics.html#en-enkel-modell"><i class="fa fa-check"></i><b>24.1</b> En enkel modell</a></li>
+<li class="chapter" data-level="24.2" data-path="modellering-basics.html"><a href="modellering-basics.html#visualisera-modeller"><i class="fa fa-check"></i><b>24.2</b> Visualisera modeller</a>
+<ul>
+<li class="chapter" data-level="24.2.1" data-path="modellering-basics.html"><a href="modellering-basics.html#prediktioner"><i class="fa fa-check"></i><b>24.2.1</b> Prediktioner</a></li>
+<li class="chapter" data-level="24.2.2" data-path="modellering-basics.html"><a href="modellering-basics.html#residualer"><i class="fa fa-check"></i><b>24.2.2</b> Residualer</a></li>
+</ul></li>
+<li class="chapter" data-level="24.3" data-path="modellering-basics.html"><a href="modellering-basics.html#formler-och-modell-familjer"><i class="fa fa-check"></i><b>24.3</b> Formler och modell-familjer</a>
+<ul>
+<li class="chapter" data-level="24.3.1" data-path="modellering-basics.html"><a href="modellering-basics.html#kategoriska-variabler"><i class="fa fa-check"></i><b>24.3.1</b> Kategoriska variabler</a></li>
+<li class="chapter" data-level="24.3.2" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner"><i class="fa fa-check"></i><b>24.3.2</b> Interaktioner</a></li>
+<li class="chapter" data-level="24.3.3" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner-två-kontinuerliga-variabler"><i class="fa fa-check"></i><b>24.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
+<li class="chapter" data-level="24.3.4" data-path="modellering-basics.html"><a href="modellering-basics.html#transformationer"><i class="fa fa-check"></i><b>24.3.4</b> Transformationer</a></li>
+</ul></li>
+<li class="chapter" data-level="24.4" data-path="modellering-basics.html"><a href="modellering-basics.html#missing-values-3"><i class="fa fa-check"></i><b>24.4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="24.4.1" data-path="modellering-basics.html"><a href="modellering-basics.html#andra-modell-familjer"><i class="fa fa-check"></i><b>24.4.1</b> Andra modell-familjer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html"><i class="fa fa-check"></i><b>25</b> Bygga modeller i R</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#varför-är-diamanter-av-låg-kvalitet-dyrare"><i class="fa fa-check"></i><b>25.1</b> Varför är diamanter av låg kvalitet dyrare?</a>
+<ul>
+<li class="chapter" data-level="25.1.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#sambandet-pris-och-karat"><i class="fa fa-check"></i><b>25.1.1</b> Sambandet pris och karat</a></li>
+<li class="chapter" data-level="25.1.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#en-mer-komplicerad-modell"><i class="fa fa-check"></i><b>25.1.2</b> En mer komplicerad modell</a></li>
+</ul></li>
+<li class="chapter" data-level="25.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#vad-är-det-som-påverkar-antalet-dagliga-flighter"><i class="fa fa-check"></i><b>25.2</b> Vad är det som påverkar antalet dagliga flighter?</a>
+<ul>
+<li class="chapter" data-level="25.2.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#veckodag"><i class="fa fa-check"></i><b>25.2.1</b> Veckodag</a></li>
+<li class="chapter" data-level="25.2.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lördags-effekten"><i class="fa fa-check"></i><b>25.2.2</b> Lördags-effekten</a></li>
+</ul></li>
+<li class="chapter" data-level="25.3" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lära-mer-om-modellering"><i class="fa fa-check"></i><b>25.3</b> Lära mer om modellering</a></li>
+</ul></li>
+<li class="chapter" data-level="26" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html"><i class="fa fa-check"></i><b>26</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html#skriv-till-en-excelfil-1"><i class="fa fa-check"></i><b>26.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="26.2" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html#läsa-in-excel-1"><i class="fa fa-check"></i><b>26.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="26.3" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r-1"><i class="fa fa-check"></i><b>26.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+</ul></li>
+<li class="chapter" data-level="27" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html"><i class="fa fa-check"></i><b>27</b> Grafik för att kommunicera</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#etiketter-labels"><i class="fa fa-check"></i><b>27.1</b> Etiketter (labels)</a></li>
+<li class="chapter" data-level="27.2" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#annoteringar"><i class="fa fa-check"></i><b>27.2</b> Annoteringar</a></li>
+<li class="chapter" data-level="27.3" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#scales"><i class="fa fa-check"></i><b>27.3</b> Scales</a>
+<ul>
+<li class="chapter" data-level="27.3.1" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#axis-ticks-och-teckenförklaringar"><i class="fa fa-check"></i><b>27.3.1</b> Axis ticks och teckenförklaringar</a></li>
+<li class="chapter" data-level="27.3.2" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#teckenförklaringens-legend-layout"><i class="fa fa-check"></i><b>27.3.2</b> Teckenförklaringens (legend) layout</a></li>
+<li class="chapter" data-level="27.3.3" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#byta-ut-en-scale"><i class="fa fa-check"></i><b>27.3.3</b> Byta ut en scale</a></li>
+</ul></li>
+<li class="chapter" data-level="27.4" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#zooming"><i class="fa fa-check"></i><b>27.4</b> Zooming</a>
+<ul>
+<li class="chapter" data-level="27.4.1" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#teman-themes"><i class="fa fa-check"></i><b>27.4.1</b> Teman (themes)</a></li>
+</ul></li>
+<li class="chapter" data-level="27.5" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#spara-graferna"><i class="fa fa-check"></i><b>27.5</b> Spara graferna</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="introduktion-11.html"><a href="introduktion-11.html"><i class="fa fa-check"></i><b>28</b> Introduktion</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="introduktion-11.html"><a href="introduktion-11.html#basics-2"><i class="fa fa-check"></i><b>28.1</b> Basics</a></li>
+<li class="chapter" data-level="28.2" data-path="introduktion-11.html"><a href="introduktion-11.html#r-konsolen-1"><i class="fa fa-check"></i><b>28.2</b> R-konsolen</a></li>
+<li class="chapter" data-level="28.3" data-path="introduktion-11.html"><a href="introduktion-11.html#rstudio-1"><i class="fa fa-check"></i><b>28.3</b> RStudio</a></li>
+<li class="chapter" data-level="28.4" data-path="introduktion-11.html"><a href="introduktion-11.html#hjälpfunktioner-1"><i class="fa fa-check"></i><b>28.4</b> Hjälpfunktioner</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="utforska-data-1.html"><a href="utforska-data-1.html"><i class="fa fa-check"></i><b>29</b> Utforska data</a></li>
+<li class="chapter" data-level="30" data-path="visualisering-1.html"><a href="visualisering-1.html"><i class="fa fa-check"></i><b>30</b> Visualisering</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="visualisering-1.html"><a href="visualisering-1.html#ett-första-diagram-1"><i class="fa fa-check"></i><b>30.1</b> Ett första diagram</a>
+<ul>
+<li class="chapter" data-level="30.1.1" data-path="visualisering-1.html"><a href="visualisering-1.html#ladda-data-1"><i class="fa fa-check"></i><b>30.1.1</b> Ladda data</a></li>
+<li class="chapter" data-level="30.1.2" data-path="visualisering-1.html"><a href="visualisering-1.html#skapa-en-ggplot-1"><i class="fa fa-check"></i><b>30.1.2</b> Skapa en ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="30.2" data-path="visualisering-1.html"><a href="visualisering-1.html#en-grafikmall-1"><i class="fa fa-check"></i><b>30.2</b> En grafikmall</a></li>
+<li class="chapter" data-level="30.3" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-28"><i class="fa fa-check"></i><b>30.3</b> Övningar</a></li>
+<li class="chapter" data-level="30.4" data-path="visualisering-1.html"><a href="visualisering-1.html#aes-funktionen-och-mappings-1"><i class="fa fa-check"></i><b>30.4</b> <code>aes()</code>-funktionen och mappings</a></li>
+<li class="chapter" data-level="30.5" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-29"><i class="fa fa-check"></i><b>30.5</b> Övningar</a></li>
+<li class="chapter" data-level="30.6" data-path="visualisering-1.html"><a href="visualisering-1.html#vanliga-problem-1"><i class="fa fa-check"></i><b>30.6</b> Vanliga problem</a></li>
+<li class="chapter" data-level="30.7" data-path="visualisering-1.html"><a href="visualisering-1.html#facets-1"><i class="fa fa-check"></i><b>30.7</b> Facets</a></li>
+<li class="chapter" data-level="30.8" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-30"><i class="fa fa-check"></i><b>30.8</b> Övningar</a></li>
+<li class="chapter" data-level="30.9" data-path="visualisering-1.html"><a href="visualisering-1.html#geometriska-objekt---geoms-1"><i class="fa fa-check"></i><b>30.9</b> “Geometriska” objekt - geoms</a></li>
+<li class="chapter" data-level="30.10" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-31"><i class="fa fa-check"></i><b>30.10</b> Övningar</a></li>
+<li class="chapter" data-level="30.11" data-path="visualisering-1.html"><a href="visualisering-1.html#statistiska-transformationer-1"><i class="fa fa-check"></i><b>30.11</b> Statistiska transformationer</a></li>
+<li class="chapter" data-level="30.12" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-32"><i class="fa fa-check"></i><b>30.12</b> Övningar</a></li>
+<li class="chapter" data-level="30.13" data-path="visualisering-1.html"><a href="visualisering-1.html#positionering-1"><i class="fa fa-check"></i><b>30.13</b> Positionering</a></li>
+<li class="chapter" data-level="30.14" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-33"><i class="fa fa-check"></i><b>30.14</b> Övningar</a></li>
+<li class="chapter" data-level="30.15" data-path="visualisering-1.html"><a href="visualisering-1.html#koordinatsystem-1"><i class="fa fa-check"></i><b>30.15</b> Koordinatsystem</a></li>
+<li class="chapter" data-level="30.16" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-34"><i class="fa fa-check"></i><b>30.16</b> Övningar</a></li>
+<li class="chapter" data-level="30.17" data-path="visualisering-1.html"><a href="visualisering-1.html#the-layered-grammar-of-graphics-1"><i class="fa fa-check"></i><b>30.17</b> “The layered grammar of graphics”</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html"><i class="fa fa-check"></i><b>31</b> Workflow: Basics</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html#skriva-kod-1"><i class="fa fa-check"></i><b>31.1</b> Skriva kod</a></li>
+<li class="chapter" data-level="31.2" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html#anropa-funktioner-1"><i class="fa fa-check"></i><b>31.2</b> Anropa funktioner</a></li>
+<li class="chapter" data-level="31.3" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html#övningar-35"><i class="fa fa-check"></i><b>31.3</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html"><i class="fa fa-check"></i><b>32</b> Transformering av data</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#introduktion-12"><i class="fa fa-check"></i><b>32.1</b> Introduktion</a></li>
+<li class="chapter" data-level="32.2" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#förberedelser-1"><i class="fa fa-check"></i><b>32.2</b> Förberedelser</a></li>
+<li class="chapter" data-level="32.3" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#dplyr-grunder-1"><i class="fa fa-check"></i><b>32.3</b> <code>dplyr</code> grunder</a>
+<ul>
+<li class="chapter" data-level="32.3.1" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#filtrera-raderposter-med-filter-1"><i class="fa fa-check"></i><b>32.3.1</b> Filtrera rader/poster med <code>filter()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="32.4" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-36"><i class="fa fa-check"></i><b>32.4</b> Övningar</a></li>
+<li class="chapter" data-level="32.5" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#arrangera-poster-med-arrange-1"><i class="fa fa-check"></i><b>32.5</b> Arrangera poster med <code>arrange()</code></a></li>
+<li class="chapter" data-level="32.6" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-37"><i class="fa fa-check"></i><b>32.6</b> Övningar</a></li>
+<li class="chapter" data-level="32.7" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#välj-kolumner-med-select-1"><i class="fa fa-check"></i><b>32.7</b> Välj kolumner med <code>select()</code></a></li>
+<li class="chapter" data-level="32.8" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-38"><i class="fa fa-check"></i><b>32.8</b> Övningar</a></li>
+<li class="chapter" data-level="32.9" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#lägg-till-flera-variabler-med-hjälp-av-mutate-1"><i class="fa fa-check"></i><b>32.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="32.9.1" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#funktioner-och-operatorer-att-användas-med-mutate-1"><i class="fa fa-check"></i><b>32.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="32.10" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-39"><i class="fa fa-check"></i><b>32.10</b> Övningar</a></li>
+<li class="chapter" data-level="32.11" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#grupperade-summeringar-med-summarise-1"><i class="fa fa-check"></i><b>32.11</b> Grupperade summeringar med <code>summarise()</code></a></li>
+<li class="chapter" data-level="32.12" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#kombinera-multipla-operationer-med-the-pipe-1"><i class="fa fa-check"></i><b>32.12</b> Kombinera multipla operationer med the pipe</a></li>
+<li class="chapter" data-level="32.13" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#missing-values-4"><i class="fa fa-check"></i><b>32.13</b> Missing values</a></li>
+<li class="chapter" data-level="32.14" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#antal-counts-1"><i class="fa fa-check"></i><b>32.14</b> Antal (counts)</a></li>
+<li class="chapter" data-level="32.15" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#användbara-summeringsfunktioner-1"><i class="fa fa-check"></i><b>32.15</b> Användbara summeringsfunktioner</a></li>
+<li class="chapter" data-level="32.16" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#gruppera-med-flera-variabler-1"><i class="fa fa-check"></i><b>32.16</b> Gruppera med flera variabler</a></li>
+<li class="chapter" data-level="32.17" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#av-gruppera-1"><i class="fa fa-check"></i><b>32.17</b> Av-gruppera</a></li>
+<li class="chapter" data-level="32.18" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-40"><i class="fa fa-check"></i><b>32.18</b> Övningar</a></li>
+<li class="chapter" data-level="32.19" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#grupperade-beräkningar-och-filtreringar-1"><i class="fa fa-check"></i><b>32.19</b> Grupperade beräkningar och filtreringar</a></li>
+<li class="chapter" data-level="32.20" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-41"><i class="fa fa-check"></i><b>32.20</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html"><i class="fa fa-check"></i><b>33</b> Arbetsflöde: scripts</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html#att-köra-kod-1"><i class="fa fa-check"></i><b>33.1</b> Att köra kod</a></li>
+<li class="chapter" data-level="33.2" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html#diagnostics-1"><i class="fa fa-check"></i><b>33.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="33.3" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html#praktik-1"><i class="fa fa-check"></i><b>33.3</b> Praktik</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html"><i class="fa fa-check"></i><b>34</b> Explorativ analys av data</a>
+<ul>
+<li class="chapter" data-level="34.1" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#introduktion-13"><i class="fa fa-check"></i><b>34.1</b> Introduktion</a></li>
+<li class="chapter" data-level="34.2" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#frågor-1"><i class="fa fa-check"></i><b>34.2</b> Frågor</a></li>
+<li class="chapter" data-level="34.3" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#variation-1"><i class="fa fa-check"></i><b>34.3</b> Variation</a></li>
+<li class="chapter" data-level="34.4" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#visualisera-fördelningar-1"><i class="fa fa-check"></i><b>34.4</b> Visualisera fördelningar</a></li>
+<li class="chapter" data-level="34.5" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#outliers-1"><i class="fa fa-check"></i><b>34.5</b> Outliers</a></li>
+<li class="chapter" data-level="34.6" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#övningar-42"><i class="fa fa-check"></i><b>34.6</b> Övningar</a></li>
+<li class="chapter" data-level="34.7" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#missing-values-5"><i class="fa fa-check"></i><b>34.7</b> Missing values</a></li>
+<li class="chapter" data-level="34.8" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#samvarians---covariance-1"><i class="fa fa-check"></i><b>34.8</b> Samvarians - covariance</a>
+<ul>
+<li class="chapter" data-level="34.8.1" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#en-kategorisk-och-en-kontinuerlig-variabel-1"><i class="fa fa-check"></i><b>34.8.1</b> En kategorisk och en kontinuerlig variabel</a></li>
+<li class="chapter" data-level="34.8.2" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#övningar-43"><i class="fa fa-check"></i><b>34.8.2</b> Övningar</a></li>
+<li class="chapter" data-level="34.8.3" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#två-kategoriska-variabler-1"><i class="fa fa-check"></i><b>34.8.3</b> Två kategoriska variabler</a></li>
+<li class="chapter" data-level="34.8.4" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#två-kontinuerliga-variabler-1"><i class="fa fa-check"></i><b>34.8.4</b> Två kontinuerliga variabler</a></li>
+</ul></li>
+<li class="chapter" data-level="34.9" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#ggplot2-calls-1"><i class="fa fa-check"></i><b>34.9</b> <code>ggplot2</code> calls</a></li>
+<li class="chapter" data-level="34.10" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#att-lära-mer-1"><i class="fa fa-check"></i><b>34.10</b> Att lära mer</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html"><i class="fa fa-check"></i><b>35</b> Arbetsflöde: Projekt</a>
+<ul>
+<li class="chapter" data-level="35.1" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#vad-är-viktigt-1"><i class="fa fa-check"></i><b>35.1</b> Vad är viktigt?</a></li>
+<li class="chapter" data-level="35.2" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#vart-lever-analysen-arbetsbiblioteket-1"><i class="fa fa-check"></i><b>35.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
+<li class="chapter" data-level="35.3" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#sökvägar-och-bibliotekmappar-1"><i class="fa fa-check"></i><b>35.3</b> Sökvägar och bibliotek/mappar</a></li>
+<li class="chapter" data-level="35.4" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#rstudio-projects-viktigt-1"><i class="fa fa-check"></i><b>35.4</b> RStudio projects VIKTIGT!</a></li>
+<li class="chapter" data-level="35.5" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#sammanfattningsvis-1"><i class="fa fa-check"></i><b>35.5</b> Sammanfattningsvis</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="wrangle-att-brottas-med-data-1.html"><a href="wrangle-att-brottas-med-data-1.html"><i class="fa fa-check"></i><b>36</b> Wrangle - att brottas med data</a>
+<ul>
+<li class="chapter" data-level="36.1" data-path="wrangle-att-brottas-med-data-1.html"><a href="wrangle-att-brottas-med-data-1.html#introduktion-14"><i class="fa fa-check"></i><b>36.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="tibbles-2.html"><a href="tibbles-2.html"><i class="fa fa-check"></i><b>37</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="37.1" data-path="tibbles-2.html"><a href="tibbles-2.html#skapa-tibbles-1"><i class="fa fa-check"></i><b>37.1</b> Skapa tibbles</a>
+<ul>
+<li class="chapter" data-level="37.1.1" data-path="tibbles-2.html"><a href="tibbles-2.html#tibbles-vs-data-frames-1"><i class="fa fa-check"></i><b>37.1.1</b> Tibbles vs data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="37.2" data-path="tibbles-2.html"><a href="tibbles-2.html#utskrift-printing-1"><i class="fa fa-check"></i><b>37.2</b> Utskrift (Printing)</a></li>
+<li class="chapter" data-level="37.3" data-path="tibbles-2.html"><a href="tibbles-2.html#urval-1"><i class="fa fa-check"></i><b>37.3</b> Urval</a></li>
+<li class="chapter" data-level="37.4" data-path="tibbles-2.html"><a href="tibbles-2.html#använda-äldre-kod-1"><i class="fa fa-check"></i><b>37.4</b> Använda äldre kod</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="importera-data-1.html"><a href="importera-data-1.html"><i class="fa fa-check"></i><b>38</b> Importera data</a>
+<ul>
+<li class="chapter" data-level="38.1" data-path="importera-data-1.html"><a href="importera-data-1.html#jämförelse-med-base-r-1"><i class="fa fa-check"></i><b>38.1</b> Jämförelse med base R</a></li>
+<li class="chapter" data-level="38.2" data-path="importera-data-1.html"><a href="importera-data-1.html#övningar-44"><i class="fa fa-check"></i><b>38.2</b> Övningar</a></li>
+<li class="chapter" data-level="38.3" data-path="importera-data-1.html"><a href="importera-data-1.html#omvandla-vektorer-1"><i class="fa fa-check"></i><b>38.3</b> Omvandla vektorer</a>
+<ul>
+<li class="chapter" data-level="38.3.1" data-path="importera-data-1.html"><a href="importera-data-1.html#numeriska-variabler-1"><i class="fa fa-check"></i><b>38.3.1</b> Numeriska variabler</a></li>
+<li class="chapter" data-level="38.3.2" data-path="importera-data-1.html"><a href="importera-data-1.html#textsträngar-1"><i class="fa fa-check"></i><b>38.3.2</b> Textsträngar</a></li>
+<li class="chapter" data-level="38.3.3" data-path="importera-data-1.html"><a href="importera-data-1.html#kategoriska-data-1"><i class="fa fa-check"></i><b>38.3.3</b> Kategoriska data</a></li>
+<li class="chapter" data-level="38.3.4" data-path="importera-data-1.html"><a href="importera-data-1.html#datum-och-tid-1"><i class="fa fa-check"></i><b>38.3.4</b> Datum och tid</a></li>
+<li class="chapter" data-level="38.3.5" data-path="importera-data-1.html"><a href="importera-data-1.html#övningar-45"><i class="fa fa-check"></i><b>38.3.5</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="38.4" data-path="importera-data-1.html"><a href="importera-data-1.html#hur-readr-plockar-isär-parse-en-fil-1"><i class="fa fa-check"></i><b>38.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
+<li class="chapter" data-level="38.5" data-path="importera-data-1.html"><a href="importera-data-1.html#problem-1"><i class="fa fa-check"></i><b>38.5</b> Problem</a></li>
+<li class="chapter" data-level="38.6" data-path="importera-data-1.html"><a href="importera-data-1.html#skriva-till-en-fil-1"><i class="fa fa-check"></i><b>38.6</b> Skriva till en fil</a></li>
+<li class="chapter" data-level="38.7" data-path="importera-data-1.html"><a href="importera-data-1.html#andra-datatyper-1"><i class="fa fa-check"></i><b>38.7</b> Andra datatyper</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html"><i class="fa fa-check"></i><b>39</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="39.1" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html#skriv-till-en-excelfil-2"><i class="fa fa-check"></i><b>39.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="39.2" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html#läsa-in-excel-2"><i class="fa fa-check"></i><b>39.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="39.3" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r-2"><i class="fa fa-check"></i><b>39.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html"><i class="fa fa-check"></i><b>40</b> Städa data (tidy data)</a>
+<ul>
+<li class="chapter" data-level="40.1" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#introduktion-15"><i class="fa fa-check"></i><b>40.1</b> Introduktion</a></li>
+<li class="chapter" data-level="40.2" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#spreading-and-gathering-1"><i class="fa fa-check"></i><b>40.2</b> Spreading and gathering</a>
+<ul>
+<li class="chapter" data-level="40.2.1" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#gathering-1"><i class="fa fa-check"></i><b>40.2.1</b> Gathering</a></li>
+<li class="chapter" data-level="40.2.2" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#spreading-1"><i class="fa fa-check"></i><b>40.2.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="40.3" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-46"><i class="fa fa-check"></i><b>40.3</b> Övningar</a></li>
+<li class="chapter" data-level="40.4" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#separera-och-förena-1"><i class="fa fa-check"></i><b>40.4</b> Separera och förena</a>
+<ul>
+<li class="chapter" data-level="40.4.1" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#separate-1"><i class="fa fa-check"></i><b>40.4.1</b> Separate</a></li>
+<li class="chapter" data-level="40.4.2" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#unite-1"><i class="fa fa-check"></i><b>40.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="40.5" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-47"><i class="fa fa-check"></i><b>40.5</b> Övningar</a></li>
+<li class="chapter" data-level="40.6" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#missing-values-6"><i class="fa fa-check"></i><b>40.6</b> Missing values</a></li>
+<li class="chapter" data-level="40.7" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-48"><i class="fa fa-check"></i><b>40.7</b> Övningar</a></li>
+<li class="chapter" data-level="40.8" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#en-case-study-1"><i class="fa fa-check"></i><b>40.8</b> En case study</a></li>
+<li class="chapter" data-level="40.9" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-49"><i class="fa fa-check"></i><b>40.9</b> Övningar</a></li>
+<li class="chapter" data-level="40.10" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#non-tidy-data-1"><i class="fa fa-check"></i><b>40.10</b> Non-tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html"><i class="fa fa-check"></i><b>41</b> Relationer mellan datamängder</a>
+<ul>
+<li class="chapter" data-level="41.1" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#introduktion-16"><i class="fa fa-check"></i><b>41.1</b> Introduktion</a></li>
+<li class="chapter" data-level="41.2" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#nycflights13-1"><i class="fa fa-check"></i><b>41.2</b> <code>nycflights13</code></a></li>
+<li class="chapter" data-level="41.3" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#keys-1"><i class="fa fa-check"></i><b>41.3</b> Keys</a></li>
+<li class="chapter" data-level="41.4" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#mutating-joins-1"><i class="fa fa-check"></i><b>41.4</b> <em>Mutating joins</em></a>
+<ul>
+<li class="chapter" data-level="41.4.1" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#att-förstå-joins-1"><i class="fa fa-check"></i><b>41.4.1</b> Att förstå <em>joins</em></a></li>
+<li class="chapter" data-level="41.4.2" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#inner-join-1"><i class="fa fa-check"></i><b>41.4.2</b> Inner join</a></li>
+<li class="chapter" data-level="41.4.3" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#outer-joins-1"><i class="fa fa-check"></i><b>41.4.3</b> Outer joins</a></li>
+<li class="chapter" data-level="41.4.4" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#duplicate-keys-1"><i class="fa fa-check"></i><b>41.4.4</b> Duplicate keys</a></li>
+<li class="chapter" data-level="41.4.5" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#definiera-nyckel-kolumner-key-columns-1"><i class="fa fa-check"></i><b>41.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
+<li class="chapter" data-level="41.4.6" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#övningar-50"><i class="fa fa-check"></i><b>41.4.6</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="41.5" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#filtering-joins-1"><i class="fa fa-check"></i><b>41.5</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="41.6" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#problem-med-joins-1"><i class="fa fa-check"></i><b>41.6</b> Problem med <em>joins</em></a></li>
+<li class="chapter" data-level="41.7" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#set-operations-1"><i class="fa fa-check"></i><b>41.7</b> Set operations</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html"><i class="fa fa-check"></i><b>42</b> Textsträngar (strings)</a>
+<ul>
+<li class="chapter" data-level="42.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#introduktion-17"><i class="fa fa-check"></i><b>42.1</b> Introduktion</a></li>
+<li class="chapter" data-level="42.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#basics-3"><i class="fa fa-check"></i><b>42.2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="42.2.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#stringr-funktioner-1"><i class="fa fa-check"></i><b>42.2.1</b> <code>stringr</code>-funktioner</a></li>
+<li class="chapter" data-level="42.2.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#kombinera-strängar-1"><i class="fa fa-check"></i><b>42.2.2</b> Kombinera strängar</a></li>
+<li class="chapter" data-level="42.2.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#extrahera-delar-av-textsträngar-subsetting-1"><i class="fa fa-check"></i><b>42.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
+<li class="chapter" data-level="42.2.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#övningar-51"><i class="fa fa-check"></i><b>42.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="42.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#matcha-textmönster-med-hjälp-av-regular-expressions-1"><i class="fa fa-check"></i><b>42.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a>
+<ul>
+<li class="chapter" data-level="42.3.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#basic-matches-1"><i class="fa fa-check"></i><b>42.3.1</b> Basic matches</a></li>
+<li class="chapter" data-level="42.3.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#ankare-anchors-1"><i class="fa fa-check"></i><b>42.3.2</b> Ankare (Anchors)</a></li>
+<li class="chapter" data-level="42.3.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#tecken-klasser-1"><i class="fa fa-check"></i><b>42.3.3</b> Tecken-klasser</a></li>
+<li class="chapter" data-level="42.3.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#repeterande-tecken-1"><i class="fa fa-check"></i><b>42.3.4</b> Repeterande tecken</a></li>
+</ul></li>
+<li class="chapter" data-level="42.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#verktyg-1"><i class="fa fa-check"></i><b>42.4</b> Verktyg</a>
+<ul>
+<li class="chapter" data-level="42.4.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#upptäck-matchningar-1"><i class="fa fa-check"></i><b>42.4.1</b> Upptäck matchningar</a></li>
+<li class="chapter" data-level="42.4.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#övningar-54"><i class="fa fa-check"></i><b>42.4.2</b> Övningar</a></li>
+<li class="chapter" data-level="42.4.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#extrahera-matchningar-1"><i class="fa fa-check"></i><b>42.4.3</b> Extrahera matchningar</a></li>
+<li class="chapter" data-level="42.4.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#gruppereade-matchningar-1"><i class="fa fa-check"></i><b>42.4.4</b> Gruppereade matchningar</a></li>
+<li class="chapter" data-level="42.4.5" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#ersätt-matchningar-1"><i class="fa fa-check"></i><b>42.4.5</b> Ersätt matchningar</a></li>
+<li class="chapter" data-level="42.4.6" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#dela-upp-textsträngar-1"><i class="fa fa-check"></i><b>42.4.6</b> Dela upp textsträngar</a></li>
+<li class="chapter" data-level="42.4.7" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#hitta-matchningar-1"><i class="fa fa-check"></i><b>42.4.7</b> Hitta matchningar</a></li>
+</ul></li>
+<li class="chapter" data-level="42.5" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#andra-typer-av-mönster-1"><i class="fa fa-check"></i><b>42.5</b> Andra typer av mönster</a></li>
+<li class="chapter" data-level="42.6" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#andra-typer-av-regexps-1"><i class="fa fa-check"></i><b>42.6</b> Andra typer av regexps</a></li>
+<li class="chapter" data-level="42.7" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#stringi-1"><i class="fa fa-check"></i><b>42.7</b> stringi</a></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html"><i class="fa fa-check"></i><b>43</b> Kategoriska variabler (Factors)</a>
+<ul>
+<li class="chapter" data-level="43.1" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#introduktion-18"><i class="fa fa-check"></i><b>43.1</b> Introduktion</a></li>
+<li class="chapter" data-level="43.2" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#skapa-factors-1"><i class="fa fa-check"></i><b>43.2</b> Skapa factors</a></li>
+<li class="chapter" data-level="43.3" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#general-social-survey-1"><i class="fa fa-check"></i><b>43.3</b> General Social Survey</a></li>
+<li class="chapter" data-level="43.4" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#modifiera-ordningen-av-factors-1"><i class="fa fa-check"></i><b>43.4</b> Modifiera ordningen av factors</a></li>
+<li class="chapter" data-level="43.5" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#modifiera-factor-levels-1"><i class="fa fa-check"></i><b>43.5</b> Modifiera factor levels</a></li>
+</ul></li>
+<li class="chapter" data-level="44" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html"><i class="fa fa-check"></i><b>44</b> Datum och tidsformat</a>
+<ul>
+<li class="chapter" data-level="44.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#introduktion-19"><i class="fa fa-check"></i><b>44.1</b> Introduktion</a></li>
+<li class="chapter" data-level="44.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#skapa-datum-och-tid-1"><i class="fa fa-check"></i><b>44.2</b> Skapa datum och tid</a>
+<ul>
+<li class="chapter" data-level="44.2.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#från-textsträngar-1"><i class="fa fa-check"></i><b>44.2.1</b> Från textsträngar</a></li>
+<li class="chapter" data-level="44.2.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#från-enskilda-kompnenter-1"><i class="fa fa-check"></i><b>44.2.2</b> Från enskilda kompnenter</a></li>
+<li class="chapter" data-level="44.2.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#från-andra-datumtid-format-1"><i class="fa fa-check"></i><b>44.2.3</b> Från andra datum/tid-format</a></li>
+<li class="chapter" data-level="44.2.4" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#övningar-55"><i class="fa fa-check"></i><b>44.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="44.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#datumtid-komponenter-1"><i class="fa fa-check"></i><b>44.3</b> Datum/tid-komponenter</a>
+<ul>
+<li class="chapter" data-level="44.3.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#extrahera-komponenter-1"><i class="fa fa-check"></i><b>44.3.1</b> Extrahera komponenter</a></li>
+<li class="chapter" data-level="44.3.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#avrundning-1"><i class="fa fa-check"></i><b>44.3.2</b> Avrundning</a></li>
+<li class="chapter" data-level="44.3.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#ange-komponenter-1"><i class="fa fa-check"></i><b>44.3.3</b> Ange komponenter</a></li>
+</ul></li>
+<li class="chapter" data-level="44.4" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#tidsintervall-1"><i class="fa fa-check"></i><b>44.4</b> Tidsintervall</a>
+<ul>
+<li class="chapter" data-level="44.4.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#varaktighet-1"><i class="fa fa-check"></i><b>44.4.1</b> Varaktighet</a></li>
+<li class="chapter" data-level="44.4.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#perioder-1"><i class="fa fa-check"></i><b>44.4.2</b> Perioder</a></li>
+<li class="chapter" data-level="44.4.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#intervall-1"><i class="fa fa-check"></i><b>44.4.3</b> Intervall</a></li>
+</ul></li>
+<li class="chapter" data-level="44.5" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#summering-1"><i class="fa fa-check"></i><b>44.5</b> Summering</a></li>
+</ul></li>
+<li class="chapter" data-level="45" data-path="programmering-i-r-1.html"><a href="programmering-i-r-1.html"><i class="fa fa-check"></i><b>45</b> Programmering i R</a>
+<ul>
+<li class="chapter" data-level="45.1" data-path="programmering-i-r-1.html"><a href="programmering-i-r-1.html#introduktion-20"><i class="fa fa-check"></i><b>45.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="46" data-path="pipes-1.html"><a href="pipes-1.html"><i class="fa fa-check"></i><b>46</b> Pipes</a></li>
+<li class="chapter" data-level="47" data-path="funktioner-1.html"><a href="funktioner-1.html"><i class="fa fa-check"></i><b>47</b> Funktioner</a>
+<ul>
+<li class="chapter" data-level="47.1" data-path="funktioner-1.html"><a href="funktioner-1.html#när-bör-du-skapa-en-funktion-1"><i class="fa fa-check"></i><b>47.1</b> När bör du skapa en funktion?</a></li>
+<li class="chapter" data-level="47.2" data-path="funktioner-1.html"><a href="funktioner-1.html#funktioner-är-till-för-människor-och-datorer-1"><i class="fa fa-check"></i><b>47.2</b> Funktioner är till för människor och datorer</a></li>
+<li class="chapter" data-level="47.3" data-path="funktioner-1.html"><a href="funktioner-1.html#villkorlig-exekvering-1"><i class="fa fa-check"></i><b>47.3</b> Villkorlig exekvering</a>
+<ul>
+<li class="chapter" data-level="47.3.1" data-path="funktioner-1.html"><a href="funktioner-1.html#villkor-1"><i class="fa fa-check"></i><b>47.3.1</b> Villkor</a></li>
+<li class="chapter" data-level="47.3.2" data-path="funktioner-1.html"><a href="funktioner-1.html#multipla-villkor-1"><i class="fa fa-check"></i><b>47.3.2</b> Multipla villkor</a></li>
+</ul></li>
+<li class="chapter" data-level="47.4" data-path="funktioner-1.html"><a href="funktioner-1.html#funktionsargument-1"><i class="fa fa-check"></i><b>47.4</b> Funktionsargument</a></li>
+<li class="chapter" data-level="47.5" data-path="funktioner-1.html"><a href="funktioner-1.html#kolla-värden-1"><i class="fa fa-check"></i><b>47.5</b> Kolla värden</a></li>
+<li class="chapter" data-level="47.6" data-path="funktioner-1.html"><a href="funktioner-1.html#punkt-punkt-punkt-1"><i class="fa fa-check"></i><b>47.6</b> punkt-punkt-punkt</a></li>
+<li class="chapter" data-level="47.7" data-path="funktioner-1.html"><a href="funktioner-1.html#returnera-värden-1"><i class="fa fa-check"></i><b>47.7</b> Returnera värden</a>
+<ul>
+<li class="chapter" data-level="47.7.1" data-path="funktioner-1.html"><a href="funktioner-1.html#explicita-return-uttryck-1"><i class="fa fa-check"></i><b>47.7.1</b> Explicita <code>return</code>-uttryck</a></li>
+</ul></li>
+<li class="chapter" data-level="47.8" data-path="funktioner-1.html"><a href="funktioner-1.html#skriva-funktioner-med-hjälp-av-pipes-1"><i class="fa fa-check"></i><b>47.8</b> Skriva funktioner med hjälp av pipes</a></li>
+<li class="chapter" data-level="47.9" data-path="funktioner-1.html"><a href="funktioner-1.html#environment-svårt-hitta-ett-svenskt-uttryck-1"><i class="fa fa-check"></i><b>47.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
+</ul></li>
+<li class="chapter" data-level="48" data-path="vektorer-1.html"><a href="vektorer-1.html"><i class="fa fa-check"></i><b>48</b> Vektorer</a>
+<ul>
+<li class="chapter" data-level="48.1" data-path="vektorer-1.html"><a href="vektorer-1.html#introduktion-21"><i class="fa fa-check"></i><b>48.1</b> Introduktion</a></li>
+<li class="chapter" data-level="48.2" data-path="vektorer-1.html"><a href="vektorer-1.html#atomic-vectors-1"><i class="fa fa-check"></i><b>48.2</b> Atomic vectors</a>
+<ul>
+<li class="chapter" data-level="48.2.1" data-path="vektorer-1.html"><a href="vektorer-1.html#logical-vectors-1"><i class="fa fa-check"></i><b>48.2.1</b> Logical vectors</a></li>
+<li class="chapter" data-level="48.2.2" data-path="vektorer-1.html"><a href="vektorer-1.html#numeriska-vektorer-1"><i class="fa fa-check"></i><b>48.2.2</b> Numeriska vektorer</a></li>
+<li class="chapter" data-level="48.2.3" data-path="vektorer-1.html"><a href="vektorer-1.html#character-1"><i class="fa fa-check"></i><b>48.2.3</b> Character</a></li>
+<li class="chapter" data-level="48.2.4" data-path="vektorer-1.html"><a href="vektorer-1.html#använda-atomic-vectors-1"><i class="fa fa-check"></i><b>48.2.4</b> Använda atomic vectors</a></li>
+<li class="chapter" data-level="48.2.5" data-path="vektorer-1.html"><a href="vektorer-1.html#scalars-och-recycling-1"><i class="fa fa-check"></i><b>48.2.5</b> Scalars och recycling</a></li>
+<li class="chapter" data-level="48.2.6" data-path="vektorer-1.html"><a href="vektorer-1.html#rekursiva-vektorer-lists-1"><i class="fa fa-check"></i><b>48.2.6</b> Rekursiva vektorer (lists)</a></li>
+<li class="chapter" data-level="48.2.7" data-path="vektorer-1.html"><a href="vektorer-1.html#attribut-1"><i class="fa fa-check"></i><b>48.2.7</b> Attribut</a></li>
+<li class="chapter" data-level="48.2.8" data-path="vektorer-1.html"><a href="vektorer-1.html#förstärkta-vektorer-augmented-vectors-1"><i class="fa fa-check"></i><b>48.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="49" data-path="itereringar-1.html"><a href="itereringar-1.html"><i class="fa fa-check"></i><b>49</b> Itereringar</a>
+<ul>
+<li class="chapter" data-level="49.1" data-path="itereringar-1.html"><a href="itereringar-1.html#for-loops-1"><i class="fa fa-check"></i><b>49.1</b> For-loops</a></li>
+<li class="chapter" data-level="49.2" data-path="itereringar-1.html"><a href="itereringar-1.html#variationer-av-for-loopar-1"><i class="fa fa-check"></i><b>49.2</b> Variationer av for-loopar</a>
+<ul>
+<li class="chapter" data-level="49.2.1" data-path="itereringar-1.html"><a href="itereringar-1.html#modifiera-ett-existerande-obkjekt-1"><i class="fa fa-check"></i><b>49.2.1</b> Modifiera ett existerande obkjekt</a></li>
+<li class="chapter" data-level="49.2.2" data-path="itereringar-1.html"><a href="itereringar-1.html#när-längden-på-output-inte-är-känd-1"><i class="fa fa-check"></i><b>49.2.2</b> När längden på output inte är känd</a></li>
+<li class="chapter" data-level="49.2.3" data-path="itereringar-1.html"><a href="itereringar-1.html#när-sekvensens-längd-är-okänd-1"><i class="fa fa-check"></i><b>49.2.3</b> När sekvensens längd är okänd</a></li>
+</ul></li>
+<li class="chapter" data-level="49.3" data-path="itereringar-1.html"><a href="itereringar-1.html#for-loops-vs.-funktioner-1"><i class="fa fa-check"></i><b>49.3</b> for-loops vs. Funktioner</a></li>
+<li class="chapter" data-level="49.4" data-path="itereringar-1.html"><a href="itereringar-1.html#mappningsfunktioner-1"><i class="fa fa-check"></i><b>49.4</b> Mappningsfunktioner</a>
+<ul>
+<li class="chapter" data-level="49.4.1" data-path="itereringar-1.html"><a href="itereringar-1.html#genvägar-1"><i class="fa fa-check"></i><b>49.4.1</b> Genvägar</a></li>
+</ul></li>
+<li class="chapter" data-level="49.5" data-path="itereringar-1.html"><a href="itereringar-1.html#hantera-errors-1"><i class="fa fa-check"></i><b>49.5</b> Hantera errors</a></li>
+</ul></li>
+<li class="chapter" data-level="50" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>50</b> Introduction</a></li>
+<li class="chapter" data-level="51" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html"><i class="fa fa-check"></i><b>51</b> Modellering: basics</a>
+<ul>
+<li class="chapter" data-level="51.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#en-enkel-modell-1"><i class="fa fa-check"></i><b>51.1</b> En enkel modell</a></li>
+<li class="chapter" data-level="51.2" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#visualisera-modeller-1"><i class="fa fa-check"></i><b>51.2</b> Visualisera modeller</a>
+<ul>
+<li class="chapter" data-level="51.2.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#prediktioner-1"><i class="fa fa-check"></i><b>51.2.1</b> Prediktioner</a></li>
+<li class="chapter" data-level="51.2.2" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#residualer-1"><i class="fa fa-check"></i><b>51.2.2</b> Residualer</a></li>
+</ul></li>
+<li class="chapter" data-level="51.3" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#formler-och-modell-familjer-1"><i class="fa fa-check"></i><b>51.3</b> Formler och modell-familjer</a>
+<ul>
+<li class="chapter" data-level="51.3.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#kategoriska-variabler-1"><i class="fa fa-check"></i><b>51.3.1</b> Kategoriska variabler</a></li>
+<li class="chapter" data-level="51.3.2" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#interaktioner-1"><i class="fa fa-check"></i><b>51.3.2</b> Interaktioner</a></li>
+<li class="chapter" data-level="51.3.3" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#interaktioner-två-kontinuerliga-variabler-1"><i class="fa fa-check"></i><b>51.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
+<li class="chapter" data-level="51.3.4" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#transformationer-1"><i class="fa fa-check"></i><b>51.3.4</b> Transformationer</a></li>
+</ul></li>
+<li class="chapter" data-level="51.4" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#missing-values-7"><i class="fa fa-check"></i><b>51.4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="51.4.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#andra-modell-familjer-1"><i class="fa fa-check"></i><b>51.4.1</b> Andra modell-familjer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="52" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html"><i class="fa fa-check"></i><b>52</b> Bygga modeller i R</a>
+<ul>
+<li class="chapter" data-level="52.1" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#varför-är-diamanter-av-låg-kvalitet-dyrare-1"><i class="fa fa-check"></i><b>52.1</b> Varför är diamanter av låg kvalitet dyrare?</a>
+<ul>
+<li class="chapter" data-level="52.1.1" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#sambandet-pris-och-karat-1"><i class="fa fa-check"></i><b>52.1.1</b> Sambandet pris och karat</a></li>
+<li class="chapter" data-level="52.1.2" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#en-mer-komplicerad-modell-1"><i class="fa fa-check"></i><b>52.1.2</b> En mer komplicerad modell</a></li>
+</ul></li>
+<li class="chapter" data-level="52.2" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#vad-är-det-som-påverkar-antalet-dagliga-flighter-1"><i class="fa fa-check"></i><b>52.2</b> Vad är det som påverkar antalet dagliga flighter?</a>
+<ul>
+<li class="chapter" data-level="52.2.1" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#veckodag-1"><i class="fa fa-check"></i><b>52.2.1</b> Veckodag</a></li>
+<li class="chapter" data-level="52.2.2" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#lördags-effekten-1"><i class="fa fa-check"></i><b>52.2.2</b> Lördags-effekten</a></li>
+</ul></li>
+<li class="chapter" data-level="52.3" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#lära-mer-om-modellering-1"><i class="fa fa-check"></i><b>52.3</b> Lära mer om modellering</a></li>
+</ul></li>
+<li class="chapter" data-level="53" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html"><i class="fa fa-check"></i><b>53</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="53.1" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html#skriv-till-en-excelfil-3"><i class="fa fa-check"></i><b>53.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="53.2" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html#läsa-in-excel-3"><i class="fa fa-check"></i><b>53.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="53.3" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r-3"><i class="fa fa-check"></i><b>53.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+</ul></li>
+<li class="chapter" data-level="54" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html"><i class="fa fa-check"></i><b>54</b> Grafik för att kommunicera</a>
+<ul>
+<li class="chapter" data-level="54.1" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#etiketter-labels-1"><i class="fa fa-check"></i><b>54.1</b> Etiketter (labels)</a></li>
+<li class="chapter" data-level="54.2" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#annoteringar-1"><i class="fa fa-check"></i><b>54.2</b> Annoteringar</a></li>
+<li class="chapter" data-level="54.3" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#scales-1"><i class="fa fa-check"></i><b>54.3</b> Scales</a>
+<ul>
+<li class="chapter" data-level="54.3.1" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#axis-ticks-och-teckenförklaringar-1"><i class="fa fa-check"></i><b>54.3.1</b> Axis ticks och teckenförklaringar</a></li>
+<li class="chapter" data-level="54.3.2" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#teckenförklaringens-legend-layout-1"><i class="fa fa-check"></i><b>54.3.2</b> Teckenförklaringens (legend) layout</a></li>
+<li class="chapter" data-level="54.3.3" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#byta-ut-en-scale-1"><i class="fa fa-check"></i><b>54.3.3</b> Byta ut en scale</a></li>
+</ul></li>
+<li class="chapter" data-level="54.4" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#zooming-1"><i class="fa fa-check"></i><b>54.4</b> Zooming</a>
+<ul>
+<li class="chapter" data-level="54.4.1" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#teman-themes-1"><i class="fa fa-check"></i><b>54.4.1</b> Teman (themes)</a></li>
+</ul></li>
+<li class="chapter" data-level="54.5" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#spara-graferna-1"><i class="fa fa-check"></i><b>54.5</b> Spara graferna</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Kurskompendium - introduktion till R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="datum-och-tidsformat-1" class="section level1" number="44">
+<h1><span class="header-section-number">44</span> Datum och tidsformat</h1>
+<div id="introduktion-19" class="section level2" number="44.1">
+<h2><span class="header-section-number">44.1</span> Introduktion</h2>
+<p>Detta avsnitt handlar om att hantera datum- och tidsformat. Det är en översiktlig genomgång för att få de nödvändigaste verktygen. Det finns betydligt mer detaljer i Wickhams bok (<a href="http://r4ds.had.co.nz/dates-and-times.html" class="uri">http://r4ds.had.co.nz/dates-and-times.html</a>) vilken behandlar mycket av den komplexitet som ryms i datum- och tidsvariabler särskilt i en global kontext.</p>
+<p>Vi ska arbeta med modulen <code>lubridate</code> som innehåller verktyg för att hantera datum och tid. Data till exemplen finns i <code>nycflights13</code>. Vi laddar in</p>
+<div class="sourceCode" id="cb1919"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1919-1"><a href="datum-och-tidsformat-1.html#cb1919-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1919-2"><a href="datum-och-tidsformat-1.html#cb1919-2"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb1919-3"><a href="datum-och-tidsformat-1.html#cb1919-3"></a><span class="kw">library</span>(nycflights13)</span></code></pre></div>
+</div>
+<div id="skapa-datum-och-tid-1" class="section level2" number="44.2">
+<h2><span class="header-section-number">44.2</span> Skapa datum och tid</h2>
+<p>Det finns tre typer av datum/tid-data som refererar till en specifik tidpunkt:</p>
+<ul>
+<li>Ett <em>datum</em>. Tibbles betcknar dessa som <date>.</li>
+<li>Ett <em>klockslag</em>. Tibbles betecknar dessa som <time></li>
+<li>En <em>datumtid</em> (date-time) är ett klockslag plus ett datum. Det identifierar en tidpunkt (preciserad vanligen till närmaste sekund). Tibbles betecknar dessa som <dttm>. I <em>base R</em> kallas dessa för POSIXct, men Wickham har valt <dttm> för större klarhet.</li>
+</ul>
+<p>Om du kan använda ett datum istället för datumtid bör du göra det eftersom datumtid är betydligt mer komplicerat (behöver hantera tidszoner).</p>
+<p>För att få aktuellt datum eller datumtid kan du använda <code>today()</code> resp <code>now()</code>:</p>
+<div class="sourceCode" id="cb1920"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1920-1"><a href="datum-och-tidsformat-1.html#cb1920-1"></a><span class="kw">today</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2021-02-24&quot;</code></pre>
+<div class="sourceCode" id="cb1922"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1922-1"><a href="datum-och-tidsformat-1.html#cb1922-1"></a><span class="kw">now</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2021-02-24 11:28:31 CET&quot;</code></pre>
+<p>Det finns tre andra sätt att skapa datum/tid-data:</p>
+<ul>
+<li>Från en textsträng</li>
+<li>Från enskilda datum/tid-komponenter</li>
+<li>Från ett existerande datum/tid-objekt</li>
+</ul>
+<div id="från-textsträngar-1" class="section level3" number="44.2.1">
+<h3><span class="header-section-number">44.2.1</span> Från textsträngar</h3>
+<p>Ett sätt att hantera datumformat från textsträngar har vi sett tidigare (date-times).
+Ett annat sätt är att använda verktygen i <code>lubridate.</code> De tolkar automatiskt formatet när du väl definierat hur år (y), månad (m) och dag (d) är ordnade. Den ordningen anger även namnet på funktionen i <code>lubridate</code> som används för att generera datum-objektet:</p>
+<div class="sourceCode" id="cb1924"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1924-1"><a href="datum-och-tidsformat-1.html#cb1924-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2017-01-31&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31&quot;</code></pre>
+<div class="sourceCode" id="cb1926"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1926-1"><a href="datum-och-tidsformat-1.html#cb1926-1"></a><span class="kw">mdy</span>(<span class="st">&quot;January 31st, 2017&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31&quot;</code></pre>
+<div class="sourceCode" id="cb1928"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1928-1"><a href="datum-och-tidsformat-1.html#cb1928-1"></a><span class="kw">dmy</span>(<span class="st">&quot;31-Jan-2017&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31&quot;</code></pre>
+<p>Dessa funktioner accepterar även siffror utan citationstecken:</p>
+<div class="sourceCode" id="cb1930"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1930-1"><a href="datum-och-tidsformat-1.html#cb1930-1"></a><span class="kw">ymd</span>(<span class="dv">20170131</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31&quot;</code></pre>
+<p>För att skapa en datumtid kan du lägga till en underscore och ett eller fler av “h”, “m”, and “s” för att få namnet från till rätt funktion:</p>
+<div class="sourceCode" id="cb1932"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1932-1"><a href="datum-och-tidsformat-1.html#cb1932-1"></a><span class="kw">ymd_hms</span>(<span class="st">&quot;2017-01-31 20:11:59&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31 20:11:59 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb1934"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1934-1"><a href="datum-och-tidsformat-1.html#cb1934-1"></a><span class="kw">mdy_hm</span>(<span class="st">&quot;01/31/2017 08:01&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-31 08:01:00 UTC&quot;</code></pre>
+</div>
+<div id="från-enskilda-kompnenter-1" class="section level3" number="44.2.2">
+<h3><span class="header-section-number">44.2.2</span> Från enskilda kompnenter</h3>
+<p>Istället för en textsträng kan du ha datum och tid som enskilda komponenter spridda över flera kolumner, som i <code>nycflights13</code>:</p>
+<div class="sourceCode" id="cb1936"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1936-1"><a href="datum-och-tidsformat-1.html#cb1936-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1936-2"><a href="datum-och-tidsformat-1.html#cb1936-2"></a><span class="st">  </span><span class="kw">select</span>(year, month, day, hour, minute)</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 5
+##     year month   day  hour minute
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1  2013     1     1     5     15
+##  2  2013     1     1     5     29
+##  3  2013     1     1     5     40
+##  4  2013     1     1     5     45
+##  5  2013     1     1     6      0
+##  6  2013     1     1     5     58
+##  7  2013     1     1     6      0
+##  8  2013     1     1     6      0
+##  9  2013     1     1     6      0
+## 10  2013     1     1     6      0
+## # ... with 336,766 more rows</code></pre>
+<p>För att skapa datum/tid från sådan input kan du använda <code>make_date()</code> för datum eller <code>make_datetime()</code> för datumtid:</p>
+<div class="sourceCode" id="cb1938"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1938-1"><a href="datum-och-tidsformat-1.html#cb1938-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1938-2"><a href="datum-och-tidsformat-1.html#cb1938-2"></a><span class="st">  </span><span class="kw">select</span>(year, month, day, hour, minute) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1938-3"><a href="datum-och-tidsformat-1.html#cb1938-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">departure =</span> <span class="kw">make_datetime</span>(year, month, day, hour, minute))</span></code></pre></div>
+<pre><code>## # A tibble: 336,776 x 6
+##     year month   day  hour minute departure          
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dttm&gt;             
+##  1  2013     1     1     5     15 2013-01-01 05:15:00
+##  2  2013     1     1     5     29 2013-01-01 05:29:00
+##  3  2013     1     1     5     40 2013-01-01 05:40:00
+##  4  2013     1     1     5     45 2013-01-01 05:45:00
+##  5  2013     1     1     6      0 2013-01-01 06:00:00
+##  6  2013     1     1     5     58 2013-01-01 05:58:00
+##  7  2013     1     1     6      0 2013-01-01 06:00:00
+##  8  2013     1     1     6      0 2013-01-01 06:00:00
+##  9  2013     1     1     6      0 2013-01-01 06:00:00
+## 10  2013     1     1     6      0 2013-01-01 06:00:00
+## # ... with 336,766 more rows</code></pre>
+<p>Vi gör samma sak för var och ett av de fyra kolumnerna i <code>flights</code>. (Eftersom tidsdata i dessa kolumner är lite udda använder vi moduloräkning för att få ut timmmar och minuter):</p>
+<div class="sourceCode" id="cb1940"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1940-1"><a href="datum-och-tidsformat-1.html#cb1940-1"></a>make_datetime_<span class="dv">100</span> &lt;-<span class="st"> </span><span class="cf">function</span>(year, month, day, time) {</span>
+<span id="cb1940-2"><a href="datum-och-tidsformat-1.html#cb1940-2"></a>  <span class="kw">make_datetime</span>(year, month, day, time <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span>, time <span class="op">%%</span><span class="st"> </span><span class="dv">100</span>)</span>
+<span id="cb1940-3"><a href="datum-och-tidsformat-1.html#cb1940-3"></a>}</span>
+<span id="cb1940-4"><a href="datum-och-tidsformat-1.html#cb1940-4"></a>flights_dt &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1940-5"><a href="datum-och-tidsformat-1.html#cb1940-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time), <span class="op">!</span><span class="kw">is.na</span>(arr_time)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1940-6"><a href="datum-och-tidsformat-1.html#cb1940-6"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb1940-7"><a href="datum-och-tidsformat-1.html#cb1940-7"></a>    <span class="dt">dep_time =</span> <span class="kw">make_datetime_100</span>(year, month, day, dep_time),</span>
+<span id="cb1940-8"><a href="datum-och-tidsformat-1.html#cb1940-8"></a>    <span class="dt">arr_time =</span> <span class="kw">make_datetime_100</span>(year, month, day, arr_time),</span>
+<span id="cb1940-9"><a href="datum-och-tidsformat-1.html#cb1940-9"></a>    <span class="dt">sched_dep_time =</span> <span class="kw">make_datetime_100</span>(year, month, day, sched_dep_time),</span>
+<span id="cb1940-10"><a href="datum-och-tidsformat-1.html#cb1940-10"></a>    <span class="dt">sched_arr_time =</span> <span class="kw">make_datetime_100</span>(year, month, day, sched_arr_time)</span>
+<span id="cb1940-11"><a href="datum-och-tidsformat-1.html#cb1940-11"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1940-12"><a href="datum-och-tidsformat-1.html#cb1940-12"></a><span class="st">  </span><span class="kw">select</span>(origin, dest, <span class="kw">ends_with</span>(<span class="st">&quot;delay&quot;</span>), <span class="kw">ends_with</span>(<span class="st">&quot;time&quot;</span>))</span>
+<span id="cb1940-13"><a href="datum-och-tidsformat-1.html#cb1940-13"></a>flights_dt</span></code></pre></div>
+<pre><code>## # A tibble: 328,063 x 9
+##    origin dest  dep_delay arr_delay dep_time            sched_dep_time      arr_time            sched_arr_time      air_time
+##    &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;              &lt;dttm&gt;              &lt;dttm&gt;                 &lt;dbl&gt;
+##  1 EWR    IAH           2        11 2013-01-01 05:17:00 2013-01-01 05:15:00 2013-01-01 08:30:00 2013-01-01 08:19:00      227
+##  2 LGA    IAH           4        20 2013-01-01 05:33:00 2013-01-01 05:29:00 2013-01-01 08:50:00 2013-01-01 08:30:00      227
+##  3 JFK    MIA           2        33 2013-01-01 05:42:00 2013-01-01 05:40:00 2013-01-01 09:23:00 2013-01-01 08:50:00      160
+##  4 JFK    BQN          -1       -18 2013-01-01 05:44:00 2013-01-01 05:45:00 2013-01-01 10:04:00 2013-01-01 10:22:00      183
+##  5 LGA    ATL          -6       -25 2013-01-01 05:54:00 2013-01-01 06:00:00 2013-01-01 08:12:00 2013-01-01 08:37:00      116
+##  6 EWR    ORD          -4        12 2013-01-01 05:54:00 2013-01-01 05:58:00 2013-01-01 07:40:00 2013-01-01 07:28:00      150
+##  7 EWR    FLL          -5        19 2013-01-01 05:55:00 2013-01-01 06:00:00 2013-01-01 09:13:00 2013-01-01 08:54:00      158
+##  8 LGA    IAD          -3       -14 2013-01-01 05:57:00 2013-01-01 06:00:00 2013-01-01 07:09:00 2013-01-01 07:23:00       53
+##  9 JFK    MCO          -3        -8 2013-01-01 05:57:00 2013-01-01 06:00:00 2013-01-01 08:38:00 2013-01-01 08:46:00      140
+## 10 LGA    ORD          -2         8 2013-01-01 05:58:00 2013-01-01 06:00:00 2013-01-01 07:53:00 2013-01-01 07:45:00      138
+## # ... with 328,053 more rows</code></pre>
+<p>Med dessa data kan vi visualisera fördelningen av avgångstider över året:</p>
+<div class="sourceCode" id="cb1942"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1942-1"><a href="datum-och-tidsformat-1.html#cb1942-1"></a>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1942-2"><a href="datum-och-tidsformat-1.html#cb1942-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(dep_time)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1942-3"><a href="datum-och-tidsformat-1.html#cb1942-3"></a><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="dt">binwidth =</span> <span class="dv">86400</span>) <span class="co"># 86400 seconds = 1 day</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-867-1.png" width="70%" /></p>
+<p>Eller över en enskild dag:</p>
+<div class="sourceCode" id="cb1943"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1943-1"><a href="datum-och-tidsformat-1.html#cb1943-1"></a>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1943-2"><a href="datum-och-tidsformat-1.html#cb1943-2"></a><span class="st">  </span><span class="kw">filter</span>(dep_time <span class="op">&lt;</span><span class="st"> </span><span class="kw">ymd</span>(<span class="dv">20130102</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1943-3"><a href="datum-och-tidsformat-1.html#cb1943-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(dep_time)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb1943-4"><a href="datum-och-tidsformat-1.html#cb1943-4"></a><span class="st">  </span><span class="kw">geom_freqpoly</span>(<span class="dt">binwidth =</span> <span class="dv">600</span>) <span class="co"># 600 s = 10 minutes</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-868-1.png" width="70%" /></p>
+<p>Notera att när man använder datumtid-formatet i en numerisk kontext anger siffran 1 en (1) sekund (därav binwidth = 86400 således 1 dygn). För datum-format gäller 1 för 1 dygn.</p>
+</div>
+<div id="från-andra-datumtid-format-1" class="section level3" number="44.2.3">
+<h3><span class="header-section-number">44.2.3</span> Från andra datum/tid-format</h3>
+<p>Om du vill omvandla datumtid och datum används <code>as_datetime()</code> resp <code>as_date()</code>:</p>
+<div class="sourceCode" id="cb1944"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1944-1"><a href="datum-och-tidsformat-1.html#cb1944-1"></a><span class="kw">as_datetime</span>(<span class="kw">today</span>())</span></code></pre></div>
+<pre><code>## [1] &quot;2021-02-24 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb1946"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1946-1"><a href="datum-och-tidsformat-1.html#cb1946-1"></a><span class="kw">as_date</span>(<span class="kw">now</span>())</span></code></pre></div>
+<pre><code>## [1] &quot;2021-02-24&quot;</code></pre>
+<p>Ibland får man datum/tidsdata som numeriska offsets från ett visst datum, t.ex. “Unix Epoch”, 1970-01-01. Om offset är i sekunder använd <code>as_datetime()</code>, om det är i dagar använd <code>as_date()</code>:</p>
+<div class="sourceCode" id="cb1948"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1948-1"><a href="datum-och-tidsformat-1.html#cb1948-1"></a><span class="kw">as_datetime</span>(<span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">60</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1970-01-01 10:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb1950"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1950-1"><a href="datum-och-tidsformat-1.html#cb1950-1"></a><span class="kw">as_date</span>(<span class="dv">365</span> <span class="op">*</span><span class="st"> </span><span class="dv">10</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1980-01-01&quot;</code></pre>
+</div>
+<div id="övningar-55" class="section level3" number="44.2.4">
+<h3><span class="header-section-number">44.2.4</span> Övningar</h3>
+<ol style="list-style-type: decimal">
+<li>Vad händer om du försöker processa en textsträng med ogiltiga datum?</li>
+</ol>
+<div class="sourceCode" id="cb1952"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1952-1"><a href="datum-och-tidsformat-1.html#cb1952-1"></a><span class="kw">ymd</span>(<span class="kw">c</span>(<span class="st">&quot;2010-10-10&quot;</span>, <span class="st">&quot;bananas&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: 1 failed to parse.</code></pre>
+<pre><code>## [1] &quot;2010-10-10&quot; NA</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Vad gör argumentet <code>tzone</code> till funktionen <code>today()</code>? Varför är det viktigt?</li>
+<li>Använd en lämplig funktion för att omvandla följande datum-format:</li>
+</ol>
+<div class="sourceCode" id="cb1955"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1955-1"><a href="datum-och-tidsformat-1.html#cb1955-1"></a>d1 &lt;-<span class="st"> &quot;January 1, 2010&quot;</span></span>
+<span id="cb1955-2"><a href="datum-och-tidsformat-1.html#cb1955-2"></a>d2 &lt;-<span class="st"> &quot;2015-Mar-07&quot;</span></span>
+<span id="cb1955-3"><a href="datum-och-tidsformat-1.html#cb1955-3"></a>d3 &lt;-<span class="st"> &quot;06-Jun-2017&quot;</span></span>
+<span id="cb1955-4"><a href="datum-och-tidsformat-1.html#cb1955-4"></a>d4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;August 19 (2015)&quot;</span>, <span class="st">&quot;July 1 (2015)&quot;</span>)</span>
+<span id="cb1955-5"><a href="datum-och-tidsformat-1.html#cb1955-5"></a>d5 &lt;-<span class="st"> &quot;12/30/14&quot;</span> <span class="co"># Dec 30, 2014</span></span></code></pre></div>
+</div>
+</div>
+<div id="datumtid-komponenter-1" class="section level2" number="44.3">
+<h2><span class="header-section-number">44.3</span> Datum/tid-komponenter</h2>
+<p>Vad kan man göra med datum/tid-variabler rent praktiskt? Den här sektionen beskriver hur du extraherar och definierar enskilda komponenter och i nästa går vi igenom hur man utför aritmetiska operationer med dem.</p>
+<div id="extrahera-komponenter-1" class="section level3" number="44.3.1">
+<h3><span class="header-section-number">44.3.1</span> Extrahera komponenter</h3>
+<p>Du kan extrahera enskilda delar i ett datum/tid-objekt med access-funktionerna <code>year()</code>, <code>month()</code>, <code>mday()</code> (dag i månad), <code>yday()</code> (dag i året), <code>wday()</code> (veckodag), <code>hour()</code>, <code>minute()</code> och <code>second()</code>.</p>
+<div class="sourceCode" id="cb1956"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1956-1"><a href="datum-och-tidsformat-1.html#cb1956-1"></a>datetime &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-07-08 12:34:56&quot;</span>)</span>
+<span id="cb1956-2"><a href="datum-och-tidsformat-1.html#cb1956-2"></a><span class="kw">year</span>(datetime)</span></code></pre></div>
+<pre><code>## [1] 2016</code></pre>
+<div class="sourceCode" id="cb1958"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1958-1"><a href="datum-och-tidsformat-1.html#cb1958-1"></a><span class="kw">month</span>(datetime)</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb1960"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1960-1"><a href="datum-och-tidsformat-1.html#cb1960-1"></a><span class="kw">mday</span>(datetime)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb1962"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1962-1"><a href="datum-och-tidsformat-1.html#cb1962-1"></a><span class="kw">yday</span>(datetime)</span></code></pre></div>
+<pre><code>## [1] 190</code></pre>
+<div class="sourceCode" id="cb1964"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1964-1"><a href="datum-och-tidsformat-1.html#cb1964-1"></a><span class="kw">wday</span>(datetime)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>För <code>month()</code> och <code>wday()</code> kan du sätta argumentet <code>label = TRUE</code> för att returnera förkortat månadsnamn resp veckodag. Ange <code>abbr = FALSE</code> för att returnera hela namnet.</p>
+<div class="sourceCode" id="cb1966"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1966-1"><a href="datum-och-tidsformat-1.html#cb1966-1"></a><span class="kw">month</span>(datetime, <span class="dt">label =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] jul
+## Levels: jan &lt; feb &lt; mar &lt; apr &lt; maj &lt; jun &lt; jul &lt; aug &lt; sep &lt; okt &lt; nov &lt; dec</code></pre>
+<div class="sourceCode" id="cb1968"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1968-1"><a href="datum-och-tidsformat-1.html#cb1968-1"></a><span class="kw">wday</span>(datetime, <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">abbr =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] fredag
+## Levels: söndag &lt; måndag &lt; tisdag &lt; onsdag &lt; torsdag &lt; fredag &lt; lördag</code></pre>
+<p>Vi kan använda <code>wday()</code> för att se att fler flighter avgår under vardagar än under helger:</p>
+<div class="sourceCode" id="cb1970"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1970-1"><a href="datum-och-tidsformat-1.html#cb1970-1"></a>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1970-2"><a href="datum-och-tidsformat-1.html#cb1970-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wday =</span> <span class="kw">wday</span>(dep_time, <span class="dt">label =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1970-3"><a href="datum-och-tidsformat-1.html#cb1970-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday)) <span class="op">+</span></span>
+<span id="cb1970-4"><a href="datum-och-tidsformat-1.html#cb1970-4"></a><span class="st">    </span><span class="kw">geom_bar</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-875-1.png" width="70%" /></p>
+</div>
+<div id="avrundning-1" class="section level3" number="44.3.2">
+<h3><span class="header-section-number">44.3.2</span> Avrundning</h3>
+<p>Ett alternativt sätt att plotta enskilda komponenter är att avrunda datum till en närliggande tidpunkt. Det kan man göra via <code>floor_date()</code>, <code>round_date()</code> och <code>ceiling_date()</code>. Varje funktion tar två argument: en datum-vektor som ska avrundas och ett till vad värdena ska avrundas. T.ex. kan vi med hjälp av <code>floor_date()</code> plotta antalet flighter per vecka:</p>
+<div class="sourceCode" id="cb1971"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1971-1"><a href="datum-och-tidsformat-1.html#cb1971-1"></a>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1971-2"><a href="datum-och-tidsformat-1.html#cb1971-2"></a><span class="st">  </span><span class="kw">count</span>(<span class="dt">week =</span> <span class="kw">floor_date</span>(dep_time, <span class="st">&quot;week&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1971-3"><a href="datum-och-tidsformat-1.html#cb1971-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(week, n)) <span class="op">+</span></span>
+<span id="cb1971-4"><a href="datum-och-tidsformat-1.html#cb1971-4"></a><span class="st">    </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-876-1.png" width="70%" /></p>
+</div>
+<div id="ange-komponenter-1" class="section level3" number="44.3.3">
+<h3><span class="header-section-number">44.3.3</span> Ange komponenter</h3>
+<p>Du kan använda varje accessfunktion för att definiera komponenterna i ett datum/tid-formnat:</p>
+<div class="sourceCode" id="cb1972"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1972-1"><a href="datum-och-tidsformat-1.html#cb1972-1"></a>(datetime &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-07-08 12:34:56&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;2016-07-08 12:34:56 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb1974"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1974-1"><a href="datum-och-tidsformat-1.html#cb1974-1"></a><span class="kw">year</span>(datetime) &lt;-<span class="st"> </span><span class="dv">2020</span></span>
+<span id="cb1974-2"><a href="datum-och-tidsformat-1.html#cb1974-2"></a>datetime</span></code></pre></div>
+<pre><code>## [1] &quot;2020-07-08 12:34:56 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb1976"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1976-1"><a href="datum-och-tidsformat-1.html#cb1976-1"></a><span class="kw">month</span>(datetime) &lt;-<span class="st"> </span><span class="dv">01</span></span>
+<span id="cb1976-2"><a href="datum-och-tidsformat-1.html#cb1976-2"></a>datetime</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-08 12:34:56 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb1978"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1978-1"><a href="datum-och-tidsformat-1.html#cb1978-1"></a><span class="kw">hour</span>(datetime) &lt;-<span class="st"> </span><span class="kw">hour</span>(datetime) <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb1978-2"><a href="datum-och-tidsformat-1.html#cb1978-2"></a>datetime</span></code></pre></div>
+<pre><code>## [1] &quot;2020-01-08 13:34:56 UTC&quot;</code></pre>
+<p>Alternativt kan du skapa ett nytt datum/tid-objekt med hjälp av <code>update()</code>. Då kan du ange flera komponnenter på samma gång:</p>
+<div class="sourceCode" id="cb1980"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1980-1"><a href="datum-och-tidsformat-1.html#cb1980-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2015-02-01&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1980-2"><a href="datum-och-tidsformat-1.html#cb1980-2"></a><span class="st">  </span><span class="kw">update</span>(<span class="dt">mday =</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2015-03-02&quot;</code></pre>
+<div class="sourceCode" id="cb1982"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1982-1"><a href="datum-och-tidsformat-1.html#cb1982-1"></a><span class="kw">ymd</span>(<span class="st">&quot;2015-02-01&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1982-2"><a href="datum-och-tidsformat-1.html#cb1982-2"></a><span class="st">  </span><span class="kw">update</span>(<span class="dt">hour =</span> <span class="dv">400</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2015-02-17 16:00:00 UTC&quot;</code></pre>
+</div>
+</div>
+<div id="tidsintervall-1" class="section level2" number="44.4">
+<h2><span class="header-section-number">44.4</span> Tidsintervall</h2>
+<p>Hur fungerar aritmetiska operationer med datum/tid-format? Vi går igenom tre viktiga klasser som representerar tidsintervall:</p>
+<ul>
+<li><strong>varaktighet</strong> (durations), som representerar ett exakt antal sekunder</li>
+<li><strong>Perioder</strong> (periods), representerar ofta använda tids-enheter, t.ex. veckor och dagar</li>
+<li><strong>Intervall</strong> (intervals), representerar en start- och slutpunkt</li>
+</ul>
+<div id="varaktighet-1" class="section level3" number="44.4.1">
+<h3><span class="header-section-number">44.4.1</span> Varaktighet</h3>
+<p>När man subtraherar två datum i R erhåller man ett <em>difftime-objekt</em>.</p>
+<div class="sourceCode" id="cb1984"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1984-1"><a href="datum-och-tidsformat-1.html#cb1984-1"></a><span class="co">## Hur länge har VGR funnits?</span></span>
+<span id="cb1984-2"><a href="datum-och-tidsformat-1.html#cb1984-2"></a>h_age &lt;-<span class="st"> </span><span class="kw">today</span>() <span class="op">-</span><span class="st"> </span><span class="kw">ymd</span>(<span class="dv">19990101</span>)</span>
+<span id="cb1984-3"><a href="datum-och-tidsformat-1.html#cb1984-3"></a>h_age</span></code></pre></div>
+<pre><code>## Time difference of 8090 days</code></pre>
+<p>Ett <em>difftime-objekt</em> innehåller ett tidsspann i sekunder, minuter, timmar dagar eller veckor. Denna tvetydighet kan vara irriterande så <code>lubridate</code> erbjuder ett alternativ som alltid använder sekunder (<code>duration</code>):</p>
+<div class="sourceCode" id="cb1986"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1986-1"><a href="datum-och-tidsformat-1.html#cb1986-1"></a><span class="kw">as.duration</span>(h_age)</span></code></pre></div>
+<pre><code>## [1] &quot;698976000s (~22.15 years)&quot;</code></pre>
+<p>Duration har ett antal smidiga funktioner:</p>
+<div class="sourceCode" id="cb1988"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1988-1"><a href="datum-och-tidsformat-1.html#cb1988-1"></a><span class="kw">dseconds</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;15s&quot;</code></pre>
+<div class="sourceCode" id="cb1990"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1990-1"><a href="datum-och-tidsformat-1.html#cb1990-1"></a><span class="kw">dminutes</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;600s (~10 minutes)&quot;</code></pre>
+<div class="sourceCode" id="cb1992"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1992-1"><a href="datum-och-tidsformat-1.html#cb1992-1"></a><span class="kw">dhours</span>(<span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">24</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;43200s (~12 hours)&quot; &quot;86400s (~1 days)&quot;</code></pre>
+<div class="sourceCode" id="cb1994"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1994-1"><a href="datum-och-tidsformat-1.html#cb1994-1"></a><span class="kw">ddays</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;0s&quot;                &quot;86400s (~1 days)&quot;  &quot;172800s (~2 days)&quot; &quot;259200s (~3 days)&quot; &quot;345600s (~4 days)&quot; &quot;432000s (~5 days)&quot;</code></pre>
+<div class="sourceCode" id="cb1996"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1996-1"><a href="datum-och-tidsformat-1.html#cb1996-1"></a><span class="kw">dweeks</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1814400s (~3 weeks)&quot;</code></pre>
+<div class="sourceCode" id="cb1998"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1998-1"><a href="datum-och-tidsformat-1.html#cb1998-1"></a><span class="kw">dyears</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;31557600s (~1 years)&quot;</code></pre>
+<p>Högre tidsenheter än sekunder skapas genom att omvandla minuter, timmar osv till sekunder enligt “standard-mått” (60 sek är en minut, 60 min är en timma, 24 timmar ett dygn , 7 dygn är en vecka, 365 dagar är ett år).</p>
+<p>Du kan addera och multiplicera <em>durations</em>:</p>
+<div class="sourceCode" id="cb2000"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2000-1"><a href="datum-och-tidsformat-1.html#cb2000-1"></a><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;63115200s (~2 years)&quot;</code></pre>
+<div class="sourceCode" id="cb2002"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2002-1"><a href="datum-och-tidsformat-1.html#cb2002-1"></a><span class="kw">dyears</span>(<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">dweeks</span>(<span class="dv">12</span>) <span class="op">+</span><span class="st"> </span><span class="kw">dhours</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;38869200s (~1.23 years)&quot;</code></pre>
+<p>Du kan addera och subtrahera <em>durations</em> till och från dagar:</p>
+<div class="sourceCode" id="cb2004"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2004-1"><a href="datum-och-tidsformat-1.html#cb2004-1"></a>tomorrow &lt;-<span class="st"> </span><span class="kw">today</span>() <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">1</span>)</span>
+<span id="cb2004-2"><a href="datum-och-tidsformat-1.html#cb2004-2"></a>last_year &lt;-<span class="st"> </span><span class="kw">today</span>() <span class="op">-</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="perioder-1" class="section level3" number="44.4.2">
+<h3><span class="header-section-number">44.4.2</span> Perioder</h3>
+<p>Perioder är tidsspann utan en fixerad längd i sekunder. Istället räknar den med mer “människo-bekanta” storheter som dagar eller månader. Det gör beräkningar mer intuitiva:</p>
+<div class="sourceCode" id="cb2005"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2005-1"><a href="datum-och-tidsformat-1.html#cb2005-1"></a>one_pm &lt;-<span class="st"> </span><span class="kw">ymd_hms</span>(<span class="st">&quot;2016-03-12 13:00:00&quot;</span>)</span>
+<span id="cb2005-2"><a href="datum-och-tidsformat-1.html#cb2005-2"></a>one_pm</span></code></pre></div>
+<pre><code>## [1] &quot;2016-03-12 13:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb2007"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2007-1"><a href="datum-och-tidsformat-1.html#cb2007-1"></a>one_pm <span class="op">+</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2016-03-13 13:00:00 UTC&quot;</code></pre>
+<p>Även här finns ett antal smidiga funktioner:</p>
+<div class="sourceCode" id="cb2009"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2009-1"><a href="datum-och-tidsformat-1.html#cb2009-1"></a><span class="kw">seconds</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;15S&quot;</code></pre>
+<div class="sourceCode" id="cb2011"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2011-1"><a href="datum-och-tidsformat-1.html#cb2011-1"></a><span class="kw">minutes</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;10M 0S&quot;</code></pre>
+<div class="sourceCode" id="cb2013"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2013-1"><a href="datum-och-tidsformat-1.html#cb2013-1"></a><span class="kw">hours</span>(<span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">24</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;12H 0M 0S&quot; &quot;24H 0M 0S&quot;</code></pre>
+<div class="sourceCode" id="cb2015"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2015-1"><a href="datum-och-tidsformat-1.html#cb2015-1"></a><span class="kw">days</span>(<span class="dv">7</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;7d 0H 0M 0S&quot;</code></pre>
+<div class="sourceCode" id="cb2017"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2017-1"><a href="datum-och-tidsformat-1.html#cb2017-1"></a><span class="kw">months</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1m 0d 0H 0M 0S&quot; &quot;2m 0d 0H 0M 0S&quot; &quot;3m 0d 0H 0M 0S&quot; &quot;4m 0d 0H 0M 0S&quot; &quot;5m 0d 0H 0M 0S&quot; &quot;6m 0d 0H 0M 0S&quot;</code></pre>
+<div class="sourceCode" id="cb2019"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2019-1"><a href="datum-och-tidsformat-1.html#cb2019-1"></a><span class="kw">weeks</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;21d 0H 0M 0S&quot;</code></pre>
+<div class="sourceCode" id="cb2021"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2021-1"><a href="datum-och-tidsformat-1.html#cb2021-1"></a><span class="kw">years</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1y 0m 0d 0H 0M 0S&quot;</code></pre>
+<p>Du kan addera och multiplicera perioder:</p>
+<div class="sourceCode" id="cb2023"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2023-1"><a href="datum-och-tidsformat-1.html#cb2023-1"></a><span class="dv">10</span> <span class="op">*</span><span class="st"> </span>(<span class="kw">months</span>(<span class="dv">6</span>) <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;60m 10d 0H 0M 0S&quot;</code></pre>
+<div class="sourceCode" id="cb2025"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2025-1"><a href="datum-och-tidsformat-1.html#cb2025-1"></a><span class="kw">days</span>(<span class="dv">50</span>) <span class="op">+</span><span class="st"> </span><span class="kw">hours</span>(<span class="dv">25</span>) <span class="op">+</span><span class="st"> </span><span class="kw">minutes</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;50d 25H 2M 0S&quot;</code></pre>
+<p>Och addera dem till datum:</p>
+<div class="sourceCode" id="cb2027"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2027-1"><a href="datum-och-tidsformat-1.html#cb2027-1"></a><span class="co">## Ett kalenderår</span></span>
+<span id="cb2027-2"><a href="datum-och-tidsformat-1.html#cb2027-2"></a><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">dyears</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2016-12-31 06:00:00 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb2029"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2029-1"><a href="datum-och-tidsformat-1.html#cb2029-1"></a><span class="co">## Ett exakt år senare</span></span>
+<span id="cb2029-2"><a href="datum-och-tidsformat-1.html#cb2029-2"></a><span class="kw">ymd</span>(<span class="st">&quot;2016-01-01&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2017-01-01&quot;</code></pre>
+<p>Låt oss använda perioder för att fixa en knepighet i <code>flights</code>. Några plan verkar ha ankommit till destinationen innan de startade från NYC:</p>
+<div class="sourceCode" id="cb2031"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2031-1"><a href="datum-och-tidsformat-1.html#cb2031-1"></a>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2031-2"><a href="datum-och-tidsformat-1.html#cb2031-2"></a><span class="st">  </span><span class="kw">filter</span>(arr_time <span class="op">&lt;</span><span class="st"> </span>dep_time) </span></code></pre></div>
+<pre><code>## # A tibble: 10,633 x 9
+##    origin dest  dep_delay arr_delay dep_time            sched_dep_time      arr_time            sched_arr_time      air_time
+##    &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dttm&gt;              &lt;dttm&gt;              &lt;dttm&gt;              &lt;dttm&gt;                 &lt;dbl&gt;
+##  1 EWR    BQN           9        -4 2013-01-01 19:29:00 2013-01-01 19:20:00 2013-01-01 00:03:00 2013-01-01 00:07:00      192
+##  2 JFK    DFW          59        NA 2013-01-01 19:39:00 2013-01-01 18:40:00 2013-01-01 00:29:00 2013-01-01 21:51:00       NA
+##  3 EWR    TPA          -2         9 2013-01-01 20:58:00 2013-01-01 21:00:00 2013-01-01 00:08:00 2013-01-01 23:59:00      159
+##  4 EWR    SJU          -6       -12 2013-01-01 21:02:00 2013-01-01 21:08:00 2013-01-01 01:46:00 2013-01-01 01:58:00      199
+##  5 EWR    SFO          11       -14 2013-01-01 21:08:00 2013-01-01 20:57:00 2013-01-01 00:25:00 2013-01-01 00:39:00      354
+##  6 LGA    FLL         -10        -2 2013-01-01 21:20:00 2013-01-01 21:30:00 2013-01-01 00:16:00 2013-01-01 00:18:00      160
+##  7 EWR    MCO          41        43 2013-01-01 21:21:00 2013-01-01 20:40:00 2013-01-01 00:06:00 2013-01-01 23:23:00      143
+##  8 JFK    LAX          -7       -24 2013-01-01 21:28:00 2013-01-01 21:35:00 2013-01-01 00:26:00 2013-01-01 00:50:00      338
+##  9 EWR    FLL          49        28 2013-01-01 21:34:00 2013-01-01 20:45:00 2013-01-01 00:20:00 2013-01-01 23:52:00      152
+## 10 EWR    FLL          -9       -14 2013-01-01 21:36:00 2013-01-01 21:45:00 2013-01-01 00:25:00 2013-01-01 00:39:00      154
+## # ... with 10,623 more rows</code></pre>
+<p>Dessa är flighter som sträcker sig över midnatt. Vi använder samma datum för för både avgångar och ankomster, men dessa flighter ankom påföljande dygn. Vi kan fixa detta genom att addera <code>days(1)</code> till ankomsttiden för varje sådan flight:</p>
+<div class="sourceCode" id="cb2033"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2033-1"><a href="datum-och-tidsformat-1.html#cb2033-1"></a>flights_dt &lt;-<span class="st"> </span>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2033-2"><a href="datum-och-tidsformat-1.html#cb2033-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb2033-3"><a href="datum-och-tidsformat-1.html#cb2033-3"></a>    <span class="dt">overnight =</span> arr_time <span class="op">&lt;</span><span class="st"> </span>dep_time,</span>
+<span id="cb2033-4"><a href="datum-och-tidsformat-1.html#cb2033-4"></a>    <span class="dt">arr_time =</span> arr_time <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(overnight <span class="op">*</span><span class="st"> </span><span class="dv">1</span>),</span>
+<span id="cb2033-5"><a href="datum-och-tidsformat-1.html#cb2033-5"></a>    <span class="dt">sched_arr_time =</span> sched_arr_time <span class="op">+</span><span class="st"> </span><span class="kw">days</span>(overnight <span class="op">*</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb2033-6"><a href="datum-och-tidsformat-1.html#cb2033-6"></a>  )</span>
+<span id="cb2033-7"><a href="datum-och-tidsformat-1.html#cb2033-7"></a></span>
+<span id="cb2033-8"><a href="datum-och-tidsformat-1.html#cb2033-8"></a>flights_dt <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2033-9"><a href="datum-och-tidsformat-1.html#cb2033-9"></a><span class="st">  </span><span class="kw">filter</span>(overnight, arr_time <span class="op">&lt;</span><span class="st"> </span>dep_time) </span></code></pre></div>
+<pre><code>## # A tibble: 0 x 10
+## # ... with 10 variables: origin &lt;chr&gt;, dest &lt;chr&gt;, dep_delay &lt;dbl&gt;, arr_delay &lt;dbl&gt;, dep_time &lt;dttm&gt;, sched_dep_time &lt;dttm&gt;, arr_time &lt;dttm&gt;, sched_arr_time &lt;dttm&gt;,
+## #   air_time &lt;dbl&gt;, overnight &lt;lgl&gt;</code></pre>
+</div>
+<div id="intervall-1" class="section level3" number="44.4.3">
+<h3><span class="header-section-number">44.4.3</span> Intervall</h3>
+<p>Det är uppenbart att <code>dyears(1) / ddays(365)</code> borde ge 1, eftersom <em>durations</em> alltid räknas i sekunder och <code>ddays(365)</code> = <code>dyear(1)</code>.
+Men om vi använder perioder, vad ger <code>years(1)/days(1)</code>? Ja, om året var 2015 skulle det ge 365 men om det var 2016 skulle det bli 366. <code>lubridate</code> innehåller helt enkelt inte tillräckligt med information för att ge ett entydigt svar. Istället får man en skattning tillsammans med en varning:</p>
+<div class="sourceCode" id="cb2035"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2035-1"><a href="datum-och-tidsformat-1.html#cb2035-1"></a><span class="kw">years</span>(<span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 365.25</code></pre>
+<p>Om du vill ha ett mer exakt besked behöver du använda ett intervall. Ett intervall är en <em>duration</em> med en startpunkt:</p>
+<div class="sourceCode" id="cb2037"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2037-1"><a href="datum-och-tidsformat-1.html#cb2037-1"></a>next_year &lt;-<span class="st"> </span><span class="kw">today</span>() <span class="op">+</span><span class="st"> </span><span class="kw">years</span>(<span class="dv">1</span>)</span>
+<span id="cb2037-2"><a href="datum-och-tidsformat-1.html#cb2037-2"></a>(<span class="kw">today</span>() <span class="op">%--%</span><span class="st"> </span>next_year) <span class="op">/</span><span class="st"> </span><span class="kw">ddays</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 365</code></pre>
+</div>
+</div>
+<div id="summering-1" class="section level2" number="44.5">
+<h2><span class="header-section-number">44.5</span> Summering</h2>
+<p>Vilket av duration, period och intervall ska man välja? Som vanligt, använd det enklaste alternativet som är tillräckligt för att lösa ditt problem. Om du enbart är intresserad av tid som sådan, använd en <em>duration</em>; om du behöver addera “människo-vänliga” tidpunkter, använd en <em>period</em>; om du behöver beräkna hur lång ett tidsspann är använd ett <em>intervall</em>.</p>
+<p>Figuren nedan summerar tillåtna aritmetiska operationer för de olika alternativen:</p>
+<p><img src="datetimes-arithmetic.png" /></p>
+<p>I Wickhams bok finns en handfull övningar med tidsintervall (<a href="http://r4ds.had.co.nz/dates-and-times.html#exercises-47" class="uri">http://r4ds.had.co.nz/dates-and-times.html#exercises-47</a>) och som vi hoppar över här.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="kategoriska-variabler-factors-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="programmering-i-r-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
