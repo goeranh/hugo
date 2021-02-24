@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kurskompendium - introduktion till R</title>
-  <meta name="description" content="Kurskompendium - introduktion till R">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="description" content="Kurskompendium - introduktion till R" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kurskompendium - introduktion till R" />
   <meta property="og:type" content="book" />
@@ -25,19 +24,22 @@
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 
-<link rel="next" href="utforska-data.html">
+<link rel="next" href="utforska-data.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -45,34 +47,37 @@
 
 
 
-<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
-<script src="libs/str_view-binding-1.3.1/str_view.js"></script>
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -128,300 +133,707 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduktion</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#basics"><i class="fa fa-check"></i><b>1.1</b> Basics</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#r-konsolen"><i class="fa fa-check"></i><b>1.2</b> R-konsolen</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hjalpfunktioner"><i class="fa fa-check"></i><b>1.4</b> Hjälpfunktioner</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hjälpfunktioner"><i class="fa fa-check"></i><b>1.4</b> Hjälpfunktioner</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="utforska-data.html"><a href="utforska-data.html"><i class="fa fa-check"></i><b>2</b> Utforska data</a></li>
-<li class="chapter" data-level="3" data-path="visualisering.html"><a href="visualisering.html"><i class="fa fa-check"></i><b>3</b> Visualisering</a><ul>
-<li class="chapter" data-level="3.1" data-path="visualisering.html"><a href="visualisering.html#ett-forsta-diagram"><i class="fa fa-check"></i><b>3.1</b> Ett första diagram</a><ul>
+<li class="chapter" data-level="3" data-path="visualisering.html"><a href="visualisering.html"><i class="fa fa-check"></i><b>3</b> Visualisering</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="visualisering.html"><a href="visualisering.html#ett-första-diagram"><i class="fa fa-check"></i><b>3.1</b> Ett första diagram</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="visualisering.html"><a href="visualisering.html#ladda-data"><i class="fa fa-check"></i><b>3.1.1</b> Ladda data</a></li>
 <li class="chapter" data-level="3.1.2" data-path="visualisering.html"><a href="visualisering.html#skapa-en-ggplot"><i class="fa fa-check"></i><b>3.1.2</b> Skapa en ggplot</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="visualisering.html"><a href="visualisering.html#en-grafikmall"><i class="fa fa-check"></i><b>3.2</b> En grafikmall</a></li>
-<li class="chapter" data-level="3.3" data-path="visualisering.html"><a href="visualisering.html#ovningar"><i class="fa fa-check"></i><b>3.3</b> Övningar</a></li>
+<li class="chapter" data-level="3.3" data-path="visualisering.html"><a href="visualisering.html#övningar"><i class="fa fa-check"></i><b>3.3</b> Övningar</a></li>
 <li class="chapter" data-level="3.4" data-path="visualisering.html"><a href="visualisering.html#aes-funktionen-och-mappings"><i class="fa fa-check"></i><b>3.4</b> <code>aes()</code>-funktionen och mappings</a></li>
-<li class="chapter" data-level="3.5" data-path="visualisering.html"><a href="visualisering.html#ovningar-1"><i class="fa fa-check"></i><b>3.5</b> Övningar</a></li>
+<li class="chapter" data-level="3.5" data-path="visualisering.html"><a href="visualisering.html#övningar-1"><i class="fa fa-check"></i><b>3.5</b> Övningar</a></li>
 <li class="chapter" data-level="3.6" data-path="visualisering.html"><a href="visualisering.html#vanliga-problem"><i class="fa fa-check"></i><b>3.6</b> Vanliga problem</a></li>
 <li class="chapter" data-level="3.7" data-path="visualisering.html"><a href="visualisering.html#facets"><i class="fa fa-check"></i><b>3.7</b> Facets</a></li>
-<li class="chapter" data-level="3.8" data-path="visualisering.html"><a href="visualisering.html#ovningar-2"><i class="fa fa-check"></i><b>3.8</b> Övningar</a></li>
+<li class="chapter" data-level="3.8" data-path="visualisering.html"><a href="visualisering.html#övningar-2"><i class="fa fa-check"></i><b>3.8</b> Övningar</a></li>
 <li class="chapter" data-level="3.9" data-path="visualisering.html"><a href="visualisering.html#geometriska-objekt---geoms"><i class="fa fa-check"></i><b>3.9</b> “Geometriska” objekt - geoms</a></li>
-<li class="chapter" data-level="3.10" data-path="visualisering.html"><a href="visualisering.html#ovningar-3"><i class="fa fa-check"></i><b>3.10</b> Övningar</a></li>
+<li class="chapter" data-level="3.10" data-path="visualisering.html"><a href="visualisering.html#övningar-3"><i class="fa fa-check"></i><b>3.10</b> Övningar</a></li>
 <li class="chapter" data-level="3.11" data-path="visualisering.html"><a href="visualisering.html#statistiska-transformationer"><i class="fa fa-check"></i><b>3.11</b> Statistiska transformationer</a></li>
-<li class="chapter" data-level="3.12" data-path="visualisering.html"><a href="visualisering.html#ovningar-4"><i class="fa fa-check"></i><b>3.12</b> Övningar</a></li>
+<li class="chapter" data-level="3.12" data-path="visualisering.html"><a href="visualisering.html#övningar-4"><i class="fa fa-check"></i><b>3.12</b> Övningar</a></li>
 <li class="chapter" data-level="3.13" data-path="visualisering.html"><a href="visualisering.html#positionering"><i class="fa fa-check"></i><b>3.13</b> Positionering</a></li>
-<li class="chapter" data-level="3.14" data-path="visualisering.html"><a href="visualisering.html#ovningar-5"><i class="fa fa-check"></i><b>3.14</b> Övningar</a></li>
+<li class="chapter" data-level="3.14" data-path="visualisering.html"><a href="visualisering.html#övningar-5"><i class="fa fa-check"></i><b>3.14</b> Övningar</a></li>
 <li class="chapter" data-level="3.15" data-path="visualisering.html"><a href="visualisering.html#koordinatsystem"><i class="fa fa-check"></i><b>3.15</b> Koordinatsystem</a></li>
-<li class="chapter" data-level="3.16" data-path="visualisering.html"><a href="visualisering.html#ovningar-6"><i class="fa fa-check"></i><b>3.16</b> Övningar</a></li>
+<li class="chapter" data-level="3.16" data-path="visualisering.html"><a href="visualisering.html#övningar-6"><i class="fa fa-check"></i><b>3.16</b> Övningar</a></li>
 <li class="chapter" data-level="3.17" data-path="visualisering.html"><a href="visualisering.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>3.17</b> “The layered grammar of graphics”</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="workflow-basics.html"><a href="workflow-basics.html"><i class="fa fa-check"></i><b>4</b> Workflow: Basics</a><ul>
+<li class="chapter" data-level="4" data-path="workflow-basics.html"><a href="workflow-basics.html"><i class="fa fa-check"></i><b>4</b> Workflow: Basics</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="workflow-basics.html"><a href="workflow-basics.html#skriva-kod"><i class="fa fa-check"></i><b>4.1</b> Skriva kod</a></li>
 <li class="chapter" data-level="4.2" data-path="workflow-basics.html"><a href="workflow-basics.html#anropa-funktioner"><i class="fa fa-check"></i><b>4.2</b> Anropa funktioner</a></li>
-<li class="chapter" data-level="4.3" data-path="workflow-basics.html"><a href="workflow-basics.html#ovningar-7"><i class="fa fa-check"></i><b>4.3</b> Övningar</a></li>
+<li class="chapter" data-level="4.3" data-path="workflow-basics.html"><a href="workflow-basics.html#övningar-7"><i class="fa fa-check"></i><b>4.3</b> Övningar</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="transformering-av-data.html"><a href="transformering-av-data.html"><i class="fa fa-check"></i><b>5</b> Transformering av data</a><ul>
+<li class="chapter" data-level="5" data-path="transformering-av-data.html"><a href="transformering-av-data.html"><i class="fa fa-check"></i><b>5</b> Transformering av data</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#introduktion-1"><i class="fa fa-check"></i><b>5.1</b> Introduktion</a></li>
-<li class="chapter" data-level="5.2" data-path="transformering-av-data.html"><a href="transformering-av-data.html#forberedelser"><i class="fa fa-check"></i><b>5.2</b> Förberedelser</a></li>
-<li class="chapter" data-level="5.3" data-path="transformering-av-data.html"><a href="transformering-av-data.html#dplyr-grunder"><i class="fa fa-check"></i><b>5.3</b> <code>dplyr</code> grunder</a><ul>
+<li class="chapter" data-level="5.2" data-path="transformering-av-data.html"><a href="transformering-av-data.html#förberedelser"><i class="fa fa-check"></i><b>5.2</b> Förberedelser</a></li>
+<li class="chapter" data-level="5.3" data-path="transformering-av-data.html"><a href="transformering-av-data.html#dplyr-grunder"><i class="fa fa-check"></i><b>5.3</b> <code>dplyr</code> grunder</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#filtrera-raderposter-med-filter"><i class="fa fa-check"></i><b>5.3.1</b> Filtrera rader/poster med <code>filter()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-8"><i class="fa fa-check"></i><b>5.4</b> Övningar</a></li>
+<li class="chapter" data-level="5.4" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-8"><i class="fa fa-check"></i><b>5.4</b> Övningar</a></li>
 <li class="chapter" data-level="5.5" data-path="transformering-av-data.html"><a href="transformering-av-data.html#arrangera-poster-med-arrange"><i class="fa fa-check"></i><b>5.5</b> Arrangera poster med <code>arrange()</code></a></li>
-<li class="chapter" data-level="5.6" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-9"><i class="fa fa-check"></i><b>5.6</b> Övningar</a></li>
-<li class="chapter" data-level="5.7" data-path="transformering-av-data.html"><a href="transformering-av-data.html#valj-kolumner-med-select"><i class="fa fa-check"></i><b>5.7</b> Välj kolumner med <code>select()</code></a></li>
-<li class="chapter" data-level="5.8" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-10"><i class="fa fa-check"></i><b>5.8</b> Övningar</a></li>
-<li class="chapter" data-level="5.9" data-path="transformering-av-data.html"><a href="transformering-av-data.html#lagg-till-flera-variabler-med-hjalp-av-mutate"><i class="fa fa-check"></i><b>5.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a><ul>
-<li class="chapter" data-level="5.9.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#funktioner-och-operatorer-att-anvandas-med-mutate"><i class="fa fa-check"></i><b>5.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
+<li class="chapter" data-level="5.6" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-9"><i class="fa fa-check"></i><b>5.6</b> Övningar</a></li>
+<li class="chapter" data-level="5.7" data-path="transformering-av-data.html"><a href="transformering-av-data.html#välj-kolumner-med-select"><i class="fa fa-check"></i><b>5.7</b> Välj kolumner med <code>select()</code></a></li>
+<li class="chapter" data-level="5.8" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-10"><i class="fa fa-check"></i><b>5.8</b> Övningar</a></li>
+<li class="chapter" data-level="5.9" data-path="transformering-av-data.html"><a href="transformering-av-data.html#lägg-till-flera-variabler-med-hjälp-av-mutate"><i class="fa fa-check"></i><b>5.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="5.9.1" data-path="transformering-av-data.html"><a href="transformering-av-data.html#funktioner-och-operatorer-att-användas-med-mutate"><i class="fa fa-check"></i><b>5.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-11"><i class="fa fa-check"></i><b>5.10</b> Övningar</a></li>
+<li class="chapter" data-level="5.10" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-11"><i class="fa fa-check"></i><b>5.10</b> Övningar</a></li>
 <li class="chapter" data-level="5.11" data-path="transformering-av-data.html"><a href="transformering-av-data.html#grupperade-summeringar-med-summarise"><i class="fa fa-check"></i><b>5.11</b> Grupperade summeringar med <code>summarise()</code></a></li>
 <li class="chapter" data-level="5.12" data-path="transformering-av-data.html"><a href="transformering-av-data.html#kombinera-multipla-operationer-med-the-pipe"><i class="fa fa-check"></i><b>5.12</b> Kombinera multipla operationer med the pipe</a></li>
 <li class="chapter" data-level="5.13" data-path="transformering-av-data.html"><a href="transformering-av-data.html#missing-values"><i class="fa fa-check"></i><b>5.13</b> Missing values</a></li>
 <li class="chapter" data-level="5.14" data-path="transformering-av-data.html"><a href="transformering-av-data.html#antal-counts"><i class="fa fa-check"></i><b>5.14</b> Antal (counts)</a></li>
-<li class="chapter" data-level="5.15" data-path="transformering-av-data.html"><a href="transformering-av-data.html#anvandbara-summeringsfunktioner"><i class="fa fa-check"></i><b>5.15</b> Användbara summeringsfunktioner</a></li>
+<li class="chapter" data-level="5.15" data-path="transformering-av-data.html"><a href="transformering-av-data.html#användbara-summeringsfunktioner"><i class="fa fa-check"></i><b>5.15</b> Användbara summeringsfunktioner</a></li>
 <li class="chapter" data-level="5.16" data-path="transformering-av-data.html"><a href="transformering-av-data.html#gruppera-med-flera-variabler"><i class="fa fa-check"></i><b>5.16</b> Gruppera med flera variabler</a></li>
 <li class="chapter" data-level="5.17" data-path="transformering-av-data.html"><a href="transformering-av-data.html#av-gruppera"><i class="fa fa-check"></i><b>5.17</b> Av-gruppera</a></li>
-<li class="chapter" data-level="5.18" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-12"><i class="fa fa-check"></i><b>5.18</b> Övningar</a></li>
-<li class="chapter" data-level="5.19" data-path="transformering-av-data.html"><a href="transformering-av-data.html#grupperade-berakningar-och-filtreringar"><i class="fa fa-check"></i><b>5.19</b> Grupperade beräkningar och filtreringar</a></li>
-<li class="chapter" data-level="5.20" data-path="transformering-av-data.html"><a href="transformering-av-data.html#ovningar-13"><i class="fa fa-check"></i><b>5.20</b> Övningar</a></li>
+<li class="chapter" data-level="5.18" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-12"><i class="fa fa-check"></i><b>5.18</b> Övningar</a></li>
+<li class="chapter" data-level="5.19" data-path="transformering-av-data.html"><a href="transformering-av-data.html#grupperade-beräkningar-och-filtreringar"><i class="fa fa-check"></i><b>5.19</b> Grupperade beräkningar och filtreringar</a></li>
+<li class="chapter" data-level="5.20" data-path="transformering-av-data.html"><a href="transformering-av-data.html#övningar-13"><i class="fa fa-check"></i><b>5.20</b> Övningar</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="arbetsflode-scripts.html"><a href="arbetsflode-scripts.html"><i class="fa fa-check"></i><b>6</b> Arbetsflöde: scripts</a><ul>
-<li class="chapter" data-level="6.1" data-path="arbetsflode-scripts.html"><a href="arbetsflode-scripts.html#att-kora-kod"><i class="fa fa-check"></i><b>6.1</b> Att köra kod</a></li>
-<li class="chapter" data-level="6.2" data-path="arbetsflode-scripts.html"><a href="arbetsflode-scripts.html#diagnostics"><i class="fa fa-check"></i><b>6.2</b> Diagnostics</a></li>
-<li class="chapter" data-level="6.3" data-path="arbetsflode-scripts.html"><a href="arbetsflode-scripts.html#praktik"><i class="fa fa-check"></i><b>6.3</b> Praktik</a></li>
+<li class="chapter" data-level="6" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html"><i class="fa fa-check"></i><b>6</b> Arbetsflöde: scripts</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html#att-köra-kod"><i class="fa fa-check"></i><b>6.1</b> Att köra kod</a></li>
+<li class="chapter" data-level="6.2" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html#diagnostics"><i class="fa fa-check"></i><b>6.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="6.3" data-path="arbetsflöde-scripts.html"><a href="arbetsflöde-scripts.html#praktik"><i class="fa fa-check"></i><b>6.3</b> Praktik</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html"><i class="fa fa-check"></i><b>7</b> Explorativ analys av data</a><ul>
+<li class="chapter" data-level="7" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html"><i class="fa fa-check"></i><b>7</b> Explorativ analys av data</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#introduktion-2"><i class="fa fa-check"></i><b>7.1</b> Introduktion</a></li>
-<li class="chapter" data-level="7.2" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#fragor"><i class="fa fa-check"></i><b>7.2</b> Frågor</a></li>
+<li class="chapter" data-level="7.2" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#frågor"><i class="fa fa-check"></i><b>7.2</b> Frågor</a></li>
 <li class="chapter" data-level="7.3" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#variation"><i class="fa fa-check"></i><b>7.3</b> Variation</a></li>
-<li class="chapter" data-level="7.4" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#visualisera-fordelningar"><i class="fa fa-check"></i><b>7.4</b> Visualisera fördelningar</a></li>
+<li class="chapter" data-level="7.4" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#visualisera-fördelningar"><i class="fa fa-check"></i><b>7.4</b> Visualisera fördelningar</a></li>
 <li class="chapter" data-level="7.5" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#outliers"><i class="fa fa-check"></i><b>7.5</b> Outliers</a></li>
-<li class="chapter" data-level="7.6" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#ovningar-14"><i class="fa fa-check"></i><b>7.6</b> Övningar</a></li>
+<li class="chapter" data-level="7.6" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#övningar-14"><i class="fa fa-check"></i><b>7.6</b> Övningar</a></li>
 <li class="chapter" data-level="7.7" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#missing-values-1"><i class="fa fa-check"></i><b>7.7</b> Missing values</a></li>
-<li class="chapter" data-level="7.8" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#samvarians---covariance"><i class="fa fa-check"></i><b>7.8</b> Samvarians - covariance</a><ul>
+<li class="chapter" data-level="7.8" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#samvarians---covariance"><i class="fa fa-check"></i><b>7.8</b> Samvarians - covariance</a>
+<ul>
 <li class="chapter" data-level="7.8.1" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#en-kategorisk-och-en-kontinuerlig-variabel"><i class="fa fa-check"></i><b>7.8.1</b> En kategorisk och en kontinuerlig variabel</a></li>
-<li class="chapter" data-level="7.8.2" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#ovningar-15"><i class="fa fa-check"></i><b>7.8.2</b> Övningar</a></li>
-<li class="chapter" data-level="7.8.3" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#tva-kategoriska-variabler"><i class="fa fa-check"></i><b>7.8.3</b> Två kategoriska variabler</a></li>
-<li class="chapter" data-level="7.8.4" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#tva-kontinuerliga-variabler"><i class="fa fa-check"></i><b>7.8.4</b> Två kontinuerliga variabler</a></li>
+<li class="chapter" data-level="7.8.2" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#övningar-15"><i class="fa fa-check"></i><b>7.8.2</b> Övningar</a></li>
+<li class="chapter" data-level="7.8.3" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#två-kategoriska-variabler"><i class="fa fa-check"></i><b>7.8.3</b> Två kategoriska variabler</a></li>
+<li class="chapter" data-level="7.8.4" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#två-kontinuerliga-variabler"><i class="fa fa-check"></i><b>7.8.4</b> Två kontinuerliga variabler</a></li>
 </ul></li>
 <li class="chapter" data-level="7.9" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#ggplot2-calls"><i class="fa fa-check"></i><b>7.9</b> <code>ggplot2</code> calls</a></li>
-<li class="chapter" data-level="7.10" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#att-lara-mer"><i class="fa fa-check"></i><b>7.10</b> Att lära mer</a></li>
+<li class="chapter" data-level="7.10" data-path="explorativ-analys-av-data.html"><a href="explorativ-analys-av-data.html#att-lära-mer"><i class="fa fa-check"></i><b>7.10</b> Att lära mer</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="arbetsflode-projekt.html"><a href="arbetsflode-projekt.html"><i class="fa fa-check"></i><b>8</b> Arbetsflöde: Projekt</a><ul>
-<li class="chapter" data-level="8.1" data-path="arbetsflode-projekt.html"><a href="arbetsflode-projekt.html#vad-ar-viktigt"><i class="fa fa-check"></i><b>8.1</b> Vad är viktigt?</a></li>
-<li class="chapter" data-level="8.2" data-path="arbetsflode-projekt.html"><a href="arbetsflode-projekt.html#vart-lever-analysen-arbetsbiblioteket"><i class="fa fa-check"></i><b>8.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
-<li class="chapter" data-level="8.3" data-path="arbetsflode-projekt.html"><a href="arbetsflode-projekt.html#sokvagar-och-bibliotekmappar"><i class="fa fa-check"></i><b>8.3</b> Sökvägar och bibliotek/mappar</a></li>
-<li class="chapter" data-level="8.4" data-path="arbetsflode-projekt.html"><a href="arbetsflode-projekt.html#rstudio-projects-viktigt"><i class="fa fa-check"></i><b>8.4</b> RStudio projects VIKTIGT!</a></li>
-<li class="chapter" data-level="8.5" data-path="arbetsflode-projekt.html"><a href="arbetsflode-projekt.html#sammanfattningsvis"><i class="fa fa-check"></i><b>8.5</b> Sammanfattningsvis</a></li>
+<li class="chapter" data-level="8" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html"><i class="fa fa-check"></i><b>8</b> Arbetsflöde: Projekt</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#vad-är-viktigt"><i class="fa fa-check"></i><b>8.1</b> Vad är viktigt?</a></li>
+<li class="chapter" data-level="8.2" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#vart-lever-analysen-arbetsbiblioteket"><i class="fa fa-check"></i><b>8.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
+<li class="chapter" data-level="8.3" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#sökvägar-och-bibliotekmappar"><i class="fa fa-check"></i><b>8.3</b> Sökvägar och bibliotek/mappar</a></li>
+<li class="chapter" data-level="8.4" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#rstudio-projects-viktigt"><i class="fa fa-check"></i><b>8.4</b> RStudio projects VIKTIGT!</a></li>
+<li class="chapter" data-level="8.5" data-path="arbetsflöde-projekt.html"><a href="arbetsflöde-projekt.html#sammanfattningsvis"><i class="fa fa-check"></i><b>8.5</b> Sammanfattningsvis</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="wrangle-att-brottas-med-data.html"><a href="wrangle-att-brottas-med-data.html"><i class="fa fa-check"></i><b>9</b> Wrangle - att brottas med data</a><ul>
+<li class="chapter" data-level="9" data-path="wrangle-att-brottas-med-data.html"><a href="wrangle-att-brottas-med-data.html"><i class="fa fa-check"></i><b>9</b> Wrangle - att brottas med data</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="wrangle-att-brottas-med-data.html"><a href="wrangle-att-brottas-med-data.html#introduktion-3"><i class="fa fa-check"></i><b>9.1</b> Introduktion</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a><ul>
-<li class="chapter" data-level="10.1" data-path="tibbles.html"><a href="tibbles.html#skapa-tibbles"><i class="fa fa-check"></i><b>10.1</b> Skapa tibbles</a><ul>
+<li class="chapter" data-level="10" data-path="tibbles.html"><a href="tibbles.html"><i class="fa fa-check"></i><b>10</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="tibbles.html"><a href="tibbles.html#skapa-tibbles"><i class="fa fa-check"></i><b>10.1</b> Skapa tibbles</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="tibbles.html"><a href="tibbles.html#tibbles-vs-data-frames"><i class="fa fa-check"></i><b>10.1.1</b> Tibbles vs data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="tibbles.html"><a href="tibbles.html#utskrift-printing"><i class="fa fa-check"></i><b>10.2</b> Utskrift (Printing)</a></li>
 <li class="chapter" data-level="10.3" data-path="tibbles.html"><a href="tibbles.html#urval"><i class="fa fa-check"></i><b>10.3</b> Urval</a></li>
-<li class="chapter" data-level="10.4" data-path="tibbles.html"><a href="tibbles.html#anvanda-aldre-kod"><i class="fa fa-check"></i><b>10.4</b> Använda äldre kod</a></li>
+<li class="chapter" data-level="10.4" data-path="tibbles.html"><a href="tibbles.html#använda-äldre-kod"><i class="fa fa-check"></i><b>10.4</b> Använda äldre kod</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="importera-data.html"><a href="importera-data.html"><i class="fa fa-check"></i><b>11</b> Importera data</a><ul>
-<li class="chapter" data-level="11.1" data-path="importera-data.html"><a href="importera-data.html#jamforelse-med-base-r"><i class="fa fa-check"></i><b>11.1</b> Jämförelse med base R</a></li>
-<li class="chapter" data-level="11.2" data-path="importera-data.html"><a href="importera-data.html#ovningar-16"><i class="fa fa-check"></i><b>11.2</b> Övningar</a></li>
-<li class="chapter" data-level="11.3" data-path="importera-data.html"><a href="importera-data.html#omvandla-vektorer"><i class="fa fa-check"></i><b>11.3</b> Omvandla vektorer</a><ul>
+<li class="chapter" data-level="11" data-path="importera-data.html"><a href="importera-data.html"><i class="fa fa-check"></i><b>11</b> Importera data</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="importera-data.html"><a href="importera-data.html#jämförelse-med-base-r"><i class="fa fa-check"></i><b>11.1</b> Jämförelse med base R</a></li>
+<li class="chapter" data-level="11.2" data-path="importera-data.html"><a href="importera-data.html#övningar-16"><i class="fa fa-check"></i><b>11.2</b> Övningar</a></li>
+<li class="chapter" data-level="11.3" data-path="importera-data.html"><a href="importera-data.html#omvandla-vektorer"><i class="fa fa-check"></i><b>11.3</b> Omvandla vektorer</a>
+<ul>
 <li class="chapter" data-level="11.3.1" data-path="importera-data.html"><a href="importera-data.html#numeriska-variabler"><i class="fa fa-check"></i><b>11.3.1</b> Numeriska variabler</a></li>
-<li class="chapter" data-level="11.3.2" data-path="importera-data.html"><a href="importera-data.html#textstrangar"><i class="fa fa-check"></i><b>11.3.2</b> Textsträngar</a></li>
+<li class="chapter" data-level="11.3.2" data-path="importera-data.html"><a href="importera-data.html#textsträngar"><i class="fa fa-check"></i><b>11.3.2</b> Textsträngar</a></li>
 <li class="chapter" data-level="11.3.3" data-path="importera-data.html"><a href="importera-data.html#kategoriska-data"><i class="fa fa-check"></i><b>11.3.3</b> Kategoriska data</a></li>
 <li class="chapter" data-level="11.3.4" data-path="importera-data.html"><a href="importera-data.html#datum-och-tid"><i class="fa fa-check"></i><b>11.3.4</b> Datum och tid</a></li>
-<li class="chapter" data-level="11.3.5" data-path="importera-data.html"><a href="importera-data.html#ovningar-17"><i class="fa fa-check"></i><b>11.3.5</b> Övningar</a></li>
+<li class="chapter" data-level="11.3.5" data-path="importera-data.html"><a href="importera-data.html#övningar-17"><i class="fa fa-check"></i><b>11.3.5</b> Övningar</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="importera-data.html"><a href="importera-data.html#hur-readr-plockar-isar-parse-en-fil"><i class="fa fa-check"></i><b>11.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
+<li class="chapter" data-level="11.4" data-path="importera-data.html"><a href="importera-data.html#hur-readr-plockar-isär-parse-en-fil"><i class="fa fa-check"></i><b>11.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
 <li class="chapter" data-level="11.5" data-path="importera-data.html"><a href="importera-data.html#problem"><i class="fa fa-check"></i><b>11.5</b> Problem</a></li>
 <li class="chapter" data-level="11.6" data-path="importera-data.html"><a href="importera-data.html#skriva-till-en-fil"><i class="fa fa-check"></i><b>11.6</b> Skriva till en fil</a></li>
 <li class="chapter" data-level="11.7" data-path="importera-data.html"><a href="importera-data.html#andra-datatyper"><i class="fa fa-check"></i><b>11.7</b> Andra datatyper</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="excel-och-r.html"><a href="excel-och-r.html"><i class="fa fa-check"></i><b>12</b> Excel och R</a><ul>
+<li class="chapter" data-level="12" data-path="excel-och-r.html"><a href="excel-och-r.html"><i class="fa fa-check"></i><b>12</b> Excel och R</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="excel-och-r.html"><a href="excel-och-r.html#skriv-till-en-excelfil"><i class="fa fa-check"></i><b>12.1</b> Skriv till en excelfil</a></li>
-<li class="chapter" data-level="12.2" data-path="excel-och-r.html"><a href="excel-och-r.html#lasa-in-excel"><i class="fa fa-check"></i><b>12.2</b> Läsa in excel</a></li>
-<li class="chapter" data-level="12.3" data-path="excel-och-r.html"><a href="excel-och-r.html#ytterligare-resurser-for-att-hantera-excel-filer-i-r"><i class="fa fa-check"></i><b>12.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+<li class="chapter" data-level="12.2" data-path="excel-och-r.html"><a href="excel-och-r.html#läsa-in-excel"><i class="fa fa-check"></i><b>12.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="12.3" data-path="excel-och-r.html"><a href="excel-och-r.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r"><i class="fa fa-check"></i><b>12.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html"><i class="fa fa-check"></i><b>13</b> Städa data (tidy data)</a><ul>
-<li class="chapter" data-level="13.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#introduktion-4"><i class="fa fa-check"></i><b>13.1</b> Introduktion</a></li>
-<li class="chapter" data-level="13.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>13.2</b> Spreading and gathering</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#gathering"><i class="fa fa-check"></i><b>13.2.1</b> Gathering</a></li>
-<li class="chapter" data-level="13.2.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#spreading"><i class="fa fa-check"></i><b>13.2.2</b> Spreading</a></li>
+<li class="chapter" data-level="13" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html"><i class="fa fa-check"></i><b>13</b> Städa data (tidy data)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#introduktion-4"><i class="fa fa-check"></i><b>13.1</b> Introduktion</a></li>
+<li class="chapter" data-level="13.2" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#spreading-and-gathering"><i class="fa fa-check"></i><b>13.2</b> Spreading and gathering</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#gathering"><i class="fa fa-check"></i><b>13.2.1</b> Gathering</a></li>
+<li class="chapter" data-level="13.2.2" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#spreading"><i class="fa fa-check"></i><b>13.2.2</b> Spreading</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-18"><i class="fa fa-check"></i><b>13.3</b> Övningar</a></li>
-<li class="chapter" data-level="13.4" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#separera-och-forena"><i class="fa fa-check"></i><b>13.4</b> Separera och förena</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#separate"><i class="fa fa-check"></i><b>13.4.1</b> Separate</a></li>
-<li class="chapter" data-level="13.4.2" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#unite"><i class="fa fa-check"></i><b>13.4.2</b> Unite</a></li>
+<li class="chapter" data-level="13.3" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-18"><i class="fa fa-check"></i><b>13.3</b> Övningar</a></li>
+<li class="chapter" data-level="13.4" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#separera-och-förena"><i class="fa fa-check"></i><b>13.4</b> Separera och förena</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#separate"><i class="fa fa-check"></i><b>13.4.1</b> Separate</a></li>
+<li class="chapter" data-level="13.4.2" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#unite"><i class="fa fa-check"></i><b>13.4.2</b> Unite</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-19"><i class="fa fa-check"></i><b>13.5</b> Övningar</a></li>
-<li class="chapter" data-level="13.6" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#missing-values-2"><i class="fa fa-check"></i><b>13.6</b> Missing values</a></li>
-<li class="chapter" data-level="13.7" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-20"><i class="fa fa-check"></i><b>13.7</b> Övningar</a></li>
-<li class="chapter" data-level="13.8" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#en-case-study"><i class="fa fa-check"></i><b>13.8</b> En case study</a></li>
-<li class="chapter" data-level="13.9" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#ovningar-21"><i class="fa fa-check"></i><b>13.9</b> Övningar</a></li>
-<li class="chapter" data-level="13.10" data-path="stada-data-tidy-data.html"><a href="stada-data-tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>13.10</b> Non-tidy data</a></li>
+<li class="chapter" data-level="13.5" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-19"><i class="fa fa-check"></i><b>13.5</b> Övningar</a></li>
+<li class="chapter" data-level="13.6" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#missing-values-2"><i class="fa fa-check"></i><b>13.6</b> Missing values</a></li>
+<li class="chapter" data-level="13.7" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-20"><i class="fa fa-check"></i><b>13.7</b> Övningar</a></li>
+<li class="chapter" data-level="13.8" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#en-case-study"><i class="fa fa-check"></i><b>13.8</b> En case study</a></li>
+<li class="chapter" data-level="13.9" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#övningar-21"><i class="fa fa-check"></i><b>13.9</b> Övningar</a></li>
+<li class="chapter" data-level="13.10" data-path="städa-data-tidy-data.html"><a href="städa-data-tidy-data.html#non-tidy-data"><i class="fa fa-check"></i><b>13.10</b> Non-tidy data</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html"><i class="fa fa-check"></i><b>14</b> Relationer mellan datamängder</a><ul>
-<li class="chapter" data-level="14.1" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#introduktion-5"><i class="fa fa-check"></i><b>14.1</b> Introduktion</a></li>
-<li class="chapter" data-level="14.2" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#nycflights13"><i class="fa fa-check"></i><b>14.2</b> <code>nycflights13</code></a></li>
-<li class="chapter" data-level="14.3" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#keys"><i class="fa fa-check"></i><b>14.3</b> Keys</a></li>
-<li class="chapter" data-level="14.4" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#mutating-joins"><i class="fa fa-check"></i><b>14.4</b> <em>Mutating joins</em></a><ul>
-<li class="chapter" data-level="14.4.1" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#att-forsta-joins"><i class="fa fa-check"></i><b>14.4.1</b> Att förstå <em>joins</em></a></li>
-<li class="chapter" data-level="14.4.2" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#inner-join"><i class="fa fa-check"></i><b>14.4.2</b> Inner join</a></li>
-<li class="chapter" data-level="14.4.3" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#outer-joins"><i class="fa fa-check"></i><b>14.4.3</b> Outer joins</a></li>
-<li class="chapter" data-level="14.4.4" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#duplicate-keys"><i class="fa fa-check"></i><b>14.4.4</b> Duplicate keys</a></li>
-<li class="chapter" data-level="14.4.5" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#definiera-nyckel-kolumner-key-columns"><i class="fa fa-check"></i><b>14.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
-<li class="chapter" data-level="14.4.6" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#ovningar-22"><i class="fa fa-check"></i><b>14.4.6</b> Övningar</a></li>
+<li class="chapter" data-level="14" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html"><i class="fa fa-check"></i><b>14</b> Relationer mellan datamängder</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#introduktion-5"><i class="fa fa-check"></i><b>14.1</b> Introduktion</a></li>
+<li class="chapter" data-level="14.2" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#nycflights13"><i class="fa fa-check"></i><b>14.2</b> <code>nycflights13</code></a></li>
+<li class="chapter" data-level="14.3" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#keys"><i class="fa fa-check"></i><b>14.3</b> Keys</a></li>
+<li class="chapter" data-level="14.4" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#mutating-joins"><i class="fa fa-check"></i><b>14.4</b> <em>Mutating joins</em></a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#att-förstå-joins"><i class="fa fa-check"></i><b>14.4.1</b> Att förstå <em>joins</em></a></li>
+<li class="chapter" data-level="14.4.2" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#inner-join"><i class="fa fa-check"></i><b>14.4.2</b> Inner join</a></li>
+<li class="chapter" data-level="14.4.3" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#outer-joins"><i class="fa fa-check"></i><b>14.4.3</b> Outer joins</a></li>
+<li class="chapter" data-level="14.4.4" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#duplicate-keys"><i class="fa fa-check"></i><b>14.4.4</b> Duplicate keys</a></li>
+<li class="chapter" data-level="14.4.5" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#definiera-nyckel-kolumner-key-columns"><i class="fa fa-check"></i><b>14.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
+<li class="chapter" data-level="14.4.6" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#övningar-22"><i class="fa fa-check"></i><b>14.4.6</b> Övningar</a></li>
 </ul></li>
-<li class="chapter" data-level="14.5" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#filtering-joins"><i class="fa fa-check"></i><b>14.5</b> <em>Filtering joins</em></a></li>
-<li class="chapter" data-level="14.6" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#problem-med-joins"><i class="fa fa-check"></i><b>14.6</b> Problem med <em>joins</em></a></li>
-<li class="chapter" data-level="14.7" data-path="relationer-mellan-datamangder.html"><a href="relationer-mellan-datamangder.html#set-operations"><i class="fa fa-check"></i><b>14.7</b> Set operations</a></li>
+<li class="chapter" data-level="14.5" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#filtering-joins"><i class="fa fa-check"></i><b>14.5</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="14.6" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#problem-med-joins"><i class="fa fa-check"></i><b>14.6</b> Problem med <em>joins</em></a></li>
+<li class="chapter" data-level="14.7" data-path="relationer-mellan-datamängder.html"><a href="relationer-mellan-datamängder.html#set-operations"><i class="fa fa-check"></i><b>14.7</b> Set operations</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html"><i class="fa fa-check"></i><b>15</b> Textsträngar (strings)</a><ul>
-<li class="chapter" data-level="15.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#introduktion-6"><i class="fa fa-check"></i><b>15.1</b> Introduktion</a></li>
-<li class="chapter" data-level="15.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#basics-1"><i class="fa fa-check"></i><b>15.2</b> Basics</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#stringr-funktioner"><i class="fa fa-check"></i><b>15.2.1</b> <code>stringr</code>-funktioner</a></li>
-<li class="chapter" data-level="15.2.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#kombinera-strangar"><i class="fa fa-check"></i><b>15.2.2</b> Kombinera strängar</a></li>
-<li class="chapter" data-level="15.2.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#extrahera-delar-av-textstrangar-subsetting"><i class="fa fa-check"></i><b>15.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
-<li class="chapter" data-level="15.2.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ovningar-23"><i class="fa fa-check"></i><b>15.2.4</b> Övningar</a></li>
+<li class="chapter" data-level="15" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html"><i class="fa fa-check"></i><b>15</b> Textsträngar (strings)</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#introduktion-6"><i class="fa fa-check"></i><b>15.1</b> Introduktion</a></li>
+<li class="chapter" data-level="15.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#basics-1"><i class="fa fa-check"></i><b>15.2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#stringr-funktioner"><i class="fa fa-check"></i><b>15.2.1</b> <code>stringr</code>-funktioner</a></li>
+<li class="chapter" data-level="15.2.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#kombinera-strängar"><i class="fa fa-check"></i><b>15.2.2</b> Kombinera strängar</a></li>
+<li class="chapter" data-level="15.2.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#extrahera-delar-av-textsträngar-subsetting"><i class="fa fa-check"></i><b>15.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
+<li class="chapter" data-level="15.2.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#övningar-23"><i class="fa fa-check"></i><b>15.2.4</b> Övningar</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#matcha-textmonster-med-hjalp-av-regular-expressions"><i class="fa fa-check"></i><b>15.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a><ul>
-<li class="chapter" data-level="15.3.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#basic-matches"><i class="fa fa-check"></i><b>15.3.1</b> Basic matches</a></li>
-<li class="chapter" data-level="15.3.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ankare-anchors"><i class="fa fa-check"></i><b>15.3.2</b> Ankare (Anchors)</a></li>
-<li class="chapter" data-level="15.3.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#tecken-klasser"><i class="fa fa-check"></i><b>15.3.3</b> Tecken-klasser</a></li>
-<li class="chapter" data-level="15.3.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#repeterande-tecken"><i class="fa fa-check"></i><b>15.3.4</b> Repeterande tecken</a></li>
+<li class="chapter" data-level="15.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#matcha-textmönster-med-hjälp-av-regular-expressions"><i class="fa fa-check"></i><b>15.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#basic-matches"><i class="fa fa-check"></i><b>15.3.1</b> Basic matches</a></li>
+<li class="chapter" data-level="15.3.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#ankare-anchors"><i class="fa fa-check"></i><b>15.3.2</b> Ankare (Anchors)</a></li>
+<li class="chapter" data-level="15.3.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#tecken-klasser"><i class="fa fa-check"></i><b>15.3.3</b> Tecken-klasser</a></li>
+<li class="chapter" data-level="15.3.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#repeterande-tecken"><i class="fa fa-check"></i><b>15.3.4</b> Repeterande tecken</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#verktyg"><i class="fa fa-check"></i><b>15.4</b> Verktyg</a><ul>
-<li class="chapter" data-level="15.4.1" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#upptack-matchningar"><i class="fa fa-check"></i><b>15.4.1</b> Upptäck matchningar</a></li>
-<li class="chapter" data-level="15.4.2" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ovningar-26"><i class="fa fa-check"></i><b>15.4.2</b> Övningar</a></li>
-<li class="chapter" data-level="15.4.3" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#extrahera-matchningar"><i class="fa fa-check"></i><b>15.4.3</b> Extrahera matchningar</a></li>
-<li class="chapter" data-level="15.4.4" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#gruppereade-matchningar"><i class="fa fa-check"></i><b>15.4.4</b> Gruppereade matchningar</a></li>
-<li class="chapter" data-level="15.4.5" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#ersatt-matchningar"><i class="fa fa-check"></i><b>15.4.5</b> Ersätt matchningar</a></li>
-<li class="chapter" data-level="15.4.6" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#dela-upp-textstrangar"><i class="fa fa-check"></i><b>15.4.6</b> Dela upp textsträngar</a></li>
-<li class="chapter" data-level="15.4.7" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#hitta-matchningar"><i class="fa fa-check"></i><b>15.4.7</b> Hitta matchningar</a></li>
+<li class="chapter" data-level="15.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#verktyg"><i class="fa fa-check"></i><b>15.4</b> Verktyg</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#upptäck-matchningar"><i class="fa fa-check"></i><b>15.4.1</b> Upptäck matchningar</a></li>
+<li class="chapter" data-level="15.4.2" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#övningar-26"><i class="fa fa-check"></i><b>15.4.2</b> Övningar</a></li>
+<li class="chapter" data-level="15.4.3" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#extrahera-matchningar"><i class="fa fa-check"></i><b>15.4.3</b> Extrahera matchningar</a></li>
+<li class="chapter" data-level="15.4.4" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#gruppereade-matchningar"><i class="fa fa-check"></i><b>15.4.4</b> Gruppereade matchningar</a></li>
+<li class="chapter" data-level="15.4.5" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#ersätt-matchningar"><i class="fa fa-check"></i><b>15.4.5</b> Ersätt matchningar</a></li>
+<li class="chapter" data-level="15.4.6" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#dela-upp-textsträngar"><i class="fa fa-check"></i><b>15.4.6</b> Dela upp textsträngar</a></li>
+<li class="chapter" data-level="15.4.7" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#hitta-matchningar"><i class="fa fa-check"></i><b>15.4.7</b> Hitta matchningar</a></li>
 </ul></li>
-<li class="chapter" data-level="15.5" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#andra-typer-av-monster"><i class="fa fa-check"></i><b>15.5</b> Andra typer av mönster</a></li>
-<li class="chapter" data-level="15.6" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#andra-typer-av-regexps"><i class="fa fa-check"></i><b>15.6</b> Andra typer av regexps</a></li>
-<li class="chapter" data-level="15.7" data-path="textstrangar-strings.html"><a href="textstrangar-strings.html#stringi"><i class="fa fa-check"></i><b>15.7</b> stringi</a></li>
+<li class="chapter" data-level="15.5" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#andra-typer-av-mönster"><i class="fa fa-check"></i><b>15.5</b> Andra typer av mönster</a></li>
+<li class="chapter" data-level="15.6" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#andra-typer-av-regexps"><i class="fa fa-check"></i><b>15.6</b> Andra typer av regexps</a></li>
+<li class="chapter" data-level="15.7" data-path="textsträngar-strings.html"><a href="textsträngar-strings.html#stringi"><i class="fa fa-check"></i><b>15.7</b> stringi</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html"><i class="fa fa-check"></i><b>16</b> Kategoriska variabler (Factors)</a><ul>
+<li class="chapter" data-level="16" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html"><i class="fa fa-check"></i><b>16</b> Kategoriska variabler (Factors)</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#introduktion-7"><i class="fa fa-check"></i><b>16.1</b> Introduktion</a></li>
 <li class="chapter" data-level="16.2" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#skapa-factors"><i class="fa fa-check"></i><b>16.2</b> Skapa factors</a></li>
 <li class="chapter" data-level="16.3" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#general-social-survey"><i class="fa fa-check"></i><b>16.3</b> General Social Survey</a></li>
 <li class="chapter" data-level="16.4" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-ordningen-av-factors"><i class="fa fa-check"></i><b>16.4</b> Modifiera ordningen av factors</a></li>
 <li class="chapter" data-level="16.5" data-path="kategoriska-variabler-factors.html"><a href="kategoriska-variabler-factors.html#modifiera-factor-levels"><i class="fa fa-check"></i><b>16.5</b> Modifiera factor levels</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html"><i class="fa fa-check"></i><b>17</b> Datum och tidsformat</a><ul>
+<li class="chapter" data-level="17" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html"><i class="fa fa-check"></i><b>17</b> Datum och tidsformat</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#introduktion-8"><i class="fa fa-check"></i><b>17.1</b> Introduktion</a></li>
-<li class="chapter" data-level="17.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#skapa-datum-och-tid"><i class="fa fa-check"></i><b>17.2</b> Skapa datum och tid</a><ul>
-<li class="chapter" data-level="17.2.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-textstrangar"><i class="fa fa-check"></i><b>17.2.1</b> Från textsträngar</a></li>
-<li class="chapter" data-level="17.2.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-enskilda-kompnenter"><i class="fa fa-check"></i><b>17.2.2</b> Från enskilda kompnenter</a></li>
-<li class="chapter" data-level="17.2.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#fran-andra-datumtid-format"><i class="fa fa-check"></i><b>17.2.3</b> Från andra datum/tid-format</a></li>
-<li class="chapter" data-level="17.2.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ovningar-27"><i class="fa fa-check"></i><b>17.2.4</b> Övningar</a></li>
+<li class="chapter" data-level="17.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#skapa-datum-och-tid"><i class="fa fa-check"></i><b>17.2</b> Skapa datum och tid</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#från-textsträngar"><i class="fa fa-check"></i><b>17.2.1</b> Från textsträngar</a></li>
+<li class="chapter" data-level="17.2.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#från-enskilda-kompnenter"><i class="fa fa-check"></i><b>17.2.2</b> Från enskilda kompnenter</a></li>
+<li class="chapter" data-level="17.2.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#från-andra-datumtid-format"><i class="fa fa-check"></i><b>17.2.3</b> Från andra datum/tid-format</a></li>
+<li class="chapter" data-level="17.2.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#övningar-27"><i class="fa fa-check"></i><b>17.2.4</b> Övningar</a></li>
 </ul></li>
-<li class="chapter" data-level="17.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#datumtid-komponenter"><i class="fa fa-check"></i><b>17.3</b> Datum/tid-komponenter</a><ul>
+<li class="chapter" data-level="17.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#datumtid-komponenter"><i class="fa fa-check"></i><b>17.3</b> Datum/tid-komponenter</a>
+<ul>
 <li class="chapter" data-level="17.3.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#extrahera-komponenter"><i class="fa fa-check"></i><b>17.3.1</b> Extrahera komponenter</a></li>
 <li class="chapter" data-level="17.3.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#avrundning"><i class="fa fa-check"></i><b>17.3.2</b> Avrundning</a></li>
 <li class="chapter" data-level="17.3.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#ange-komponenter"><i class="fa fa-check"></i><b>17.3.3</b> Ange komponenter</a></li>
 </ul></li>
-<li class="chapter" data-level="17.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#tidsintervall"><i class="fa fa-check"></i><b>17.4</b> Tidsintervall</a><ul>
+<li class="chapter" data-level="17.4" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#tidsintervall"><i class="fa fa-check"></i><b>17.4</b> Tidsintervall</a>
+<ul>
 <li class="chapter" data-level="17.4.1" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#varaktighet"><i class="fa fa-check"></i><b>17.4.1</b> Varaktighet</a></li>
 <li class="chapter" data-level="17.4.2" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#perioder"><i class="fa fa-check"></i><b>17.4.2</b> Perioder</a></li>
 <li class="chapter" data-level="17.4.3" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#intervall"><i class="fa fa-check"></i><b>17.4.3</b> Intervall</a></li>
 </ul></li>
 <li class="chapter" data-level="17.5" data-path="datum-och-tidsformat.html"><a href="datum-och-tidsformat.html#summering"><i class="fa fa-check"></i><b>17.5</b> Summering</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="programmering-i-r.html"><a href="programmering-i-r.html"><i class="fa fa-check"></i><b>18</b> Programmering i R</a><ul>
+<li class="chapter" data-level="18" data-path="programmering-i-r.html"><a href="programmering-i-r.html"><i class="fa fa-check"></i><b>18</b> Programmering i R</a>
+<ul>
 <li class="chapter" data-level="18.1" data-path="programmering-i-r.html"><a href="programmering-i-r.html#introduktion-9"><i class="fa fa-check"></i><b>18.1</b> Introduktion</a></li>
 </ul></li>
 <li class="chapter" data-level="19" data-path="pipes.html"><a href="pipes.html"><i class="fa fa-check"></i><b>19</b> Pipes</a></li>
-<li class="chapter" data-level="20" data-path="funktioner.html"><a href="funktioner.html"><i class="fa fa-check"></i><b>20</b> Funktioner</a><ul>
-<li class="chapter" data-level="20.1" data-path="funktioner.html"><a href="funktioner.html#nar-bor-du-skapa-en-funktion"><i class="fa fa-check"></i><b>20.1</b> När bör du skapa en funktion?</a></li>
-<li class="chapter" data-level="20.2" data-path="funktioner.html"><a href="funktioner.html#funktioner-ar-till-for-manniskor-och-datorer"><i class="fa fa-check"></i><b>20.2</b> Funktioner är till för människor och datorer</a></li>
-<li class="chapter" data-level="20.3" data-path="funktioner.html"><a href="funktioner.html#villkorlig-exekvering"><i class="fa fa-check"></i><b>20.3</b> Villkorlig exekvering</a><ul>
+<li class="chapter" data-level="20" data-path="funktioner.html"><a href="funktioner.html"><i class="fa fa-check"></i><b>20</b> Funktioner</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="funktioner.html"><a href="funktioner.html#när-bör-du-skapa-en-funktion"><i class="fa fa-check"></i><b>20.1</b> När bör du skapa en funktion?</a></li>
+<li class="chapter" data-level="20.2" data-path="funktioner.html"><a href="funktioner.html#funktioner-är-till-för-människor-och-datorer"><i class="fa fa-check"></i><b>20.2</b> Funktioner är till för människor och datorer</a></li>
+<li class="chapter" data-level="20.3" data-path="funktioner.html"><a href="funktioner.html#villkorlig-exekvering"><i class="fa fa-check"></i><b>20.3</b> Villkorlig exekvering</a>
+<ul>
 <li class="chapter" data-level="20.3.1" data-path="funktioner.html"><a href="funktioner.html#villkor"><i class="fa fa-check"></i><b>20.3.1</b> Villkor</a></li>
 <li class="chapter" data-level="20.3.2" data-path="funktioner.html"><a href="funktioner.html#multipla-villkor"><i class="fa fa-check"></i><b>20.3.2</b> Multipla villkor</a></li>
 </ul></li>
 <li class="chapter" data-level="20.4" data-path="funktioner.html"><a href="funktioner.html#funktionsargument"><i class="fa fa-check"></i><b>20.4</b> Funktionsargument</a></li>
-<li class="chapter" data-level="20.5" data-path="funktioner.html"><a href="funktioner.html#kolla-varden"><i class="fa fa-check"></i><b>20.5</b> Kolla värden</a></li>
+<li class="chapter" data-level="20.5" data-path="funktioner.html"><a href="funktioner.html#kolla-värden"><i class="fa fa-check"></i><b>20.5</b> Kolla värden</a></li>
 <li class="chapter" data-level="20.6" data-path="funktioner.html"><a href="funktioner.html#punkt-punkt-punkt"><i class="fa fa-check"></i><b>20.6</b> punkt-punkt-punkt</a></li>
-<li class="chapter" data-level="20.7" data-path="funktioner.html"><a href="funktioner.html#returnera-varden"><i class="fa fa-check"></i><b>20.7</b> Returnera värden</a><ul>
+<li class="chapter" data-level="20.7" data-path="funktioner.html"><a href="funktioner.html#returnera-värden"><i class="fa fa-check"></i><b>20.7</b> Returnera värden</a>
+<ul>
 <li class="chapter" data-level="20.7.1" data-path="funktioner.html"><a href="funktioner.html#explicita-return-uttryck"><i class="fa fa-check"></i><b>20.7.1</b> Explicita <code>return</code>-uttryck</a></li>
 </ul></li>
-<li class="chapter" data-level="20.8" data-path="funktioner.html"><a href="funktioner.html#skriva-funktioner-med-hjalp-av-pipes"><i class="fa fa-check"></i><b>20.8</b> Skriva funktioner med hjälp av pipes</a></li>
-<li class="chapter" data-level="20.9" data-path="funktioner.html"><a href="funktioner.html#environment-svart-hitta-ett-svenskt-uttryck"><i class="fa fa-check"></i><b>20.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
+<li class="chapter" data-level="20.8" data-path="funktioner.html"><a href="funktioner.html#skriva-funktioner-med-hjälp-av-pipes"><i class="fa fa-check"></i><b>20.8</b> Skriva funktioner med hjälp av pipes</a></li>
+<li class="chapter" data-level="20.9" data-path="funktioner.html"><a href="funktioner.html#environment-svårt-hitta-ett-svenskt-uttryck"><i class="fa fa-check"></i><b>20.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="vektorer.html"><a href="vektorer.html"><i class="fa fa-check"></i><b>21</b> Vektorer</a><ul>
+<li class="chapter" data-level="21" data-path="vektorer.html"><a href="vektorer.html"><i class="fa fa-check"></i><b>21</b> Vektorer</a>
+<ul>
 <li class="chapter" data-level="21.1" data-path="vektorer.html"><a href="vektorer.html#introduktion-10"><i class="fa fa-check"></i><b>21.1</b> Introduktion</a></li>
-<li class="chapter" data-level="21.2" data-path="vektorer.html"><a href="vektorer.html#atomic-vectors"><i class="fa fa-check"></i><b>21.2</b> Atomic vectors</a><ul>
+<li class="chapter" data-level="21.2" data-path="vektorer.html"><a href="vektorer.html#atomic-vectors"><i class="fa fa-check"></i><b>21.2</b> Atomic vectors</a>
+<ul>
 <li class="chapter" data-level="21.2.1" data-path="vektorer.html"><a href="vektorer.html#logical-vectors"><i class="fa fa-check"></i><b>21.2.1</b> Logical vectors</a></li>
 <li class="chapter" data-level="21.2.2" data-path="vektorer.html"><a href="vektorer.html#numeriska-vektorer"><i class="fa fa-check"></i><b>21.2.2</b> Numeriska vektorer</a></li>
 <li class="chapter" data-level="21.2.3" data-path="vektorer.html"><a href="vektorer.html#character"><i class="fa fa-check"></i><b>21.2.3</b> Character</a></li>
-<li class="chapter" data-level="21.2.4" data-path="vektorer.html"><a href="vektorer.html#anvanda-atomic-vectors"><i class="fa fa-check"></i><b>21.2.4</b> Använda atomic vectors</a></li>
+<li class="chapter" data-level="21.2.4" data-path="vektorer.html"><a href="vektorer.html#använda-atomic-vectors"><i class="fa fa-check"></i><b>21.2.4</b> Använda atomic vectors</a></li>
 <li class="chapter" data-level="21.2.5" data-path="vektorer.html"><a href="vektorer.html#scalars-och-recycling"><i class="fa fa-check"></i><b>21.2.5</b> Scalars och recycling</a></li>
 <li class="chapter" data-level="21.2.6" data-path="vektorer.html"><a href="vektorer.html#rekursiva-vektorer-lists"><i class="fa fa-check"></i><b>21.2.6</b> Rekursiva vektorer (lists)</a></li>
 <li class="chapter" data-level="21.2.7" data-path="vektorer.html"><a href="vektorer.html#attribut"><i class="fa fa-check"></i><b>21.2.7</b> Attribut</a></li>
-<li class="chapter" data-level="21.2.8" data-path="vektorer.html"><a href="vektorer.html#forstarkta-vektorer-augmented-vectors"><i class="fa fa-check"></i><b>21.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
+<li class="chapter" data-level="21.2.8" data-path="vektorer.html"><a href="vektorer.html#förstärkta-vektorer-augmented-vectors"><i class="fa fa-check"></i><b>21.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="itereringar.html"><a href="itereringar.html"><i class="fa fa-check"></i><b>22</b> Itereringar</a><ul>
+<li class="chapter" data-level="22" data-path="itereringar.html"><a href="itereringar.html"><i class="fa fa-check"></i><b>22</b> Itereringar</a>
+<ul>
 <li class="chapter" data-level="22.1" data-path="itereringar.html"><a href="itereringar.html#for-loops"><i class="fa fa-check"></i><b>22.1</b> For-loops</a></li>
-<li class="chapter" data-level="22.2" data-path="itereringar.html"><a href="itereringar.html#variationer-av-for-loopar"><i class="fa fa-check"></i><b>22.2</b> Variationer av for-loopar</a><ul>
+<li class="chapter" data-level="22.2" data-path="itereringar.html"><a href="itereringar.html#variationer-av-for-loopar"><i class="fa fa-check"></i><b>22.2</b> Variationer av for-loopar</a>
+<ul>
 <li class="chapter" data-level="22.2.1" data-path="itereringar.html"><a href="itereringar.html#modifiera-ett-existerande-obkjekt"><i class="fa fa-check"></i><b>22.2.1</b> Modifiera ett existerande obkjekt</a></li>
-<li class="chapter" data-level="22.2.2" data-path="itereringar.html"><a href="itereringar.html#nar-langden-pa-output-inte-ar-kand"><i class="fa fa-check"></i><b>22.2.2</b> När längden på output inte är känd</a></li>
-<li class="chapter" data-level="22.2.3" data-path="itereringar.html"><a href="itereringar.html#nar-sekvensens-langd-ar-okand"><i class="fa fa-check"></i><b>22.2.3</b> När sekvensens längd är okänd</a></li>
+<li class="chapter" data-level="22.2.2" data-path="itereringar.html"><a href="itereringar.html#när-längden-på-output-inte-är-känd"><i class="fa fa-check"></i><b>22.2.2</b> När längden på output inte är känd</a></li>
+<li class="chapter" data-level="22.2.3" data-path="itereringar.html"><a href="itereringar.html#när-sekvensens-längd-är-okänd"><i class="fa fa-check"></i><b>22.2.3</b> När sekvensens längd är okänd</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="itereringar.html"><a href="itereringar.html#for-loops-vs.funktioner"><i class="fa fa-check"></i><b>22.3</b> for-loops vs. Funktioner</a></li>
-<li class="chapter" data-level="22.4" data-path="itereringar.html"><a href="itereringar.html#mappningsfunktioner"><i class="fa fa-check"></i><b>22.4</b> Mappningsfunktioner</a><ul>
-<li class="chapter" data-level="22.4.1" data-path="itereringar.html"><a href="itereringar.html#genvagar"><i class="fa fa-check"></i><b>22.4.1</b> Genvägar</a></li>
+<li class="chapter" data-level="22.3" data-path="itereringar.html"><a href="itereringar.html#for-loops-vs.-funktioner"><i class="fa fa-check"></i><b>22.3</b> for-loops vs. Funktioner</a></li>
+<li class="chapter" data-level="22.4" data-path="itereringar.html"><a href="itereringar.html#mappningsfunktioner"><i class="fa fa-check"></i><b>22.4</b> Mappningsfunktioner</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="itereringar.html"><a href="itereringar.html#genvägar"><i class="fa fa-check"></i><b>22.4.1</b> Genvägar</a></li>
 </ul></li>
 <li class="chapter" data-level="22.5" data-path="itereringar.html"><a href="itereringar.html#hantera-errors"><i class="fa fa-check"></i><b>22.5</b> Hantera errors</a></li>
 </ul></li>
 <li class="chapter" data-level="23" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>23</b> Introduction</a></li>
-<li class="chapter" data-level="24" data-path="modellering-basics.html"><a href="modellering-basics.html"><i class="fa fa-check"></i><b>24</b> Modellering: basics</a><ul>
+<li class="chapter" data-level="24" data-path="modellering-basics.html"><a href="modellering-basics.html"><i class="fa fa-check"></i><b>24</b> Modellering: basics</a>
+<ul>
 <li class="chapter" data-level="24.1" data-path="modellering-basics.html"><a href="modellering-basics.html#en-enkel-modell"><i class="fa fa-check"></i><b>24.1</b> En enkel modell</a></li>
-<li class="chapter" data-level="24.2" data-path="modellering-basics.html"><a href="modellering-basics.html#visualisera-modeller"><i class="fa fa-check"></i><b>24.2</b> Visualisera modeller</a><ul>
+<li class="chapter" data-level="24.2" data-path="modellering-basics.html"><a href="modellering-basics.html#visualisera-modeller"><i class="fa fa-check"></i><b>24.2</b> Visualisera modeller</a>
+<ul>
 <li class="chapter" data-level="24.2.1" data-path="modellering-basics.html"><a href="modellering-basics.html#prediktioner"><i class="fa fa-check"></i><b>24.2.1</b> Prediktioner</a></li>
 <li class="chapter" data-level="24.2.2" data-path="modellering-basics.html"><a href="modellering-basics.html#residualer"><i class="fa fa-check"></i><b>24.2.2</b> Residualer</a></li>
 </ul></li>
-<li class="chapter" data-level="24.3" data-path="modellering-basics.html"><a href="modellering-basics.html#formler-och-modell-familjer"><i class="fa fa-check"></i><b>24.3</b> Formler och modell-familjer</a><ul>
+<li class="chapter" data-level="24.3" data-path="modellering-basics.html"><a href="modellering-basics.html#formler-och-modell-familjer"><i class="fa fa-check"></i><b>24.3</b> Formler och modell-familjer</a>
+<ul>
 <li class="chapter" data-level="24.3.1" data-path="modellering-basics.html"><a href="modellering-basics.html#kategoriska-variabler"><i class="fa fa-check"></i><b>24.3.1</b> Kategoriska variabler</a></li>
 <li class="chapter" data-level="24.3.2" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner"><i class="fa fa-check"></i><b>24.3.2</b> Interaktioner</a></li>
-<li class="chapter" data-level="24.3.3" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner-tva-kontinuerliga-variabler"><i class="fa fa-check"></i><b>24.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
+<li class="chapter" data-level="24.3.3" data-path="modellering-basics.html"><a href="modellering-basics.html#interaktioner-två-kontinuerliga-variabler"><i class="fa fa-check"></i><b>24.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
 <li class="chapter" data-level="24.3.4" data-path="modellering-basics.html"><a href="modellering-basics.html#transformationer"><i class="fa fa-check"></i><b>24.3.4</b> Transformationer</a></li>
 </ul></li>
-<li class="chapter" data-level="24.4" data-path="modellering-basics.html"><a href="modellering-basics.html#missing-values-3"><i class="fa fa-check"></i><b>24.4</b> Missing values</a><ul>
+<li class="chapter" data-level="24.4" data-path="modellering-basics.html"><a href="modellering-basics.html#missing-values-3"><i class="fa fa-check"></i><b>24.4</b> Missing values</a>
+<ul>
 <li class="chapter" data-level="24.4.1" data-path="modellering-basics.html"><a href="modellering-basics.html#andra-modell-familjer"><i class="fa fa-check"></i><b>24.4.1</b> Andra modell-familjer</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html"><i class="fa fa-check"></i><b>25</b> Bygga modeller i R</a><ul>
-<li class="chapter" data-level="25.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#varfor-ar-diamanter-av-lag-kvalitet-dyrare"><i class="fa fa-check"></i><b>25.1</b> Varför är diamanter av låg kvalitet dyrare?</a><ul>
+<li class="chapter" data-level="25" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html"><i class="fa fa-check"></i><b>25</b> Bygga modeller i R</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#varför-är-diamanter-av-låg-kvalitet-dyrare"><i class="fa fa-check"></i><b>25.1</b> Varför är diamanter av låg kvalitet dyrare?</a>
+<ul>
 <li class="chapter" data-level="25.1.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#sambandet-pris-och-karat"><i class="fa fa-check"></i><b>25.1.1</b> Sambandet pris och karat</a></li>
 <li class="chapter" data-level="25.1.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#en-mer-komplicerad-modell"><i class="fa fa-check"></i><b>25.1.2</b> En mer komplicerad modell</a></li>
 </ul></li>
-<li class="chapter" data-level="25.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#vad-ar-det-som-paverkar-antalet-dagliga-flighter"><i class="fa fa-check"></i><b>25.2</b> Vad är det som påverkar antalet dagliga flighter?</a><ul>
+<li class="chapter" data-level="25.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#vad-är-det-som-påverkar-antalet-dagliga-flighter"><i class="fa fa-check"></i><b>25.2</b> Vad är det som påverkar antalet dagliga flighter?</a>
+<ul>
 <li class="chapter" data-level="25.2.1" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#veckodag"><i class="fa fa-check"></i><b>25.2.1</b> Veckodag</a></li>
-<li class="chapter" data-level="25.2.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lordags-effekten"><i class="fa fa-check"></i><b>25.2.2</b> Lördags-effekten</a></li>
+<li class="chapter" data-level="25.2.2" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lördags-effekten"><i class="fa fa-check"></i><b>25.2.2</b> Lördags-effekten</a></li>
 </ul></li>
-<li class="chapter" data-level="25.3" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lara-mer-om-modellering"><i class="fa fa-check"></i><b>25.3</b> Lära mer om modellering</a></li>
+<li class="chapter" data-level="25.3" data-path="bygga-modeller-i-r.html"><a href="bygga-modeller-i-r.html#lära-mer-om-modellering"><i class="fa fa-check"></i><b>25.3</b> Lära mer om modellering</a></li>
 </ul></li>
-<li class="chapter" data-level="26" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html"><i class="fa fa-check"></i><b>26</b> Grafik för att kommunicera</a><ul>
-<li class="chapter" data-level="26.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#etiketter-labels"><i class="fa fa-check"></i><b>26.1</b> Etiketter (labels)</a></li>
-<li class="chapter" data-level="26.2" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#annoteringar"><i class="fa fa-check"></i><b>26.2</b> Annoteringar</a></li>
-<li class="chapter" data-level="26.3" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#scales"><i class="fa fa-check"></i><b>26.3</b> Scales</a><ul>
-<li class="chapter" data-level="26.3.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#axis-ticks-och-teckenforklaringar"><i class="fa fa-check"></i><b>26.3.1</b> Axis ticks och teckenförklaringar</a></li>
-<li class="chapter" data-level="26.3.2" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#teckenforklaringens-legend-layout"><i class="fa fa-check"></i><b>26.3.2</b> Teckenförklaringens (legend) layout</a></li>
-<li class="chapter" data-level="26.3.3" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#byta-ut-en-scale"><i class="fa fa-check"></i><b>26.3.3</b> Byta ut en scale</a></li>
+<li class="chapter" data-level="26" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html"><i class="fa fa-check"></i><b>26</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="26.1" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html#skriv-till-en-excelfil-1"><i class="fa fa-check"></i><b>26.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="26.2" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html#läsa-in-excel-1"><i class="fa fa-check"></i><b>26.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="26.3" data-path="excel-och-r-1.html"><a href="excel-och-r-1.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r-1"><i class="fa fa-check"></i><b>26.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
 </ul></li>
-<li class="chapter" data-level="26.4" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#zooming"><i class="fa fa-check"></i><b>26.4</b> Zooming</a><ul>
-<li class="chapter" data-level="26.4.1" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#teman-themes"><i class="fa fa-check"></i><b>26.4.1</b> Teman (themes)</a></li>
+<li class="chapter" data-level="27" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html"><i class="fa fa-check"></i><b>27</b> Grafik för att kommunicera</a>
+<ul>
+<li class="chapter" data-level="27.1" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#etiketter-labels"><i class="fa fa-check"></i><b>27.1</b> Etiketter (labels)</a></li>
+<li class="chapter" data-level="27.2" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#annoteringar"><i class="fa fa-check"></i><b>27.2</b> Annoteringar</a></li>
+<li class="chapter" data-level="27.3" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#scales"><i class="fa fa-check"></i><b>27.3</b> Scales</a>
+<ul>
+<li class="chapter" data-level="27.3.1" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#axis-ticks-och-teckenförklaringar"><i class="fa fa-check"></i><b>27.3.1</b> Axis ticks och teckenförklaringar</a></li>
+<li class="chapter" data-level="27.3.2" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#teckenförklaringens-legend-layout"><i class="fa fa-check"></i><b>27.3.2</b> Teckenförklaringens (legend) layout</a></li>
+<li class="chapter" data-level="27.3.3" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#byta-ut-en-scale"><i class="fa fa-check"></i><b>27.3.3</b> Byta ut en scale</a></li>
 </ul></li>
-<li class="chapter" data-level="26.5" data-path="grafik-for-att-kommunicera.html"><a href="grafik-for-att-kommunicera.html#spara-graferna"><i class="fa fa-check"></i><b>26.5</b> Spara graferna</a></li>
+<li class="chapter" data-level="27.4" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#zooming"><i class="fa fa-check"></i><b>27.4</b> Zooming</a>
+<ul>
+<li class="chapter" data-level="27.4.1" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#teman-themes"><i class="fa fa-check"></i><b>27.4.1</b> Teman (themes)</a></li>
+</ul></li>
+<li class="chapter" data-level="27.5" data-path="grafik-för-att-kommunicera.html"><a href="grafik-för-att-kommunicera.html#spara-graferna"><i class="fa fa-check"></i><b>27.5</b> Spara graferna</a></li>
+</ul></li>
+<li class="chapter" data-level="28" data-path="introduktion-11.html"><a href="introduktion-11.html"><i class="fa fa-check"></i><b>28</b> Introduktion</a>
+<ul>
+<li class="chapter" data-level="28.1" data-path="introduktion-11.html"><a href="introduktion-11.html#basics-2"><i class="fa fa-check"></i><b>28.1</b> Basics</a></li>
+<li class="chapter" data-level="28.2" data-path="introduktion-11.html"><a href="introduktion-11.html#r-konsolen-1"><i class="fa fa-check"></i><b>28.2</b> R-konsolen</a></li>
+<li class="chapter" data-level="28.3" data-path="introduktion-11.html"><a href="introduktion-11.html#rstudio-1"><i class="fa fa-check"></i><b>28.3</b> RStudio</a></li>
+<li class="chapter" data-level="28.4" data-path="introduktion-11.html"><a href="introduktion-11.html#hjälpfunktioner-1"><i class="fa fa-check"></i><b>28.4</b> Hjälpfunktioner</a></li>
+</ul></li>
+<li class="chapter" data-level="29" data-path="utforska-data-1.html"><a href="utforska-data-1.html"><i class="fa fa-check"></i><b>29</b> Utforska data</a></li>
+<li class="chapter" data-level="30" data-path="visualisering-1.html"><a href="visualisering-1.html"><i class="fa fa-check"></i><b>30</b> Visualisering</a>
+<ul>
+<li class="chapter" data-level="30.1" data-path="visualisering-1.html"><a href="visualisering-1.html#ett-första-diagram-1"><i class="fa fa-check"></i><b>30.1</b> Ett första diagram</a>
+<ul>
+<li class="chapter" data-level="30.1.1" data-path="visualisering-1.html"><a href="visualisering-1.html#ladda-data-1"><i class="fa fa-check"></i><b>30.1.1</b> Ladda data</a></li>
+<li class="chapter" data-level="30.1.2" data-path="visualisering-1.html"><a href="visualisering-1.html#skapa-en-ggplot-1"><i class="fa fa-check"></i><b>30.1.2</b> Skapa en ggplot</a></li>
+</ul></li>
+<li class="chapter" data-level="30.2" data-path="visualisering-1.html"><a href="visualisering-1.html#en-grafikmall-1"><i class="fa fa-check"></i><b>30.2</b> En grafikmall</a></li>
+<li class="chapter" data-level="30.3" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-28"><i class="fa fa-check"></i><b>30.3</b> Övningar</a></li>
+<li class="chapter" data-level="30.4" data-path="visualisering-1.html"><a href="visualisering-1.html#aes-funktionen-och-mappings-1"><i class="fa fa-check"></i><b>30.4</b> <code>aes()</code>-funktionen och mappings</a></li>
+<li class="chapter" data-level="30.5" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-29"><i class="fa fa-check"></i><b>30.5</b> Övningar</a></li>
+<li class="chapter" data-level="30.6" data-path="visualisering-1.html"><a href="visualisering-1.html#vanliga-problem-1"><i class="fa fa-check"></i><b>30.6</b> Vanliga problem</a></li>
+<li class="chapter" data-level="30.7" data-path="visualisering-1.html"><a href="visualisering-1.html#facets-1"><i class="fa fa-check"></i><b>30.7</b> Facets</a></li>
+<li class="chapter" data-level="30.8" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-30"><i class="fa fa-check"></i><b>30.8</b> Övningar</a></li>
+<li class="chapter" data-level="30.9" data-path="visualisering-1.html"><a href="visualisering-1.html#geometriska-objekt---geoms-1"><i class="fa fa-check"></i><b>30.9</b> “Geometriska” objekt - geoms</a></li>
+<li class="chapter" data-level="30.10" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-31"><i class="fa fa-check"></i><b>30.10</b> Övningar</a></li>
+<li class="chapter" data-level="30.11" data-path="visualisering-1.html"><a href="visualisering-1.html#statistiska-transformationer-1"><i class="fa fa-check"></i><b>30.11</b> Statistiska transformationer</a></li>
+<li class="chapter" data-level="30.12" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-32"><i class="fa fa-check"></i><b>30.12</b> Övningar</a></li>
+<li class="chapter" data-level="30.13" data-path="visualisering-1.html"><a href="visualisering-1.html#positionering-1"><i class="fa fa-check"></i><b>30.13</b> Positionering</a></li>
+<li class="chapter" data-level="30.14" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-33"><i class="fa fa-check"></i><b>30.14</b> Övningar</a></li>
+<li class="chapter" data-level="30.15" data-path="visualisering-1.html"><a href="visualisering-1.html#koordinatsystem-1"><i class="fa fa-check"></i><b>30.15</b> Koordinatsystem</a></li>
+<li class="chapter" data-level="30.16" data-path="visualisering-1.html"><a href="visualisering-1.html#övningar-34"><i class="fa fa-check"></i><b>30.16</b> Övningar</a></li>
+<li class="chapter" data-level="30.17" data-path="visualisering-1.html"><a href="visualisering-1.html#the-layered-grammar-of-graphics-1"><i class="fa fa-check"></i><b>30.17</b> “The layered grammar of graphics”</a></li>
+</ul></li>
+<li class="chapter" data-level="31" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html"><i class="fa fa-check"></i><b>31</b> Workflow: Basics</a>
+<ul>
+<li class="chapter" data-level="31.1" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html#skriva-kod-1"><i class="fa fa-check"></i><b>31.1</b> Skriva kod</a></li>
+<li class="chapter" data-level="31.2" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html#anropa-funktioner-1"><i class="fa fa-check"></i><b>31.2</b> Anropa funktioner</a></li>
+<li class="chapter" data-level="31.3" data-path="workflow-basics-1.html"><a href="workflow-basics-1.html#övningar-35"><i class="fa fa-check"></i><b>31.3</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="32" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html"><i class="fa fa-check"></i><b>32</b> Transformering av data</a>
+<ul>
+<li class="chapter" data-level="32.1" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#introduktion-12"><i class="fa fa-check"></i><b>32.1</b> Introduktion</a></li>
+<li class="chapter" data-level="32.2" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#förberedelser-1"><i class="fa fa-check"></i><b>32.2</b> Förberedelser</a></li>
+<li class="chapter" data-level="32.3" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#dplyr-grunder-1"><i class="fa fa-check"></i><b>32.3</b> <code>dplyr</code> grunder</a>
+<ul>
+<li class="chapter" data-level="32.3.1" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#filtrera-raderposter-med-filter-1"><i class="fa fa-check"></i><b>32.3.1</b> Filtrera rader/poster med <code>filter()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="32.4" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-36"><i class="fa fa-check"></i><b>32.4</b> Övningar</a></li>
+<li class="chapter" data-level="32.5" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#arrangera-poster-med-arrange-1"><i class="fa fa-check"></i><b>32.5</b> Arrangera poster med <code>arrange()</code></a></li>
+<li class="chapter" data-level="32.6" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-37"><i class="fa fa-check"></i><b>32.6</b> Övningar</a></li>
+<li class="chapter" data-level="32.7" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#välj-kolumner-med-select-1"><i class="fa fa-check"></i><b>32.7</b> Välj kolumner med <code>select()</code></a></li>
+<li class="chapter" data-level="32.8" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-38"><i class="fa fa-check"></i><b>32.8</b> Övningar</a></li>
+<li class="chapter" data-level="32.9" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#lägg-till-flera-variabler-med-hjälp-av-mutate-1"><i class="fa fa-check"></i><b>32.9</b> Lägg till flera variabler med hjälp av <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="32.9.1" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#funktioner-och-operatorer-att-användas-med-mutate-1"><i class="fa fa-check"></i><b>32.9.1</b> Funktioner och operatorer att användas med <code>mutate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="32.10" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-39"><i class="fa fa-check"></i><b>32.10</b> Övningar</a></li>
+<li class="chapter" data-level="32.11" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#grupperade-summeringar-med-summarise-1"><i class="fa fa-check"></i><b>32.11</b> Grupperade summeringar med <code>summarise()</code></a></li>
+<li class="chapter" data-level="32.12" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#kombinera-multipla-operationer-med-the-pipe-1"><i class="fa fa-check"></i><b>32.12</b> Kombinera multipla operationer med the pipe</a></li>
+<li class="chapter" data-level="32.13" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#missing-values-4"><i class="fa fa-check"></i><b>32.13</b> Missing values</a></li>
+<li class="chapter" data-level="32.14" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#antal-counts-1"><i class="fa fa-check"></i><b>32.14</b> Antal (counts)</a></li>
+<li class="chapter" data-level="32.15" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#användbara-summeringsfunktioner-1"><i class="fa fa-check"></i><b>32.15</b> Användbara summeringsfunktioner</a></li>
+<li class="chapter" data-level="32.16" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#gruppera-med-flera-variabler-1"><i class="fa fa-check"></i><b>32.16</b> Gruppera med flera variabler</a></li>
+<li class="chapter" data-level="32.17" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#av-gruppera-1"><i class="fa fa-check"></i><b>32.17</b> Av-gruppera</a></li>
+<li class="chapter" data-level="32.18" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-40"><i class="fa fa-check"></i><b>32.18</b> Övningar</a></li>
+<li class="chapter" data-level="32.19" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#grupperade-beräkningar-och-filtreringar-1"><i class="fa fa-check"></i><b>32.19</b> Grupperade beräkningar och filtreringar</a></li>
+<li class="chapter" data-level="32.20" data-path="transformering-av-data-1.html"><a href="transformering-av-data-1.html#övningar-41"><i class="fa fa-check"></i><b>32.20</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="33" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html"><i class="fa fa-check"></i><b>33</b> Arbetsflöde: scripts</a>
+<ul>
+<li class="chapter" data-level="33.1" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html#att-köra-kod-1"><i class="fa fa-check"></i><b>33.1</b> Att köra kod</a></li>
+<li class="chapter" data-level="33.2" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html#diagnostics-1"><i class="fa fa-check"></i><b>33.2</b> Diagnostics</a></li>
+<li class="chapter" data-level="33.3" data-path="arbetsflöde-scripts-1.html"><a href="arbetsflöde-scripts-1.html#praktik-1"><i class="fa fa-check"></i><b>33.3</b> Praktik</a></li>
+</ul></li>
+<li class="chapter" data-level="34" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html"><i class="fa fa-check"></i><b>34</b> Explorativ analys av data</a>
+<ul>
+<li class="chapter" data-level="34.1" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#introduktion-13"><i class="fa fa-check"></i><b>34.1</b> Introduktion</a></li>
+<li class="chapter" data-level="34.2" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#frågor-1"><i class="fa fa-check"></i><b>34.2</b> Frågor</a></li>
+<li class="chapter" data-level="34.3" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#variation-1"><i class="fa fa-check"></i><b>34.3</b> Variation</a></li>
+<li class="chapter" data-level="34.4" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#visualisera-fördelningar-1"><i class="fa fa-check"></i><b>34.4</b> Visualisera fördelningar</a></li>
+<li class="chapter" data-level="34.5" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#outliers-1"><i class="fa fa-check"></i><b>34.5</b> Outliers</a></li>
+<li class="chapter" data-level="34.6" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#övningar-42"><i class="fa fa-check"></i><b>34.6</b> Övningar</a></li>
+<li class="chapter" data-level="34.7" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#missing-values-5"><i class="fa fa-check"></i><b>34.7</b> Missing values</a></li>
+<li class="chapter" data-level="34.8" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#samvarians---covariance-1"><i class="fa fa-check"></i><b>34.8</b> Samvarians - covariance</a>
+<ul>
+<li class="chapter" data-level="34.8.1" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#en-kategorisk-och-en-kontinuerlig-variabel-1"><i class="fa fa-check"></i><b>34.8.1</b> En kategorisk och en kontinuerlig variabel</a></li>
+<li class="chapter" data-level="34.8.2" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#övningar-43"><i class="fa fa-check"></i><b>34.8.2</b> Övningar</a></li>
+<li class="chapter" data-level="34.8.3" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#två-kategoriska-variabler-1"><i class="fa fa-check"></i><b>34.8.3</b> Två kategoriska variabler</a></li>
+<li class="chapter" data-level="34.8.4" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#två-kontinuerliga-variabler-1"><i class="fa fa-check"></i><b>34.8.4</b> Två kontinuerliga variabler</a></li>
+</ul></li>
+<li class="chapter" data-level="34.9" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#ggplot2-calls-1"><i class="fa fa-check"></i><b>34.9</b> <code>ggplot2</code> calls</a></li>
+<li class="chapter" data-level="34.10" data-path="explorativ-analys-av-data-1.html"><a href="explorativ-analys-av-data-1.html#att-lära-mer-1"><i class="fa fa-check"></i><b>34.10</b> Att lära mer</a></li>
+</ul></li>
+<li class="chapter" data-level="35" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html"><i class="fa fa-check"></i><b>35</b> Arbetsflöde: Projekt</a>
+<ul>
+<li class="chapter" data-level="35.1" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#vad-är-viktigt-1"><i class="fa fa-check"></i><b>35.1</b> Vad är viktigt?</a></li>
+<li class="chapter" data-level="35.2" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#vart-lever-analysen-arbetsbiblioteket-1"><i class="fa fa-check"></i><b>35.2</b> Vart lever analysen? Arbetsbiblioteket</a></li>
+<li class="chapter" data-level="35.3" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#sökvägar-och-bibliotekmappar-1"><i class="fa fa-check"></i><b>35.3</b> Sökvägar och bibliotek/mappar</a></li>
+<li class="chapter" data-level="35.4" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#rstudio-projects-viktigt-1"><i class="fa fa-check"></i><b>35.4</b> RStudio projects VIKTIGT!</a></li>
+<li class="chapter" data-level="35.5" data-path="arbetsflöde-projekt-1.html"><a href="arbetsflöde-projekt-1.html#sammanfattningsvis-1"><i class="fa fa-check"></i><b>35.5</b> Sammanfattningsvis</a></li>
+</ul></li>
+<li class="chapter" data-level="36" data-path="wrangle-att-brottas-med-data-1.html"><a href="wrangle-att-brottas-med-data-1.html"><i class="fa fa-check"></i><b>36</b> Wrangle - att brottas med data</a>
+<ul>
+<li class="chapter" data-level="36.1" data-path="wrangle-att-brottas-med-data-1.html"><a href="wrangle-att-brottas-med-data-1.html#introduktion-14"><i class="fa fa-check"></i><b>36.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="37" data-path="tibbles-2.html"><a href="tibbles-2.html"><i class="fa fa-check"></i><b>37</b> Tibbles</a>
+<ul>
+<li class="chapter" data-level="37.1" data-path="tibbles-2.html"><a href="tibbles-2.html#skapa-tibbles-1"><i class="fa fa-check"></i><b>37.1</b> Skapa tibbles</a>
+<ul>
+<li class="chapter" data-level="37.1.1" data-path="tibbles-2.html"><a href="tibbles-2.html#tibbles-vs-data-frames-1"><i class="fa fa-check"></i><b>37.1.1</b> Tibbles vs data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="37.2" data-path="tibbles-2.html"><a href="tibbles-2.html#utskrift-printing-1"><i class="fa fa-check"></i><b>37.2</b> Utskrift (Printing)</a></li>
+<li class="chapter" data-level="37.3" data-path="tibbles-2.html"><a href="tibbles-2.html#urval-1"><i class="fa fa-check"></i><b>37.3</b> Urval</a></li>
+<li class="chapter" data-level="37.4" data-path="tibbles-2.html"><a href="tibbles-2.html#använda-äldre-kod-1"><i class="fa fa-check"></i><b>37.4</b> Använda äldre kod</a></li>
+</ul></li>
+<li class="chapter" data-level="38" data-path="importera-data-1.html"><a href="importera-data-1.html"><i class="fa fa-check"></i><b>38</b> Importera data</a>
+<ul>
+<li class="chapter" data-level="38.1" data-path="importera-data-1.html"><a href="importera-data-1.html#jämförelse-med-base-r-1"><i class="fa fa-check"></i><b>38.1</b> Jämförelse med base R</a></li>
+<li class="chapter" data-level="38.2" data-path="importera-data-1.html"><a href="importera-data-1.html#övningar-44"><i class="fa fa-check"></i><b>38.2</b> Övningar</a></li>
+<li class="chapter" data-level="38.3" data-path="importera-data-1.html"><a href="importera-data-1.html#omvandla-vektorer-1"><i class="fa fa-check"></i><b>38.3</b> Omvandla vektorer</a>
+<ul>
+<li class="chapter" data-level="38.3.1" data-path="importera-data-1.html"><a href="importera-data-1.html#numeriska-variabler-1"><i class="fa fa-check"></i><b>38.3.1</b> Numeriska variabler</a></li>
+<li class="chapter" data-level="38.3.2" data-path="importera-data-1.html"><a href="importera-data-1.html#textsträngar-1"><i class="fa fa-check"></i><b>38.3.2</b> Textsträngar</a></li>
+<li class="chapter" data-level="38.3.3" data-path="importera-data-1.html"><a href="importera-data-1.html#kategoriska-data-1"><i class="fa fa-check"></i><b>38.3.3</b> Kategoriska data</a></li>
+<li class="chapter" data-level="38.3.4" data-path="importera-data-1.html"><a href="importera-data-1.html#datum-och-tid-1"><i class="fa fa-check"></i><b>38.3.4</b> Datum och tid</a></li>
+<li class="chapter" data-level="38.3.5" data-path="importera-data-1.html"><a href="importera-data-1.html#övningar-45"><i class="fa fa-check"></i><b>38.3.5</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="38.4" data-path="importera-data-1.html"><a href="importera-data-1.html#hur-readr-plockar-isär-parse-en-fil-1"><i class="fa fa-check"></i><b>38.4</b> Hur <code>readr</code> “plockar isär” (parse) en fil</a></li>
+<li class="chapter" data-level="38.5" data-path="importera-data-1.html"><a href="importera-data-1.html#problem-1"><i class="fa fa-check"></i><b>38.5</b> Problem</a></li>
+<li class="chapter" data-level="38.6" data-path="importera-data-1.html"><a href="importera-data-1.html#skriva-till-en-fil-1"><i class="fa fa-check"></i><b>38.6</b> Skriva till en fil</a></li>
+<li class="chapter" data-level="38.7" data-path="importera-data-1.html"><a href="importera-data-1.html#andra-datatyper-1"><i class="fa fa-check"></i><b>38.7</b> Andra datatyper</a></li>
+</ul></li>
+<li class="chapter" data-level="39" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html"><i class="fa fa-check"></i><b>39</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="39.1" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html#skriv-till-en-excelfil-2"><i class="fa fa-check"></i><b>39.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="39.2" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html#läsa-in-excel-2"><i class="fa fa-check"></i><b>39.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="39.3" data-path="excel-och-r-2.html"><a href="excel-och-r-2.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r-2"><i class="fa fa-check"></i><b>39.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+</ul></li>
+<li class="chapter" data-level="40" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html"><i class="fa fa-check"></i><b>40</b> Städa data (tidy data)</a>
+<ul>
+<li class="chapter" data-level="40.1" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#introduktion-15"><i class="fa fa-check"></i><b>40.1</b> Introduktion</a></li>
+<li class="chapter" data-level="40.2" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#spreading-and-gathering-1"><i class="fa fa-check"></i><b>40.2</b> Spreading and gathering</a>
+<ul>
+<li class="chapter" data-level="40.2.1" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#gathering-1"><i class="fa fa-check"></i><b>40.2.1</b> Gathering</a></li>
+<li class="chapter" data-level="40.2.2" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#spreading-1"><i class="fa fa-check"></i><b>40.2.2</b> Spreading</a></li>
+</ul></li>
+<li class="chapter" data-level="40.3" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-46"><i class="fa fa-check"></i><b>40.3</b> Övningar</a></li>
+<li class="chapter" data-level="40.4" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#separera-och-förena-1"><i class="fa fa-check"></i><b>40.4</b> Separera och förena</a>
+<ul>
+<li class="chapter" data-level="40.4.1" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#separate-1"><i class="fa fa-check"></i><b>40.4.1</b> Separate</a></li>
+<li class="chapter" data-level="40.4.2" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#unite-1"><i class="fa fa-check"></i><b>40.4.2</b> Unite</a></li>
+</ul></li>
+<li class="chapter" data-level="40.5" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-47"><i class="fa fa-check"></i><b>40.5</b> Övningar</a></li>
+<li class="chapter" data-level="40.6" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#missing-values-6"><i class="fa fa-check"></i><b>40.6</b> Missing values</a></li>
+<li class="chapter" data-level="40.7" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-48"><i class="fa fa-check"></i><b>40.7</b> Övningar</a></li>
+<li class="chapter" data-level="40.8" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#en-case-study-1"><i class="fa fa-check"></i><b>40.8</b> En case study</a></li>
+<li class="chapter" data-level="40.9" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#övningar-49"><i class="fa fa-check"></i><b>40.9</b> Övningar</a></li>
+<li class="chapter" data-level="40.10" data-path="städa-data-tidy-data-1.html"><a href="städa-data-tidy-data-1.html#non-tidy-data-1"><i class="fa fa-check"></i><b>40.10</b> Non-tidy data</a></li>
+</ul></li>
+<li class="chapter" data-level="41" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html"><i class="fa fa-check"></i><b>41</b> Relationer mellan datamängder</a>
+<ul>
+<li class="chapter" data-level="41.1" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#introduktion-16"><i class="fa fa-check"></i><b>41.1</b> Introduktion</a></li>
+<li class="chapter" data-level="41.2" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#nycflights13-1"><i class="fa fa-check"></i><b>41.2</b> <code>nycflights13</code></a></li>
+<li class="chapter" data-level="41.3" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#keys-1"><i class="fa fa-check"></i><b>41.3</b> Keys</a></li>
+<li class="chapter" data-level="41.4" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#mutating-joins-1"><i class="fa fa-check"></i><b>41.4</b> <em>Mutating joins</em></a>
+<ul>
+<li class="chapter" data-level="41.4.1" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#att-förstå-joins-1"><i class="fa fa-check"></i><b>41.4.1</b> Att förstå <em>joins</em></a></li>
+<li class="chapter" data-level="41.4.2" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#inner-join-1"><i class="fa fa-check"></i><b>41.4.2</b> Inner join</a></li>
+<li class="chapter" data-level="41.4.3" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#outer-joins-1"><i class="fa fa-check"></i><b>41.4.3</b> Outer joins</a></li>
+<li class="chapter" data-level="41.4.4" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#duplicate-keys-1"><i class="fa fa-check"></i><b>41.4.4</b> Duplicate keys</a></li>
+<li class="chapter" data-level="41.4.5" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#definiera-nyckel-kolumner-key-columns-1"><i class="fa fa-check"></i><b>41.4.5</b> Definiera nyckel-kolumner (<em>key columns</em>)</a></li>
+<li class="chapter" data-level="41.4.6" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#övningar-50"><i class="fa fa-check"></i><b>41.4.6</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="41.5" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#filtering-joins-1"><i class="fa fa-check"></i><b>41.5</b> <em>Filtering joins</em></a></li>
+<li class="chapter" data-level="41.6" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#problem-med-joins-1"><i class="fa fa-check"></i><b>41.6</b> Problem med <em>joins</em></a></li>
+<li class="chapter" data-level="41.7" data-path="relationer-mellan-datamängder-1.html"><a href="relationer-mellan-datamängder-1.html#set-operations-1"><i class="fa fa-check"></i><b>41.7</b> Set operations</a></li>
+</ul></li>
+<li class="chapter" data-level="42" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html"><i class="fa fa-check"></i><b>42</b> Textsträngar (strings)</a>
+<ul>
+<li class="chapter" data-level="42.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#introduktion-17"><i class="fa fa-check"></i><b>42.1</b> Introduktion</a></li>
+<li class="chapter" data-level="42.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#basics-3"><i class="fa fa-check"></i><b>42.2</b> Basics</a>
+<ul>
+<li class="chapter" data-level="42.2.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#stringr-funktioner-1"><i class="fa fa-check"></i><b>42.2.1</b> <code>stringr</code>-funktioner</a></li>
+<li class="chapter" data-level="42.2.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#kombinera-strängar-1"><i class="fa fa-check"></i><b>42.2.2</b> Kombinera strängar</a></li>
+<li class="chapter" data-level="42.2.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#extrahera-delar-av-textsträngar-subsetting-1"><i class="fa fa-check"></i><b>42.2.3</b> Extrahera delar av textsträngar (subsetting)</a></li>
+<li class="chapter" data-level="42.2.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#övningar-51"><i class="fa fa-check"></i><b>42.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="42.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#matcha-textmönster-med-hjälp-av-regular-expressions-1"><i class="fa fa-check"></i><b>42.3</b> Matcha textmönster med hjälp av <em>regular expressions</em></a>
+<ul>
+<li class="chapter" data-level="42.3.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#basic-matches-1"><i class="fa fa-check"></i><b>42.3.1</b> Basic matches</a></li>
+<li class="chapter" data-level="42.3.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#ankare-anchors-1"><i class="fa fa-check"></i><b>42.3.2</b> Ankare (Anchors)</a></li>
+<li class="chapter" data-level="42.3.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#tecken-klasser-1"><i class="fa fa-check"></i><b>42.3.3</b> Tecken-klasser</a></li>
+<li class="chapter" data-level="42.3.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#repeterande-tecken-1"><i class="fa fa-check"></i><b>42.3.4</b> Repeterande tecken</a></li>
+</ul></li>
+<li class="chapter" data-level="42.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#verktyg-1"><i class="fa fa-check"></i><b>42.4</b> Verktyg</a>
+<ul>
+<li class="chapter" data-level="42.4.1" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#upptäck-matchningar-1"><i class="fa fa-check"></i><b>42.4.1</b> Upptäck matchningar</a></li>
+<li class="chapter" data-level="42.4.2" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#övningar-54"><i class="fa fa-check"></i><b>42.4.2</b> Övningar</a></li>
+<li class="chapter" data-level="42.4.3" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#extrahera-matchningar-1"><i class="fa fa-check"></i><b>42.4.3</b> Extrahera matchningar</a></li>
+<li class="chapter" data-level="42.4.4" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#gruppereade-matchningar-1"><i class="fa fa-check"></i><b>42.4.4</b> Gruppereade matchningar</a></li>
+<li class="chapter" data-level="42.4.5" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#ersätt-matchningar-1"><i class="fa fa-check"></i><b>42.4.5</b> Ersätt matchningar</a></li>
+<li class="chapter" data-level="42.4.6" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#dela-upp-textsträngar-1"><i class="fa fa-check"></i><b>42.4.6</b> Dela upp textsträngar</a></li>
+<li class="chapter" data-level="42.4.7" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#hitta-matchningar-1"><i class="fa fa-check"></i><b>42.4.7</b> Hitta matchningar</a></li>
+</ul></li>
+<li class="chapter" data-level="42.5" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#andra-typer-av-mönster-1"><i class="fa fa-check"></i><b>42.5</b> Andra typer av mönster</a></li>
+<li class="chapter" data-level="42.6" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#andra-typer-av-regexps-1"><i class="fa fa-check"></i><b>42.6</b> Andra typer av regexps</a></li>
+<li class="chapter" data-level="42.7" data-path="textsträngar-strings-1.html"><a href="textsträngar-strings-1.html#stringi-1"><i class="fa fa-check"></i><b>42.7</b> stringi</a></li>
+</ul></li>
+<li class="chapter" data-level="43" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html"><i class="fa fa-check"></i><b>43</b> Kategoriska variabler (Factors)</a>
+<ul>
+<li class="chapter" data-level="43.1" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#introduktion-18"><i class="fa fa-check"></i><b>43.1</b> Introduktion</a></li>
+<li class="chapter" data-level="43.2" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#skapa-factors-1"><i class="fa fa-check"></i><b>43.2</b> Skapa factors</a></li>
+<li class="chapter" data-level="43.3" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#general-social-survey-1"><i class="fa fa-check"></i><b>43.3</b> General Social Survey</a></li>
+<li class="chapter" data-level="43.4" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#modifiera-ordningen-av-factors-1"><i class="fa fa-check"></i><b>43.4</b> Modifiera ordningen av factors</a></li>
+<li class="chapter" data-level="43.5" data-path="kategoriska-variabler-factors-1.html"><a href="kategoriska-variabler-factors-1.html#modifiera-factor-levels-1"><i class="fa fa-check"></i><b>43.5</b> Modifiera factor levels</a></li>
+</ul></li>
+<li class="chapter" data-level="44" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html"><i class="fa fa-check"></i><b>44</b> Datum och tidsformat</a>
+<ul>
+<li class="chapter" data-level="44.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#introduktion-19"><i class="fa fa-check"></i><b>44.1</b> Introduktion</a></li>
+<li class="chapter" data-level="44.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#skapa-datum-och-tid-1"><i class="fa fa-check"></i><b>44.2</b> Skapa datum och tid</a>
+<ul>
+<li class="chapter" data-level="44.2.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#från-textsträngar-1"><i class="fa fa-check"></i><b>44.2.1</b> Från textsträngar</a></li>
+<li class="chapter" data-level="44.2.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#från-enskilda-kompnenter-1"><i class="fa fa-check"></i><b>44.2.2</b> Från enskilda kompnenter</a></li>
+<li class="chapter" data-level="44.2.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#från-andra-datumtid-format-1"><i class="fa fa-check"></i><b>44.2.3</b> Från andra datum/tid-format</a></li>
+<li class="chapter" data-level="44.2.4" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#övningar-55"><i class="fa fa-check"></i><b>44.2.4</b> Övningar</a></li>
+</ul></li>
+<li class="chapter" data-level="44.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#datumtid-komponenter-1"><i class="fa fa-check"></i><b>44.3</b> Datum/tid-komponenter</a>
+<ul>
+<li class="chapter" data-level="44.3.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#extrahera-komponenter-1"><i class="fa fa-check"></i><b>44.3.1</b> Extrahera komponenter</a></li>
+<li class="chapter" data-level="44.3.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#avrundning-1"><i class="fa fa-check"></i><b>44.3.2</b> Avrundning</a></li>
+<li class="chapter" data-level="44.3.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#ange-komponenter-1"><i class="fa fa-check"></i><b>44.3.3</b> Ange komponenter</a></li>
+</ul></li>
+<li class="chapter" data-level="44.4" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#tidsintervall-1"><i class="fa fa-check"></i><b>44.4</b> Tidsintervall</a>
+<ul>
+<li class="chapter" data-level="44.4.1" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#varaktighet-1"><i class="fa fa-check"></i><b>44.4.1</b> Varaktighet</a></li>
+<li class="chapter" data-level="44.4.2" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#perioder-1"><i class="fa fa-check"></i><b>44.4.2</b> Perioder</a></li>
+<li class="chapter" data-level="44.4.3" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#intervall-1"><i class="fa fa-check"></i><b>44.4.3</b> Intervall</a></li>
+</ul></li>
+<li class="chapter" data-level="44.5" data-path="datum-och-tidsformat-1.html"><a href="datum-och-tidsformat-1.html#summering-1"><i class="fa fa-check"></i><b>44.5</b> Summering</a></li>
+</ul></li>
+<li class="chapter" data-level="45" data-path="programmering-i-r-1.html"><a href="programmering-i-r-1.html"><i class="fa fa-check"></i><b>45</b> Programmering i R</a>
+<ul>
+<li class="chapter" data-level="45.1" data-path="programmering-i-r-1.html"><a href="programmering-i-r-1.html#introduktion-20"><i class="fa fa-check"></i><b>45.1</b> Introduktion</a></li>
+</ul></li>
+<li class="chapter" data-level="46" data-path="pipes-1.html"><a href="pipes-1.html"><i class="fa fa-check"></i><b>46</b> Pipes</a></li>
+<li class="chapter" data-level="47" data-path="funktioner-1.html"><a href="funktioner-1.html"><i class="fa fa-check"></i><b>47</b> Funktioner</a>
+<ul>
+<li class="chapter" data-level="47.1" data-path="funktioner-1.html"><a href="funktioner-1.html#när-bör-du-skapa-en-funktion-1"><i class="fa fa-check"></i><b>47.1</b> När bör du skapa en funktion?</a></li>
+<li class="chapter" data-level="47.2" data-path="funktioner-1.html"><a href="funktioner-1.html#funktioner-är-till-för-människor-och-datorer-1"><i class="fa fa-check"></i><b>47.2</b> Funktioner är till för människor och datorer</a></li>
+<li class="chapter" data-level="47.3" data-path="funktioner-1.html"><a href="funktioner-1.html#villkorlig-exekvering-1"><i class="fa fa-check"></i><b>47.3</b> Villkorlig exekvering</a>
+<ul>
+<li class="chapter" data-level="47.3.1" data-path="funktioner-1.html"><a href="funktioner-1.html#villkor-1"><i class="fa fa-check"></i><b>47.3.1</b> Villkor</a></li>
+<li class="chapter" data-level="47.3.2" data-path="funktioner-1.html"><a href="funktioner-1.html#multipla-villkor-1"><i class="fa fa-check"></i><b>47.3.2</b> Multipla villkor</a></li>
+</ul></li>
+<li class="chapter" data-level="47.4" data-path="funktioner-1.html"><a href="funktioner-1.html#funktionsargument-1"><i class="fa fa-check"></i><b>47.4</b> Funktionsargument</a></li>
+<li class="chapter" data-level="47.5" data-path="funktioner-1.html"><a href="funktioner-1.html#kolla-värden-1"><i class="fa fa-check"></i><b>47.5</b> Kolla värden</a></li>
+<li class="chapter" data-level="47.6" data-path="funktioner-1.html"><a href="funktioner-1.html#punkt-punkt-punkt-1"><i class="fa fa-check"></i><b>47.6</b> punkt-punkt-punkt</a></li>
+<li class="chapter" data-level="47.7" data-path="funktioner-1.html"><a href="funktioner-1.html#returnera-värden-1"><i class="fa fa-check"></i><b>47.7</b> Returnera värden</a>
+<ul>
+<li class="chapter" data-level="47.7.1" data-path="funktioner-1.html"><a href="funktioner-1.html#explicita-return-uttryck-1"><i class="fa fa-check"></i><b>47.7.1</b> Explicita <code>return</code>-uttryck</a></li>
+</ul></li>
+<li class="chapter" data-level="47.8" data-path="funktioner-1.html"><a href="funktioner-1.html#skriva-funktioner-med-hjälp-av-pipes-1"><i class="fa fa-check"></i><b>47.8</b> Skriva funktioner med hjälp av pipes</a></li>
+<li class="chapter" data-level="47.9" data-path="funktioner-1.html"><a href="funktioner-1.html#environment-svårt-hitta-ett-svenskt-uttryck-1"><i class="fa fa-check"></i><b>47.9</b> Environment (svårt hitta ett svenskt uttryck)</a></li>
+</ul></li>
+<li class="chapter" data-level="48" data-path="vektorer-1.html"><a href="vektorer-1.html"><i class="fa fa-check"></i><b>48</b> Vektorer</a>
+<ul>
+<li class="chapter" data-level="48.1" data-path="vektorer-1.html"><a href="vektorer-1.html#introduktion-21"><i class="fa fa-check"></i><b>48.1</b> Introduktion</a></li>
+<li class="chapter" data-level="48.2" data-path="vektorer-1.html"><a href="vektorer-1.html#atomic-vectors-1"><i class="fa fa-check"></i><b>48.2</b> Atomic vectors</a>
+<ul>
+<li class="chapter" data-level="48.2.1" data-path="vektorer-1.html"><a href="vektorer-1.html#logical-vectors-1"><i class="fa fa-check"></i><b>48.2.1</b> Logical vectors</a></li>
+<li class="chapter" data-level="48.2.2" data-path="vektorer-1.html"><a href="vektorer-1.html#numeriska-vektorer-1"><i class="fa fa-check"></i><b>48.2.2</b> Numeriska vektorer</a></li>
+<li class="chapter" data-level="48.2.3" data-path="vektorer-1.html"><a href="vektorer-1.html#character-1"><i class="fa fa-check"></i><b>48.2.3</b> Character</a></li>
+<li class="chapter" data-level="48.2.4" data-path="vektorer-1.html"><a href="vektorer-1.html#använda-atomic-vectors-1"><i class="fa fa-check"></i><b>48.2.4</b> Använda atomic vectors</a></li>
+<li class="chapter" data-level="48.2.5" data-path="vektorer-1.html"><a href="vektorer-1.html#scalars-och-recycling-1"><i class="fa fa-check"></i><b>48.2.5</b> Scalars och recycling</a></li>
+<li class="chapter" data-level="48.2.6" data-path="vektorer-1.html"><a href="vektorer-1.html#rekursiva-vektorer-lists-1"><i class="fa fa-check"></i><b>48.2.6</b> Rekursiva vektorer (lists)</a></li>
+<li class="chapter" data-level="48.2.7" data-path="vektorer-1.html"><a href="vektorer-1.html#attribut-1"><i class="fa fa-check"></i><b>48.2.7</b> Attribut</a></li>
+<li class="chapter" data-level="48.2.8" data-path="vektorer-1.html"><a href="vektorer-1.html#förstärkta-vektorer-augmented-vectors-1"><i class="fa fa-check"></i><b>48.2.8</b> Förstärkta vektorer (Augmented vectors)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="49" data-path="itereringar-1.html"><a href="itereringar-1.html"><i class="fa fa-check"></i><b>49</b> Itereringar</a>
+<ul>
+<li class="chapter" data-level="49.1" data-path="itereringar-1.html"><a href="itereringar-1.html#for-loops-1"><i class="fa fa-check"></i><b>49.1</b> For-loops</a></li>
+<li class="chapter" data-level="49.2" data-path="itereringar-1.html"><a href="itereringar-1.html#variationer-av-for-loopar-1"><i class="fa fa-check"></i><b>49.2</b> Variationer av for-loopar</a>
+<ul>
+<li class="chapter" data-level="49.2.1" data-path="itereringar-1.html"><a href="itereringar-1.html#modifiera-ett-existerande-obkjekt-1"><i class="fa fa-check"></i><b>49.2.1</b> Modifiera ett existerande obkjekt</a></li>
+<li class="chapter" data-level="49.2.2" data-path="itereringar-1.html"><a href="itereringar-1.html#när-längden-på-output-inte-är-känd-1"><i class="fa fa-check"></i><b>49.2.2</b> När längden på output inte är känd</a></li>
+<li class="chapter" data-level="49.2.3" data-path="itereringar-1.html"><a href="itereringar-1.html#när-sekvensens-längd-är-okänd-1"><i class="fa fa-check"></i><b>49.2.3</b> När sekvensens längd är okänd</a></li>
+</ul></li>
+<li class="chapter" data-level="49.3" data-path="itereringar-1.html"><a href="itereringar-1.html#for-loops-vs.-funktioner-1"><i class="fa fa-check"></i><b>49.3</b> for-loops vs. Funktioner</a></li>
+<li class="chapter" data-level="49.4" data-path="itereringar-1.html"><a href="itereringar-1.html#mappningsfunktioner-1"><i class="fa fa-check"></i><b>49.4</b> Mappningsfunktioner</a>
+<ul>
+<li class="chapter" data-level="49.4.1" data-path="itereringar-1.html"><a href="itereringar-1.html#genvägar-1"><i class="fa fa-check"></i><b>49.4.1</b> Genvägar</a></li>
+</ul></li>
+<li class="chapter" data-level="49.5" data-path="itereringar-1.html"><a href="itereringar-1.html#hantera-errors-1"><i class="fa fa-check"></i><b>49.5</b> Hantera errors</a></li>
+</ul></li>
+<li class="chapter" data-level="50" data-path="introduction-1.html"><a href="introduction-1.html"><i class="fa fa-check"></i><b>50</b> Introduction</a></li>
+<li class="chapter" data-level="51" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html"><i class="fa fa-check"></i><b>51</b> Modellering: basics</a>
+<ul>
+<li class="chapter" data-level="51.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#en-enkel-modell-1"><i class="fa fa-check"></i><b>51.1</b> En enkel modell</a></li>
+<li class="chapter" data-level="51.2" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#visualisera-modeller-1"><i class="fa fa-check"></i><b>51.2</b> Visualisera modeller</a>
+<ul>
+<li class="chapter" data-level="51.2.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#prediktioner-1"><i class="fa fa-check"></i><b>51.2.1</b> Prediktioner</a></li>
+<li class="chapter" data-level="51.2.2" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#residualer-1"><i class="fa fa-check"></i><b>51.2.2</b> Residualer</a></li>
+</ul></li>
+<li class="chapter" data-level="51.3" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#formler-och-modell-familjer-1"><i class="fa fa-check"></i><b>51.3</b> Formler och modell-familjer</a>
+<ul>
+<li class="chapter" data-level="51.3.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#kategoriska-variabler-1"><i class="fa fa-check"></i><b>51.3.1</b> Kategoriska variabler</a></li>
+<li class="chapter" data-level="51.3.2" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#interaktioner-1"><i class="fa fa-check"></i><b>51.3.2</b> Interaktioner</a></li>
+<li class="chapter" data-level="51.3.3" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#interaktioner-två-kontinuerliga-variabler-1"><i class="fa fa-check"></i><b>51.3.3</b> Interaktioner (två kontinuerliga variabler)</a></li>
+<li class="chapter" data-level="51.3.4" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#transformationer-1"><i class="fa fa-check"></i><b>51.3.4</b> Transformationer</a></li>
+</ul></li>
+<li class="chapter" data-level="51.4" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#missing-values-7"><i class="fa fa-check"></i><b>51.4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="51.4.1" data-path="modellering-basics-1.html"><a href="modellering-basics-1.html#andra-modell-familjer-1"><i class="fa fa-check"></i><b>51.4.1</b> Andra modell-familjer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="52" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html"><i class="fa fa-check"></i><b>52</b> Bygga modeller i R</a>
+<ul>
+<li class="chapter" data-level="52.1" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#varför-är-diamanter-av-låg-kvalitet-dyrare-1"><i class="fa fa-check"></i><b>52.1</b> Varför är diamanter av låg kvalitet dyrare?</a>
+<ul>
+<li class="chapter" data-level="52.1.1" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#sambandet-pris-och-karat-1"><i class="fa fa-check"></i><b>52.1.1</b> Sambandet pris och karat</a></li>
+<li class="chapter" data-level="52.1.2" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#en-mer-komplicerad-modell-1"><i class="fa fa-check"></i><b>52.1.2</b> En mer komplicerad modell</a></li>
+</ul></li>
+<li class="chapter" data-level="52.2" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#vad-är-det-som-påverkar-antalet-dagliga-flighter-1"><i class="fa fa-check"></i><b>52.2</b> Vad är det som påverkar antalet dagliga flighter?</a>
+<ul>
+<li class="chapter" data-level="52.2.1" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#veckodag-1"><i class="fa fa-check"></i><b>52.2.1</b> Veckodag</a></li>
+<li class="chapter" data-level="52.2.2" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#lördags-effekten-1"><i class="fa fa-check"></i><b>52.2.2</b> Lördags-effekten</a></li>
+</ul></li>
+<li class="chapter" data-level="52.3" data-path="bygga-modeller-i-r-1.html"><a href="bygga-modeller-i-r-1.html#lära-mer-om-modellering-1"><i class="fa fa-check"></i><b>52.3</b> Lära mer om modellering</a></li>
+</ul></li>
+<li class="chapter" data-level="53" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html"><i class="fa fa-check"></i><b>53</b> Excel och R</a>
+<ul>
+<li class="chapter" data-level="53.1" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html#skriv-till-en-excelfil-3"><i class="fa fa-check"></i><b>53.1</b> Skriv till en excelfil</a></li>
+<li class="chapter" data-level="53.2" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html#läsa-in-excel-3"><i class="fa fa-check"></i><b>53.2</b> Läsa in excel</a></li>
+<li class="chapter" data-level="53.3" data-path="excel-och-r-3.html"><a href="excel-och-r-3.html#ytterligare-resurser-för-att-hantera-excel-filer-i-r-3"><i class="fa fa-check"></i><b>53.3</b> Ytterligare resurser för att hantera excel-filer i R</a></li>
+</ul></li>
+<li class="chapter" data-level="54" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html"><i class="fa fa-check"></i><b>54</b> Grafik för att kommunicera</a>
+<ul>
+<li class="chapter" data-level="54.1" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#etiketter-labels-1"><i class="fa fa-check"></i><b>54.1</b> Etiketter (labels)</a></li>
+<li class="chapter" data-level="54.2" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#annoteringar-1"><i class="fa fa-check"></i><b>54.2</b> Annoteringar</a></li>
+<li class="chapter" data-level="54.3" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#scales-1"><i class="fa fa-check"></i><b>54.3</b> Scales</a>
+<ul>
+<li class="chapter" data-level="54.3.1" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#axis-ticks-och-teckenförklaringar-1"><i class="fa fa-check"></i><b>54.3.1</b> Axis ticks och teckenförklaringar</a></li>
+<li class="chapter" data-level="54.3.2" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#teckenförklaringens-legend-layout-1"><i class="fa fa-check"></i><b>54.3.2</b> Teckenförklaringens (legend) layout</a></li>
+<li class="chapter" data-level="54.3.3" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#byta-ut-en-scale-1"><i class="fa fa-check"></i><b>54.3.3</b> Byta ut en scale</a></li>
+</ul></li>
+<li class="chapter" data-level="54.4" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#zooming-1"><i class="fa fa-check"></i><b>54.4</b> Zooming</a>
+<ul>
+<li class="chapter" data-level="54.4.1" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#teman-themes-1"><i class="fa fa-check"></i><b>54.4.1</b> Teman (themes)</a></li>
+</ul></li>
+<li class="chapter" data-level="54.5" data-path="grafik-för-att-kommunicera-1.html"><a href="grafik-för-att-kommunicera-1.html#spara-graferna-1"><i class="fa fa-check"></i><b>54.5</b> Spara graferna</a></li>
 </ul></li>
 </ul>
 
@@ -443,7 +855,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Kurskompendium - introduktion till R</h1>
 </div>
-<div id="introduktion" class="section level1">
+<div id="introduktion" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Introduktion</h1>
 <p>I denna introduktionskurs kommer du att bli hyggligt bekväm med att hantera de viktigaste verktygen i R och det modernare gränssnittet <em>Rstudio</em>. Som alltid bygger det dock på att du själv brottas med programmet och allteftersom lär dig genom att göra misstag.</p>
 <p>Kursen är grovt tänkt att genomföras i tre (eventuellt fyra) workshops uppdelade ungefär så här:</p>
@@ -468,12 +880,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Punkterna 1-2 handlar om att importera och manipulera data så att det blir möjligt att analysera dem. Punkterna 3-5 syftar till att få en överblick och förstå datamängden och hur olika komponenter hänger samman med varandra. Punkt 6 handlar om att kommunicera resultaten från analysen.</p>
 <p>Vi kommer att beröra samtliga delar mer och mindre. Till att börja med dyker vi in i punkterna 3-5 för att snabbt komma in i programmeringsspråket och känna på olika verktyg för visualisering, modellering och transformering av data. Därefter behandlar vi punkterna 1-2 och brottas då med verktyg för att anpassa rådata till arbets-data och i den avslutande delen fördjupar vi valda delar av 1-5 samt berör punkt 6.</p>
 <p>Men först lite basal R/RStudio-hantering.</p>
-<div id="basics" class="section level2">
+<div id="basics" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Basics</h2>
 <p>I detta avsnitt ska vi väldigt översiktligt nosa på R-konsolen som självständigt program och använda det som en kalkylator. Därefter ska vi bekanta oss med RStudio och börja uppskatta finessen med att ha ett separat gränsnitt.
 Vi ska även titta på några olika sätt att få hjälp när du kör fast – för det kommer du att göra.</p>
 </div>
-<div id="r-konsolen" class="section level2">
+<div id="r-konsolen" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> R-konsolen</h2>
 <p>R fungerar som ett självständigt program och man kan i princip göra alla beräkningar och bearbetningar direkt i programmets eget gränssnitt – konsolen. I det här avsnittet ska vi bekanta oss översiktligt med konsolen.</p>
 <p>Starta upp R. nedanstående skärmbild kommer upp. I konsolen ses en standardtext som visar vilken version av R som körs, en deklaration om R samt några tips om hjälp-funktioner.</p>
@@ -481,21 +893,21 @@ Vi ska även titta på några olika sätt att få hjälp när du kör fast – f
 <p>Menyraden innehåller sedvanliga funktioner och länkar. Vi ska inte gå igenom dessa utan bara känna på hur det är att arbeta i detta gränssnitt.
 Låt oss börja med att titta på några inbyggda R-demon. Skriv</p>
 <p><code>demo()</code></p>
-<p>vid prompten (&gt;) och tryck ENTER. Då kommer en ”output”-skärm fram vilken visar vilka tillgängliga demon som finns. Låt oss titta på några exempel på R:s grafiska möjligheter. Det gör man genom att ange <code>demo(graphics)</code>. Det kan man förstås skriva ut men ett smartare sätt är att unyttja att R håller reda på tidigare kommandon och genom att istället trycka ”uppåt&quot;-pilen på tangentbordet kommer det senaste kommandot att synas på skärmen. Med hjälp av vänsterpilen flyttar du markören innanför parentesen och skriver <em>graphics</em> så att kommandot nu är</p>
+<p>vid prompten (&gt;) och tryck ENTER. Då kommer en ”output”-skärm fram vilken visar vilka tillgängliga demon som finns. Låt oss titta på några exempel på R:s grafiska möjligheter. Det gör man genom att ange <code>demo(graphics)</code>. Det kan man förstås skriva ut men ett smartare sätt är att unyttja att R håller reda på tidigare kommandon och genom att istället trycka ”uppåt"-pilen på tangentbordet kommer det senaste kommandot att synas på skärmen. Med hjälp av vänsterpilen flyttar du markören innanför parentesen och skriver <em>graphics</em> så att kommandot nu är</p>
 <p><code>demo(graphics)</code></p>
 <p>Tryck ENTER. I konsolen ses nu en bekräftelse på att R har laddat grafik-demot. Tryck ENTER en gång till för att köra igång demot. Då förbereds R genom att ladda in nödvändiga packeages och data-set. Längst ner står ”Waiting to confirm page change…”. R är redo att visa olika grafiska outputs. Högst upp på output-skärmen uppmanas vi att trycka ENTER för att bekräfta fortsättningen. Då vi gör det visas ett nytt diagram för varje gång ENTER trycks ned. I konsolen visas den syntax R använt för att framställa diagrammen. Efter ett antal ENTER händer inget mer. Vi har nått slutet på demon och det markeras på konsolen genom att prompten (&gt;) nu blivit röd. R är nu redo för nya kommandon.</p>
 <p>Låt oss använda R som en kalkylator. Man skriver då in de beräkningar man vill utföra och trycker ENTER. Till exempel:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">2</span><span class="op">+</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="dv">4</span><span class="op">*</span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="dv">9</span><span class="op">/</span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">log</span>(<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="dv">3</span><span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">sqrt</span>(<span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="dv">2</span><span class="op">+</span><span class="dv">3</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2"></a><span class="dv">4</span><span class="op">*</span><span class="dv">7</span></span>
+<span id="cb1-3"><a href="index.html#cb1-3"></a><span class="dv">9</span><span class="op">/</span><span class="dv">4</span></span>
+<span id="cb1-4"><a href="index.html#cb1-4"></a><span class="kw">log</span>(<span class="dv">4</span>)</span>
+<span id="cb1-5"><a href="index.html#cb1-5"></a><span class="dv">3</span><span class="op">^</span><span class="dv">2</span></span>
+<span id="cb1-6"><a href="index.html#cb1-6"></a><span class="kw">sqrt</span>(<span class="dv">6</span>)</span></code></pre></div>
 <p>även om R-konsolen är fullt funktionell är användningen en mödosam process, speciellt då man använder mer komplexa script för sina sessioner. Det blir mycket tangent-tryckningar och ofta omständligt att felsöka scripten man jobbar med. Därför bör man använda något av de modernare gränssnitt som utvecklats. Det kanske mest använda är RStudio, vilket vi nu går över till. Skriv</p>
 <p><code>q()</code></p>
 <p>i konsolen, tryck ENTER och välj att inte spara. Tryck OK.</p>
 </div>
-<div id="rstudio" class="section level2">
+<div id="rstudio" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> RStudio</h2>
 <p>RStudio är en ingegrerad utvecklingsmiljö (IDE, integrated development environment) för R programmering. När du öppnar programmet möts du av två dominerande ytor, konsolen och resultat-ytan nere till höger (<em>console</em> och <em>output</em>).</p>
 <p><img src="fig3_RStudio_interface.png" width="70%" /></p>
@@ -505,11 +917,11 @@ Låt oss börja med att titta på några inbyggda R-demon. Skriv</p>
 <p><code>install.packages(”tidyverse”)</code></p>
 <p>och tryck ENTER.</p>
 <p>Tidyverse är en samling moduler vilka bygger på samma konsistenta programlogik och utnyttjar kapaciteten i R optimalt för att hantera data. För kursen täcker tidyverse behovet av moduler som inte finns med i basversionen av R. Nästan. Vi ska ladda ned ytterligare tre moduler som innehåller data till övningsexemplen längre fram. Så på samma sätt som tidigare, skriv</p>
-<p><code>install.packages(c(&quot;nycflights13&quot;, &quot;gapminder&quot;, &quot;Lahman&quot;))</code></p>
+<p><code>install.packages(c("nycflights13", "gapminder", "Lahman"))</code></p>
 <p>Och tryck ENTER.</p>
 <p>Dessa moduler innhåller data över flygtrafik, global utveckling och baseball-data.</p>
 </div>
-<div id="hjalpfunktioner" class="section level2">
+<div id="hjälpfunktioner" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Hjälpfunktioner</h2>
 <p>R och RStudio innehåller flera inbyggda möjligheter att få hjälp när man kör fast, vilket inte sällan blir fallet. Förutom dessa måste nämnas möjligheten att googla fram en lösning på problemet. Det kan gälla alltifrån tämligen ospecifika frågor om t.ex. en viss funktion till att förstå vad ett felmeddelande betyder. Att kombinera sökfrasen med ”R” räcker i allmänhet för att resultatet ska vara tillräckligt R-specifikt. Google är förvånansvärt effektivt för att få klarhet i just felmeddelanden vilka ofta är ganska kryptiska.</p>
 <p>Om Google inte ger svaret bör du försöka med Stackoverflow (<a href="http://stackoverflow.com/" class="uri">http://stackoverflow.com/</a>) och i sökfrasen inkludera [R] för att begränsa sökningen till R-specifika svar.</p>
@@ -527,11 +939,13 @@ Låt oss börja med att titta på några inbyggda R-demon. Skriv</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -539,12 +953,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -552,6 +965,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
